@@ -7,6 +7,8 @@
 <body>
   <div id="editor" style="height: 500px; width: 800px;">print("Hello, world!")</div>
   <button id="btn-executer">Exécuter</button>
+  <input type="text" id="input" placeholder="Entrez une valeur">
+  <button id="btn-send">Envoyer</button>
   <div id="resultat"></div>
 
   <!-- Inclure jQuery -->
@@ -32,6 +34,27 @@
             success: function(response) {
                 // Affiche la réponse du serveur dans une zone de résultat
                 $('#resultat').text(response);
+            },
+            error: function(xhr, status, error) {
+                // Gère les erreurs de la requête AJAX
+                console.error('Erreur AJAX : ', status, error);
+            }
+        });
+    });
+
+    // Associe la fonction d'envoi au bouton "Envoyer"
+    $('#btn-send').click(function() {
+        // Récupère la valeur saisie par l'utilisateur
+        var inputValue = $('#input').val();
+
+        // Envoie la valeur au serveur via AJAX
+        $.ajax({
+            url: 'input.php', // Nom de votre fichier PHP pour gérer les entrées utilisateur
+            type: 'POST',
+            data: { input: inputValue },
+            success: function(response) {
+                // Réinitialise le champ de saisie
+                $('#input').val('');
             },
             error: function(xhr, status, error) {
                 // Gère les erreurs de la requête AJAX

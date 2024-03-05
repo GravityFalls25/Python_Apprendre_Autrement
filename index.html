@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Escape Game Simple</title>
-<link rel="stylesheet" href="style.css">
+  <title>Editeur de code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-monokai.min.css" integrity="sha512-QYFPZv7reALfBrmDTwZSzF7MKgfPbgfyV36cvx2DqACo4e+zXk3/1YoMWoU4YhO+df+PRX5Gr8EeY+ZyVrGztg==" crossorigin="anonymous" />
 </head>
 <body>
-<div id="jeu">
-    <h1>Escape Game: Trouvez le Code!</h1>
-    <p>Cherchez dans la page un code à 4 chiffres caché...</p>
-    <input type="text" id="codeInput" placeholder="Entrez le code ici" />
-    <button onclick="verifierCode()">Essayer</button>
-    <p id="indice">Indice: Regardez de près le code source...</p>
-</div>
-<script src="script.js"></script>
+  <div id="editor" style="height: 500px; width: 800px;">print("Hello, world!")</div>
+  <button id="btn-executer">Exécuter</button>
+  <div id="resultat"></div>
+
+  <!-- Inclure jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Inclure Ace Editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+  </script>
+  <script src="capture.js"></script>
 </body>
 </html>

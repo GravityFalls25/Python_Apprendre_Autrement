@@ -5,8 +5,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-monokai.min.css" type="text/css">
 </head>
 <body>
-  <div id="editor" style="height: 500px; width: 800px;">print("Hello, world!")</div>
+  <div id="editor" style="height: 500px; width: 800px;">J1 =input("Pierre, Papier ou Ciseaux: ")
+J2 = input("Pierre, Papier ou Ciseaux: ")
+    
+    
+if J1 == J2:
+    print('Egalité')
+    
+elif J1 == "Pierre" and J2 == "Papier":
+    print("J2 gagne")
+    pass
+    
+elif J1 == "Pierre" and J2 == "Ciseaux":
+    print("J1 gagne")
+    pass
+elif J1 == "Papier" and J2 == "Ciseaux":
+    print("J2 gagne")
+        
+    pass
+elif J1 == "Papier" and J2 == "Pierre":
+    print("J1 gagne")
+    pass
+elif J1 == "Ciseaux" and J2 == "Pierre":
+    print("J2 gagne")
+    pass
+elif J1 == "Ciseaux" and J2 == "Papier":
+    print("J1 gagne")
+    pass
+else:
+    print("Erreur")</div>
   <button id="btn-executer">Exécuter</button>
+  <button id="btn-verifier">Vérifier</button>
   <div id="resultat"></div>
 
   <!-- Inclure jQuery -->
@@ -23,12 +52,28 @@
     $('#btn-executer').click(function() {
         // Récupère le code Python de l'éditeur
         var code = editor.getValue();
+        
 
         // Envoie le code au serveur via AJAX
         $.ajax({
-            url: 'test.php', // Nom de votre fichier PHP
+            url: 'test_copy.php', // Nom de votre fichier PHP
             type: 'POST',
             data: { code: code },
+            success: function(response) {
+                // Affiche la réponse du serveur dans une zone de résultat
+                $('#resultat').text(response);
+            },
+            error: function(xhr, status, error) {
+                // Gère les erreurs de la requête AJAX
+                console.error('Erreur AJAX : ', status, error);
+            }
+        });
+    });
+    $('#btn-verifier').click(function() {
+        // Envoie une requête AJAX pour vérifier le script Python test.py
+        $.ajax({
+            url: 'test2.php', // Nom de votre fichier Python à vérifier
+            type: 'POST',
             success: function(response) {
                 // Affiche la réponse du serveur dans une zone de résultat
                 $('#resultat').text(response);

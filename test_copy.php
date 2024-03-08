@@ -10,7 +10,8 @@ $filename = 'user.py';
 // Écrit le code Python dans le fichier test.py
 file_put_contents($filename, $code);
 // Exécute le code Python en utilisant la commande shell
-$output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $filename 2>&1");
+$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
+$output = shell_exec("$filepath $filename 2>&1");
 
 
 

@@ -7,7 +7,8 @@ $tempFile = tempnam(sys_get_temp_dir(), 'python_script_');
 file_put_contents($tempFile, $code);
 
 // Exécute le code Python en utilisant la commande shell
-$output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $tempFile 2>&1");
+$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
+$output = shell_exec("$filepath $tempFile 2>&1");
 
 // Supprime le fichier temporaire
 unlink($tempFile);

@@ -7,7 +7,7 @@ $tempFile = tempnam(sys_get_temp_dir(), 'python_script_');
 file_put_contents($tempFile, $code);
 
 // Exécute le code Python en utilisant la commande shell
-$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe'
+$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';
 $output = shell_exec("$filepath $tempFile 2>&1");
 
 

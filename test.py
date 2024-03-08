@@ -29,7 +29,7 @@ sys.stdout = output
 with mock.patch('builtins.input',side_effect=["Papier","Papier"]):
     importlib.reload(user)
     sys.stdout = sys.__stdout__
-    if output.getvalue().strip() == "Egalité":
+    if output.getvalue().strip() == "Egalite":
         print("Correct")
     else:
         print("non")

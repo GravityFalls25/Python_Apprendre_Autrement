@@ -23,3 +23,6 @@
 
 
 # Ou montrer la liste des inputs qui seront appliqués
+# et pouvoir switch entre 3 list pour tester
+
+# Systeme de point lorsque l'on resoud des enygmes, si simple pour l'utilisateru ,gagne plus de points, si assez de points , peut passer au palier superieur

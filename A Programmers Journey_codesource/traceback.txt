@@ -1,0 +1,20 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+After initialization, but before game start.
+PermissionError: [WinError 5] Accès refusé: 'C:\\Games\\A Programmers Journey\\game\\saves\\navigation.json'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\bootstrap.py", line 359, in bootstrap
+    renpy.main.main()
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\main.py", line 582, in main
+    renpy.dump.dump(False)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\dump.py", line 260, in dump
+    os.unlink(filename)
+PermissionError: [WinError 5] Accès refusé: 'C:\\Games\\A Programmers Journey\\game\\saves\\navigation.json'
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.2.1.24030407
+A Programmer's Journey 0.1
+Sun Mar 10 00:12:29 2024

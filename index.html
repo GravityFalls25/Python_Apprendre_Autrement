@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Editeur de code</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-monokai.min.css" type="text/css">
   <style>
     /* Style pour la boîte de texte */
-    #boite-texte {
+    #boite-boite-texte{
       float: right;
       width: 300px;
       height: 500px;
@@ -13,13 +14,52 @@
       overflow-y: auto;
       padding: 10px;
     }
+    #boite-texte {
+        float: right;
+      width: 300px;
+      height: 420px;
+      overflow-y: auto;
+      
+      padding: 10px;
+    }
+    .texte {
+            margin-top: 20px;
+            margin-left : 20px;
+        }
+    #btn-reset {
+      clear: both; /* Pour s'assurer que le bouton est placé en dessous de la boîte texte */
+      margin-top: 20px;
+    }
+    
+
+        /* Style pour le texte */
+        
+       
   </style>
 </head>
 <body>
-    <div id="boite-texte"><h1>Liste des des input </h1>
-        Pierre
-        Papier
+    <div id = "boite-boite-texte">
+        <div id="boite-texte">
+            <h1>Liste des input</h1>
+            <div class="texte" contenteditable="true">
+                <p>Pierre</p>
+                <p>Papier</p>
+            </div>
         </div>
+
+        <button id="btn-reset">Réinitialiser</button>
+    </div>
+
+    <script>
+        const btnReset = document.getElementById('btn-reset');
+        const texte = document.querySelector('.texte');
+
+        const contenuInitial = `<p>Pierre</p><p>Papier</p>`;
+
+        btnReset.addEventListener('click', () => {
+            texte.innerHTML = contenuInitial;
+        });
+    </script>
   <div id="editor" style="height: 500px; width: 800px;">J1 =input("Pierre, Papier ou Ciseaux: ")
 J2 = input("Pierre, Papier ou Ciseaux: ")
     
@@ -50,8 +90,8 @@ elif J1 == "Ciseaux" and J2 == "Papier":
 else:
     print("Erreur")</div>
   
-  <button id="btn-executer">Exécuter</button>
-  <button id="btn-verifier">Vérifier</button>
+  <button id="btn-executer">Executer</button>
+  <button id="btn-verifier">Verifier</button>
   <div id="resultat"></div>
 
   <!-- Inclure jQuery -->
@@ -68,11 +108,31 @@ else:
     $('#btn-executer').click(function() {
         // Récupère le code Python de l'éditeur
         var code = editor.getValue();
+        var contenu = $('.texte').html();
+        
         
 
         // Envoie le code au serveur via AJAX
         $.ajax({
-            url: 'test_copy.php', // Nom de votre fichier PHP
+            url: 'test.php', // Nom de votre fichier PHP
+            type: 'POST',
+            data: { code: code, contenu: contenu },
+            success: function(response) {
+                // Affiche la réponse du serveur dans une zone de résultat
+                $('#resultat').text(response);
+            },
+            error: function(xhr, status, error) {
+                // Gère les erreurs de la requête AJAX
+                console.error('Erreur AJAX : ', status, error);
+            }
+        });
+    });
+    $('#btn-verifier').click(function() {
+        // Récupère le code Python de l'éditeur
+        var code = editor.getValue();
+        // Envoie une requête AJAX pour vérifier le script Python test.py
+        $.ajax({
+            url: 'test2.php', // Nom de votre fichier Python à vérifier
             type: 'POST',
             data: { code: code },
             success: function(response) {
@@ -85,21 +145,7 @@ else:
             }
         });
     });
-    $('#btn-verifier').click(function() {
-        // Envoie une requête AJAX pour vérifier le script Python test.py
-        $.ajax({
-            url: 'test2.php', // Nom de votre fichier Python à vérifier
-            type: 'POST',
-            success: function(response) {
-                // Affiche la réponse du serveur dans une zone de résultat
-                $('#resultat').text(response);
-            },
-            error: function(xhr, status, error) {
-                // Gère les erreurs de la requête AJAX
-                console.error('Erreur AJAX : ', status, error);
-            }
-        });
-    });
+
   </script>
 </body>
 </html>

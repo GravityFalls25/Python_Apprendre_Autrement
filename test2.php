@@ -16,6 +16,8 @@ $testPyFilePath = "test.py";
 // Exécute le fichier test.py en utilisant la commande shell
 $output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $testPyFilePath 2>&1");
 
+//Supprimer le fichier
+
 //unlink($filename);
 // Vérifie si l'exécution a généré une sortie
 if (!empty($output)) {

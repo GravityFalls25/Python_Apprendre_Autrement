@@ -5,7 +5,6 @@
   <title>Editeur de code</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-monokai.min.css" type="text/css">
   <style>
-    /* Style pour la boîte de texte */
     #boite-boite-texte{
       float: right;
       width: 300px;
@@ -27,14 +26,10 @@
             margin-left : 20px;
         }
     #btn-reset {
-      clear: both; /* Pour s'assurer que le bouton est placé en dessous de la boîte texte */
+      clear: both;
       margin-top: 20px;
     }
     
-
-        /* Style pour le texte */
-        
-       
   </style>
 </head>
 <body>
@@ -60,6 +55,7 @@
             texte.innerHTML = contenuInitial;
         });
     </script>
+    
   <div id="editor" style="height: 500px; width: 800px;">J1 =input("Pierre, Papier ou Ciseaux: ")
 J2 = input("Pierre, Papier ou Ciseaux: ")
     
@@ -94,10 +90,10 @@ else:
   <button id="btn-verifier">Verifier</button>
   <div id="resultat"></div>
 
-  <!-- Inclure jQuery -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <!-- Inclure Ace Editor -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
   <script>
     var editor = ace.edit("editor");
@@ -106,7 +102,7 @@ else:
 
     // Associe la fonction d'exécution au bouton "Exécuter"
     $('#btn-executer').click(function() {
-        // Récupère le code Python de l'éditeur
+        // Récupère le code Python de l'étudiant
         var code = editor.getValue();
         var contenu = $('.texte').html();
         
@@ -114,7 +110,7 @@ else:
 
         // Envoie le code au serveur via AJAX
         $.ajax({
-            url: 'test.php', // Nom de votre fichier PHP
+            url: 'test.php',
             type: 'POST',
             data: { code: code, contenu: contenu },
             success: function(response) {
@@ -128,11 +124,11 @@ else:
         });
     });
     $('#btn-verifier').click(function() {
-        // Récupère le code Python de l'éditeur
+        // Récupère le code Python de l'étudiant
         var code = editor.getValue();
         // Envoie une requête AJAX pour vérifier le script Python test.py
         $.ajax({
-            url: 'test2.php', // Nom de votre fichier Python à vérifier
+            url: 'test2.php', 
             type: 'POST',
             data: { code: code },
             success: function(response) {

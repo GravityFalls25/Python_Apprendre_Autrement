@@ -4,8 +4,7 @@ $code = $_POST['code'];
 $contenuHTML = $_POST['contenu'];
 
 $importStart ='import mock' . "\n";
-
-
+// Separations des informations des balises
 preg_match_all('/<p>(.*?)<\/p>/', $contenuHTML, $matches);
 
 // Récupère les textes extraits
@@ -20,8 +19,7 @@ $contenuPython = str_replace('"', "'", $contenuJSON);
 // Construction de la chaîne pour le début de la boucle
 $loopStart = 'with mock.patch("builtins.input", side_effect=' . $contenuPython . '):' . "\n";
 
-#$loopStart = 'with mock.patch("builtins.input", side_effect=["Papier", "Pierre"]):' . "\n";
-$indentation = "    "; // 4 espaces, ajustez selon les besoins
+$indentation = "    "; 
 
 // Sépare le code en lignes
 $lines = explode("\n", $code);
@@ -35,23 +33,13 @@ foreach ($lines as $line) {
 
 // Crée un fichier temporaire pour stocker le code Python
 $filename = 'user.py';
-// $tempFile = tempnam(sys_get_temp_dir(), 'python_script_');
+// si fichier temporaire :  $tempFile = tempnam(sys_get_temp_dir(), 'python_script_');
 file_put_contents($filename, $newCode);
 
 // Exécute le code Python en utilisant la commande shell
 $output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $filename 2>&1");
 
-// Supprime le fichier temporaire
-//unlink($tempFile);
-
-
-// Définit la boucle à ajouter
-
-
-
-
-
-
+// Pour supprimer le fichier temporaire unlink($tempFile);
 // Vérifie si l'exécution a généré une sortie
 if (!empty($output)) {
     // Si oui, renvoie la sortie

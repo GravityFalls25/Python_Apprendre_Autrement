@@ -5,6 +5,7 @@
   <title>Editeur de code</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-monokai.min.css" type="text/css">
   <style>
+    /* Style pour la boîte de texte */
     #boite-boite-texte{
       float: right;
       width: 300px;
@@ -26,10 +27,14 @@
             margin-left : 20px;
         }
     #btn-reset {
-      clear: both;
+      clear: both; /* Pour s'assurer que le bouton est placé en dessous de la boîte texte */
       margin-top: 20px;
     }
     
+
+        /* Style pour le texte */
+        
+       
   </style>
 </head>
 <body>
@@ -55,13 +60,12 @@
             texte.innerHTML = contenuInitial;
         });
     </script>
-    
   <div id="editor" style="height: 500px; width: 800px;">J1 =input("Pierre, Papier ou Ciseaux: ")
 J2 = input("Pierre, Papier ou Ciseaux: ")
     
     
 if J1 == J2:
-    print('Egalite')
+    print('Egalité')
     
 elif J1 == "Pierre" and J2 == "Papier":
     print("J2 gagne")
@@ -90,10 +94,10 @@ else:
   <button id="btn-verifier">Verifier</button>
   <div id="resultat"></div>
 
-
+  <!-- Inclure jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
+  <!-- Inclure Ace Editor -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
   <script>
     var editor = ace.edit("editor");
@@ -102,17 +106,40 @@ else:
 
     // Associe la fonction d'exécution au bouton "Exécuter"
     $('#btn-executer').click(function() {
-        // Récupère le code Python de l'étudiant
+        // Récupère le code Python de l'éditeur
         var code = editor.getValue();
         var contenu = $('.texte').html();
-        
+
+        // Récupère le contenu éditable
+        var contenu = document.querySelector('.texte').innerHTML;
+
+// Utilise une expression régulière pour extraire le texte des balises <p>
+        var balisesP = contenu.match(/<p>(.*?)<\/p>/g);
+
+// Initialise un tableau pour stocker les textes extraits
+        var texteArray = [];
+
+// Parcourt les balises <p> et extrait leur contenu
+        if (balisesP) {
+            balisesP.forEach(function(balise) {
+            var texte = balise.replace(/<\/?p>/g, ''); // Supprime les balises <p>
+            texteArray.push(texte.trim()); // Ajoute le texte au tableau en supprimant les espaces inutiles
+        });
+        }
+
+// Convertit le tableau en une chaîne JSON
+        var contenuJSON = JSON.stringify(texteArray);
+
+// Affiche la chaîne JSON dans la console
+console.log(contenuJSON);
+
         
 
         // Envoie le code au serveur via AJAX
         $.ajax({
-            url: 'test.php',
+            url: 'test.php', // Nom de votre fichier PHP
             type: 'POST',
-            data: { code: code, contenu: contenu },
+            data: { code: code, contenu: contenuJSON },
             success: function(response) {
                 // Affiche la réponse du serveur dans une zone de résultat
                 $('#resultat').text(response);
@@ -124,11 +151,11 @@ else:
         });
     });
     $('#btn-verifier').click(function() {
-        // Récupère le code Python de l'étudiant
+        // Récupère le code Python de l'éditeur
         var code = editor.getValue();
         // Envoie une requête AJAX pour vérifier le script Python test.py
         $.ajax({
-            url: 'test2.php', 
+            url: 'test2.php', // Nom de votre fichier Python à vérifier
             type: 'POST',
             data: { code: code },
             success: function(response) {

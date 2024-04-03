@@ -42,6 +42,7 @@ file_put_contents($filename, $newCode);
 
 $output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $filename 2>&1");
 
+
 // Pour supprimer le fichier temporaire unlink($tempFile);
 // Vérifie si l'exécution a généré une sortie
 if (!empty($output)) {

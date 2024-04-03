@@ -1,10 +1,10 @@
 J1 =input("Pierre, Papier ou Ciseaux: ")
 J2 = input("Pierre, Papier ou Ciseaux: ")
-    
-    
+              
+              
 if J1 == J2:
     print('Egalite')
-    
+              
 elif J1 == "Pierre" and J2 == "Papier":
     print("J2 gagne")
     pass

@@ -1,0 +1,28 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 18, in script
+    python:
+  File "game/script.rpy", line 19, in <module>
+    name=renpy.input("je suis ",end="")
+TypeError: renpy.input() got unexpected keyword argument(s): end
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 18, in script
+    python:
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 19, in <module>
+    name=renpy.input("je suis ",end="")
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\exports.py", line 949, in input
+    raise TypeError("renpy.input() got unexpected keyword argument(s): {}".format(", ".join(kwargs.keys())))
+TypeError: renpy.input() got unexpected keyword argument(s): end
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.2.1.24030407
+A Programmer's Journey 0.1
+Thu Apr 11 17:31:36 2024

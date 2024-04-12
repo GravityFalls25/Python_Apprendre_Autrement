@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 83: expected statement.
+    "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}"
+         ^
+
+File "game/script.rpy", line 149: expected statement.
+    "{a="+url+"}Peut-tu m'aider a compter ?{/a}"
+         ^
+
+Ren'Py Version: Ren'Py 8.2.1.24030407
+Thu Apr 11 20:38:12 2024

@@ -2,24 +2,9 @@ let indiceCount = 0; // Variable pour enregistrer le nombre d'indices demandés
     
     document.getElementById('btnIndice').addEventListener('click', function() {
       const indices = [
-'Premier indice: N\'ayez pas peur de preparer tous les cas possibles\n\
-',
-'Deuxieme indice: il y a le cas J1 joue "Pierre" et J2 joue "Ciseaux", si vous voyez cela, le joueur 1 gagne\n\
-',
-'Troisieme indice: voici le début d\'un code fonctionnel : J1 =input("Pierre, Papier ou Ciseaux: ")\n\
-J2 = input("Pierre, Papier ou Ciseaux: ")\n\
-\n\
-\n\
-if J1 == J2:\n\
-    print(\'Egalité\')\n\
-\n\
-elif J1 == "Pierre" and J2 == "Papier":\n\
-    print("J2 gagne")\n\
-    pass\n\
-\n\
-elif J1 == "Pierre" and J2 == "Ciseaux":\n\
-    print("J1 gagne")\n\
-',
+        "Premier indice: ...", // Mettez votre premier indice ici
+        "Deuxième indice: ...", // Deuxième indice
+        "Troisième indice: ..." // Troisième indice
       ];
       
       if (indiceCount < indices.length) {
@@ -32,23 +17,11 @@ elif J1 == "Pierre" and J2 == "Ciseaux":\n\
     });
 
 
-    const inputWords = [
-"Papier\n\
-Papier\n\
-",
-"Pierre\n\
-Papier\n\
-",
-"Papier\n\
-Papier\n\
-"
-     ];
+    const inputWords = ["Input 1", "Input 2", "Input 3", "Input 4", "Input 5"]; // Liste des mots génériques à afficher
 
     const inputText = document.getElementById('inputText');
    
-    const outputWords = [
-'J1 gagne', 'J2 gagne', 'Egalité'
-    ];
+    const outputWords = ["Mot 1", "Mot 2", "Mot 3", "Mot 4", "Mot 5"]; // Liste des mots à afficher
     let currentIndex = 0; // Indice du mot actuellement affiché
   
     const outputText = document.getElementById('outputText');

@@ -19,8 +19,8 @@
         <div class="text-container burn-effect" >
           <h1>Liste des input</h1>
           <div class="texte" contenteditable="true">
-                <p>Papier</p>
-                <p>Papier</p>
+            <p>Pierre</p>
+            <p>Papier</p>
           </div>
         </div>
         <button id="btn-reset" class="btn btn-primary btn-block mt-3">Réinitialiser</button>
@@ -28,8 +28,35 @@
       
 
       <div class="col-lg-8">
-        <div id="editor" style="height: 500px;">
-print("Hello World")        </div>
+        <div id="editor" style="height: 500px;">J1 =input("Pierre, Papier ou Ciseaux: ")
+J2 = input("Pierre, Papier ou Ciseaux: ")
+              
+              
+if J1 == J2:
+    print('Egalite')
+              
+elif J1 == "Pierre" and J2 == "Papier":
+    print("J2 gagne")
+    pass
+    
+elif J1 == "Pierre" and J2 == "Ciseaux":
+    print("J1 gagne")
+    pass
+elif J1 == "Papier" and J2 == "Ciseaux":
+    print("J2 gagne")
+        
+    pass
+elif J1 == "Papier" and J2 == "Pierre":
+    print("J1 gagne")
+    pass
+elif J1 == "Ciseaux" and J2 == "Pierre":
+    print("J2 gagne")
+    pass
+elif J1 == "Ciseaux" and J2 == "Papier":
+    print("J1 gagne")
+    pass
+else:
+    print("Erreur")</div>
        </div>
         <div class="btn-container">
           <button id="btn-executer" class="btn btn-success">Executer</button>
@@ -88,7 +115,8 @@ print("Hello World")        </div>
               
               
               <div class="tab-pane fade" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
-Un groupe d'enfant vous a demandé de créer un pierre papier ciseaux, vous devrez donc, dans votre progamme, demander a chacun des participant, si il veut jouer "Pierre", "Papier","Ciseaux" et d'afficher le resultat "J2 gagne", "J1 gagne" Egalité              </div>
+                <!-- Rappel de la quête -->
+              </div>
               <div class="tab-pane fade" id="indiceContent" role="tabpanel" aria-labelledby="indice-tab">
                 <!-- Indice supplémentaire -->
                 <p id="indiceText"></p>
@@ -169,4 +197,3 @@ Un groupe d'enfant vous a demandé de créer un pierre papier ciseaux, vous devr
   
 </body>
 </html>
-

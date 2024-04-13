@@ -29,7 +29,7 @@
       <div class="col-lg-8">
         <div id="editor" style="height: 500px;">
         <!-- Code init -->
-        </div>
+</div>
        </div>
         <div class="btn-container">
           <button id="btn-executer" class="btn btn-success">Executer</button>
@@ -112,7 +112,10 @@
       const btnReset = $('#btn-reset');
       const texte = $('.texte');
 
-      const contenuInitial = `<p>Pierre</p><p>Papier</p>`;
+      const contenuInitial = `
+      //Input initial
+      `
+      ;
 
       btnReset.on('click', function() {
         texte.html(contenuInitial);

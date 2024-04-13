@@ -11,7 +11,7 @@ file_put_contents($filename, $code);
 
 // Chemin du fichier test.py
 
-$testPyFilePath = "test.py";
+$testPyFilePath = "test_new.py";
 
 // Exécute le fichier test.py en utilisant la commande shell
 #$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';

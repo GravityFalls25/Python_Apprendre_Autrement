@@ -5,7 +5,7 @@ Created on Wed Apr 10 09:50:41 2024
 @author: thiba
 """
 
-quete = 0
+quete = 1
 with open("quest.txt",'r',encoding='utf-8') as fin:
     texte = fin.read().split("\n")
     texte2 = list()

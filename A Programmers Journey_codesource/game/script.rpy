@@ -21,7 +21,7 @@ label start:
     python:
         name=renpy.input("je suis ")
         name=name.strip()
-        if name="":
+        if name == "":
             name="Bricoleur"
 
     "je suis [name]"
@@ -79,13 +79,15 @@ label start:
     i 'print("je vais bien")'
 
     "Huh ? mais qu'est ce que raconte cette gamine"
+label premiere:
     python:
-        postData = {"valeur": "0"}
+        postData = {"valeur": "1"}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
+        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        lien = "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}."
+        renpy.say(None,lien)
 
-label premiere:
-    "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}"
 
     $ reussi = False
     python:

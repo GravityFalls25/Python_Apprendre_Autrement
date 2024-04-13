@@ -27,7 +27,7 @@ def html(Quest = 0):
     @author: thiba
     """
 
-    quete = 0
+    quete = Quest
     with open("quest.txt",'r',encoding='utf-8') as fin:
         texte = fin.read().split("\n")
         texte2 = list()

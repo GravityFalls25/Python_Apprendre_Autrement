@@ -5,11 +5,30 @@ import sys
 
 output = StringIO()
 sys.stdout = output
-with mock.patch('builtins.input', side_effect=['1', '2']):
+with mock.patch('builtins.input', side_effect=['Pierre', 'Papier']):
     import user
     sys.stdout = sys.__stdout__
-    print(output.getvalue().strip())
-    if output.getvalue().strip() == "Je vais bien\nMerci":
+    if output.getvalue().strip() == "J2 gagne":
+        print('Correct')
+    else:
+        print('non')
+
+output = StringIO()
+sys.stdout = output
+with mock.patch('builtins.input', side_effect=['Papier', 'Pierre']):
+    importlib.reload(user)
+    sys.stdout = sys.__stdout__
+    if output.getvalue().strip() == "J1 gagne":
+        print('Correct')
+    else:
+        print('non')
+
+output = StringIO()
+sys.stdout = output
+with mock.patch('builtins.input', side_effect=['Papier', 'Papier']):
+    importlib.reload(user)
+    sys.stdout = sys.__stdout__
+    if output.getvalue().strip() == "Egalité":
         print('Correct')
     else:
         print('non')

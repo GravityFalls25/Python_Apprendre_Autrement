@@ -19,7 +19,8 @@
         <div class="text-container burn-effect" >
           <h1>Liste des input</h1>
           <div class="texte" contenteditable="true">
-                <p></p>
+                <p>Pierre</p>
+                <p>Papier</p>
           </div>
         </div>
         <button id="btn-reset" class="btn btn-primary btn-block mt-3">Réinitialiser</button>
@@ -28,7 +29,7 @@
 
       <div class="col-lg-8">
         <div id="editor" style="height: 500px;">
-</div>
+print("Hello World")</div>
        </div>
         <div class="btn-container">
           <button id="btn-executer" class="btn btn-success">Executer</button>
@@ -87,7 +88,7 @@
               
               
               <div class="tab-pane fade" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
-Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repondre              </div>
+Un groupe d'enfant vous a demandé de créer un pierre papier ciseaux, vous devrez donc, dans votre progamme, demander a chacun des participant, si il veut jouer "Pierre", "Papier","Ciseaux" et d'afficher le resultat "J2 gagne", "J1 gagne" Egalité              </div>
               <div class="tab-pane fade" id="indiceContent" role="tabpanel" aria-labelledby="indice-tab">
                 <!-- Indice supplémentaire -->
                 <p id="indiceText"></p>
@@ -111,7 +112,7 @@ Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repon
       const texte = $('.texte');
 
       const contenuInitial = `
-<p></p>      `
+<p>Pierre</p><p>Papier</p>      `
       ;
 
       btnReset.on('click', function() {

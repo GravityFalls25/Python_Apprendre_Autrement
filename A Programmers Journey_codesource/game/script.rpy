@@ -81,7 +81,7 @@ label start:
     "Huh ? mais qu'est ce que raconte cette gamine"
 label premiere:
     python:
-        postData = {"valeur": "1"}
+        postData = {"valeur": "0"}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
         url = "http://localhost/Python_Apprendre_Autrement/index2.html"
@@ -155,7 +155,9 @@ label premiere:
         postData = {"valeur": "1"}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
-
+        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        lien = "{a="+url+"}Tu veux bien les compter ?{/a}."
+        renpy.say(None,lien)
 
     $ reussi = False
     python:

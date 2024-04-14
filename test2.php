@@ -21,7 +21,7 @@ $testPyFilePath = "test_new.py";
 
 // Exécute le fichier test.py en utilisant la commande shell
 #$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';
-#$output = shell_exec("$filepath $testPyFilePath 2>&1");
+#$output = shell_exec("$filepath $testPyFilePath $gold $id 2>&1");
 $output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $testPyFilePath $gold $id 2>&1");
 
 //Supprimer le fichier

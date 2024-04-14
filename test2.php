@@ -1,5 +1,11 @@
 <?php
-$code = $_POST['code'];
+if(isset($_POST['code']) && isset($_POST['gold'])) {
+    $code = $_POST['code'];
+    $gold = $_POST['gold'];
+    $id = $_POST['Id'];
+    // Faites ce que vous devez faire avec $code et $gold
+
+
 
 // Crée un fichier temporaire pour stocker le code Python
 
@@ -16,7 +22,7 @@ $testPyFilePath = "test_new.py";
 // Exécute le fichier test.py en utilisant la commande shell
 #$filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';
 #$output = shell_exec("$filepath $testPyFilePath 2>&1");
-$output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $testPyFilePath 2>&1");
+$output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $testPyFilePath $gold $id 2>&1");
 
 //Supprimer le fichier
 
@@ -52,5 +58,9 @@ if (!empty($output)) {
 } else {
     // Sinon, renvoie un message de succès
     echo "Code exécuté avec succès";
+}
+
+} else {
+    echo "Données manquantes.";
 }
 ?>

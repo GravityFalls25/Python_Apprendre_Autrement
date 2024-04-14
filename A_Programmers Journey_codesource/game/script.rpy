@@ -1,7 +1,7 @@
 ﻿# Déclarez les personnages utilisés dans le jeu.
 define c = Character(_("Client"), color="#c8ffc8")
 define flash = Fade(.25, 0.0, .75, color="#fff")
-define i= Character(_("????"), color="#000000")
+define i= Character(_("????"), color="#ffffff")
 define j= Character(_("Navi"), color="#92eb2c")
 
 init python:
@@ -93,7 +93,7 @@ label premiere:
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
         url = "http://localhost/Python_Apprendre_Autrement/index2.html"
-        lien = "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}."
+        lien = "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}"
         renpy.say(None,lien)
 
 
@@ -159,13 +159,14 @@ label premiere:
     "{i}Quelques dizaines de minutes plus tard{/i}"
 
     j "J'ai ceuilli quelques champignons en plus mais je sais pas si ca sera assez car je suis pas tres bonne pour calculer"
+label deuxieme:
     python:
         
         postData = {"valeur": "1", "id": id}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
         url = "http://localhost/Python_Apprendre_Autrement/index2.html"
-        lien = "{a="+url+"}Tu veux bien les compter ?{/a}."
+        lien = "{a="+url+"}Tu veux bien les compter ?{/a}"
         renpy.say(None,lien)
 
     $ reussi = False
@@ -194,5 +195,79 @@ label premiere:
 
     j "On peut maintenant rentrer au village"
 
-    "Sur le chemin vers le village Navi et moi avons fait plus ample connaissance et elle me compta aussi la raison pour laquelle cette foret s'appelle \"foret des legendes\""
+    "Sur le chemin vers le village Navi et moi avons fait plus ample connaissance"
 
+    m "D'ailleur tu sais pourquoi cette foret s'appelle la \"foret des legendes\" ?"
+
+    j "Oui bien sur, ca vient d'une ancienne histoire que mon grand-pere me racontait"
+
+    j "Il y a fort longtemps quand l'humanité n'etait encore que dans son stade le plus primitif, le Serpent du Temps, un etre divin d'une puissance infinie, décida dans un geste de générosité d'octroyer aux humains des artefacts d'une puissance incommensurable"
+
+    j "Il donna alors des outils divins à certain élus avec pour une seule exigence qu'ils soient utilisés avec sagesse et compassion, pour le bien de tous les êtres vivants"
+
+    j "Ces outils étaient nommé \"Les fonctions divines\""
+
+    j "Grace a ces outils, les elus ont multiplié les recoltes, ont toujours pu faire le meilleur choix ou ont encore automatisé des travails qui etaient auparavant penibles"
+
+    j "L'humanité a alors regné en maitre sur la nature pendant des centaines voire des milliers d'années"
+
+    j "Cependant, l'orgueil et l'avidité des humains finirent par corrompre leurs cœurs, détournant les bénédictions du Serpent du Temps à des fins égoïstes et destructrices"
+
+    j "Voyant Sa confiance baffoué, le Serpent du Temps rentra dans une colere noire et punissa l'humanité en tuant les elus, en recuperant les artifacts divins et en fesant regner le chaos sur terre"
+
+    j "Mais dans ce chaos constant, tout espoir n'etait pas perdu. En effet, un oracle a prophetisé qu'un hero apparaitra un jour dans la foret dans laquelle nous sommes"
+
+    j "Cet hero sera destiné à nous liberer du joug du Serpent du Temps et ainsi ramenant la paix et la prosperité à l'humanité"
+
+    "Wow l'histoire de ce monde est lourde"
+
+    j "Ah! je vois les portes du village"
+
+    scene village_au_loin
+
+    m "Mais dis-moi c'est normal qu'il y ait autant de fumée qui vienne du village ?"
+
+    j "Non ce n'est pas normal, je pense que le village est en feu, depechons-nous"
+
+    scene village_feu
+
+    "Quelle scene apocalyptique, il y a plusieurs maisons en feu"
+
+
+label troisieme:
+    python:
+        postData = {"valeur": "2"}
+        url = 'http://127.0.0.1:5000'
+        val = renpy.fetch(url, json = postData)
+        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        lien = "{a="+url+"}Vite il y a un puit la-bas, va chercher de l'eau{/a}"
+        renpy.say(j,lien)
+
+    $ reussi = False
+    python:
+        # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
+        url = "http://localhost/Python_Apprendre_Autrement/api.php"
+
+        try:
+            response = renpy.fetch(url, result="text")
+
+            if response.strip() == "True":
+                #screen score  A faire
+                reussi = True
+            else:
+                renpy.say(None, "Mauvaise reponse reessayer encore une fois")
+                reussi = False
+
+        except Exception as erreur:
+            # Gère les erreurs potentielles lors de la requête
+            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
+
+
+    if reussi != True:
+        jump troisieme
+    
+    j "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
+
+    define v= Character(_("Villageois"), color="#446d14")
+    
+    v ""

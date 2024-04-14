@@ -1,7 +1,7 @@
 <?php
-if(isset($_POST['code']) && isset($_POST['gold'])) {
+if(isset($_POST['code']) && isset($_POST['Gold']) && isset($_POST['Id'])) {
     $code = $_POST['code'];
-    $gold = $_POST['gold'];
+    $gold = $_POST['Gold'];
     $id = $_POST['Id'];
     // Faites ce que vous devez faire avec $code et $gold
 

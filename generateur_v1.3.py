@@ -5,7 +5,8 @@ Created on Wed Apr 10 09:50:41 2024
 @author: thiba
 """
 
-quete = 1
+quete = 0
+id = 0
 with open("quest.txt",'r',encoding='utf-8') as fin:
     texte = fin.read().split("\n")
     texte2 = list()
@@ -57,8 +58,11 @@ with open("test_new.py", 'w') as fout:
     fout.write("import mock\n")
     fout.write("import importlib\n")
     fout.write("from io import StringIO\n")
+    fout.write("import requests\n")
     fout.write("import sys\n\n")
-    
+    fout.write("gold = sys.argv[1]\n")
+    fout.write("id = sys.argv[2]\n")
+    fout.write("ok = True\n")
     prime = True
     for side_effects, expected_output in df['Tests']: #Le 0 correspondra a la quete a faire
         
@@ -75,7 +79,10 @@ with open("test_new.py", 'w') as fout:
         fout.write("        print('Correct')\n")
         fout.write("    else:\n")
         fout.write("        print('non')\n\n")
-
+        fout.write("        ok = False\n")
+    fout.write("url = 'http://127.0.0.1:5000/update_mission_state'\n")
+    fout.write("myobj = {'player_id': id,'state': ok, 'gold':gold }\n")
+    fout.write("x = requests.post(url, json = myobj)\n")
 #Ecriture HTML
 with open("index3.txt",'r',encoding='utf-8') as fin:
     with open("index2.html",'w',encoding='utf-8') as fout:
@@ -106,6 +113,9 @@ with open("index3.txt",'r',encoding='utf-8') as fin:
                 for exemple in input_exemple:
                     mot = exemple.strip('"')
                     fout.write(f"<p>{mot}</p>")
+                continue
+            if "//id var" in ligne:
+                fout.write(f"        var id = {id}\n")
                 continue
             
             fout.write(f"{ligne}\n")

@@ -4,7 +4,7 @@ let indiceCount = 0; // Variable pour enregistrer le nombre d'indices demandés
       const indices = [
 'Premier indice: Ici il suffit d\'ecrire le message qu\'elle t\'a dit\n\
 ',
-'Deuxieme indice: Si tu écris un texte, n\'ouvblie pas les "\n\
+'Deuxieme indice: Si tu écris un texte, n\'oublie pas les "\n\
 ',
 'Troisieme indice:\n\
 print("Je vais bien")\n\

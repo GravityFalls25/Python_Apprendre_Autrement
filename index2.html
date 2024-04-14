@@ -146,11 +146,11 @@ Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repon
       $('#btn-verifier').click(function() {
         var code = editor.getValue();
         var gold = indiceCount;
-        var id = 1
+        var id = '23101a9a-b326-4151-afa0-5061e214dd2b'
         $.ajax({
           url: 'test2.php',
           type: 'POST',
-          data: { code: code,Gold: gold, Id: id },
+          data: { code: code,Gold: gold,Id: id },
           success: function(response) {
             var elements = response.split("\n");
             $('#resultat').text("")

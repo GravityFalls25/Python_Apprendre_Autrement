@@ -19,7 +19,7 @@
 #     app.run(debug=True)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-def html(Quest = 0):
+def html(Quest = 0,Id = 0):
     # -*- coding: utf-8 -*-
     """
     Created on Wed Apr 10 09:50:41 2024
@@ -28,6 +28,7 @@ def html(Quest = 0):
     """
 
     quete = Quest
+    id = Id
     with open("quest.txt",'r',encoding='utf-8') as fin:
         texte = fin.read().split("\n")
         texte2 = list()
@@ -79,8 +80,11 @@ def html(Quest = 0):
         fout.write("import mock\n")
         fout.write("import importlib\n")
         fout.write("from io import StringIO\n")
+        fout.write("import requests\n")
         fout.write("import sys\n\n")
-        
+        fout.write("gold = sys.argv[1]\n")
+        fout.write("id = sys.argv[2]\n")
+        fout.write("ok = True\n")
         prime = True
         for side_effects, expected_output in df['Tests']: #Le 0 correspondra a la quete a faire
             
@@ -97,7 +101,10 @@ def html(Quest = 0):
             fout.write("        print('Correct')\n")
             fout.write("    else:\n")
             fout.write("        print('non')\n\n")
-
+            fout.write("        ok = False\n")
+        fout.write("url = 'http://127.0.0.1:5000/update_mission_state'\n")
+        fout.write("myobj = {'player_id': id,'state': ok, 'gold':gold }\n")
+        fout.write("x = requests.post(url, json = myobj)\n")
     #Ecriture HTML
     with open("index3.txt",'r',encoding='utf-8') as fin:
         with open("index2.html",'w',encoding='utf-8') as fout:
@@ -128,6 +135,9 @@ def html(Quest = 0):
                     for exemple in input_exemple:
                         mot = exemple.strip('"')
                         fout.write(f"<p>{mot}</p>")
+                    continue
+                if "//id var" in ligne:
+                    fout.write(f"        var id = '{id}'\n")
                     continue
                 
                 fout.write(f"{ligne}\n")
@@ -221,18 +231,54 @@ CORS(app)  # Active les en-têtes CORS pour toutes les routes de l'application
 def traiter_requete():
     data = request.json
     valeur = data.get('valeur')
+    id = data.get('id')
     print(valeur)
-    html(int(valeur))
-    if valeur == '1':
-        # Exécutez votre commande PHP ici
-        #html(int(valeur))
-        print("Yep")
-        # subprocess.run(['php', 'chemin_vers_votre_script.php'])
-        return jsonify({"message": "Commande PHP exécutée avec succès"})
-    else:
-        return jsonify({"message": "Valeur incorrecte"})
+    html(int(valeur), id)
+     
+    return jsonify({"message": "Commande PHP exécutée avec succès"})
+
+
+# Dictionnaire pour stocker l'état de la mission pour chaque joueur
+mission_states = {}
+
+# Route pour mettre à jour l'état de la mission d'un joueur spécifique
+@app.route('/update_mission_state', methods=['POST'])
+def update_mission():
+    data = request.json
+    player_id = data.get('player_id')
+    new_state = data.get('state')
+    gold = data.get('gold')
+    
+    if player_id is None:
+        return jsonify({'error': 'Identifiant du joueur manquant dans la requête'}), 400
+    
+    if new_state is None:
+        return jsonify({'error': 'Nouvel état de la mission manquant dans la requête'}), 400
+    
+    # Mettre à jour l'état de la mission pour le joueur spécifié
+    mission_states[player_id] = (new_state,gold)
+    print(mission_states)
+    return jsonify({'success': new_state}), 200
+
+# Route pour récupérer l'état de la mission d'un joueur spécifique
+@app.route('/get_mission_state', methods=['POST'])
+def get_mission_state():
+    data = request.json
+    player_id = data.get('player_id')
+    
+    if not player_id:
+        return jsonify({'error': 'Identifiant du joueur manquant dans la requête'}), 400
+    
+    # Récupérer l'état de la mission pour le joueur spécifié
+    mission_state = mission_states.get(player_id)
+    
+    if mission_state is None:
+        print(f"Mr {player_id} n'a pas de quete\n")
+        return jsonify({'error': 'Aucun état de la mission trouvé pour le joueur spécifié'}), 404
+    
+    return jsonify({'mission_state': mission_state}), 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 

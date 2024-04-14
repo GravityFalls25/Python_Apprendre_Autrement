@@ -3,6 +3,13 @@ define c = Character(_("Client"), color="#c8ffc8")
 define flash = Fade(.25, 0.0, .75, color="#fff")
 define i= Character(_("????"), color="#000000")
 define j= Character(_("Navi"), color="#92eb2c")
+
+init python:
+    import uuid
+    def getid():
+        return str(uuid.uuid4())
+    id = getid()
+
 # Le jeu commence ici
 label start:
     
@@ -81,7 +88,8 @@ label start:
     "Huh ? mais qu'est ce que raconte cette gamine"
 label premiere:
     python:
-        postData = {"valeur": "0"}
+        
+        postData = {"valeur": "0", "id":id}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
         url = "http://localhost/Python_Apprendre_Autrement/index2.html"
@@ -92,14 +100,14 @@ label premiere:
     $ reussi = False
     python:
         # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = "http://localhost/Python_Apprendre_Autrement/api.php"
+        url = 'http://127.0.0.1:5000/get_mission_state'
 
         try:
-            response = renpy.fetch(url, result="text")
-
-            if response.strip() == "True":
-                reussi = True
-            else:
+            request = renpy.fetch(url , json ={"player_id":id}, result="json")
+            
+            reussi, gold = request['mission_state']
+            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            if not reussi:
                 renpy.say(None, "Essayer encore de cliquer sur le texte")
                 reussi = False
 
@@ -152,7 +160,8 @@ label premiere:
 
     j "J'ai ceuilli quelques champignons en plus mais je sais pas si ca sera assez car je suis pas tres bonne pour calculer"
     python:
-        postData = {"valeur": "1"}
+        
+        postData = {"valeur": "1", "id": id}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
         url = "http://localhost/Python_Apprendre_Autrement/index2.html"
@@ -162,17 +171,16 @@ label premiere:
     $ reussi = False
     python:
         # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = "http://localhost/Python_Apprendre_Autrement/api.php"
+        url = 'http://127.0.0.1:5000/get_mission_state'
 
         try:
-            response = renpy.fetch(url, result="text")
-
-            if response.strip() == "True":
-                #screen score  A faire
-                reussi = True
-            else:
+            request= renpy.fetch(url, json = {"player_id":id}, result="json")
+            reussi, gold = request['mission_state']
+            renpay.say(j, "Waouw merci, tu as gagné [gold]")
+            if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
+                
 
         except Exception as erreur:
             # Gère les erreurs potentielles lors de la requête

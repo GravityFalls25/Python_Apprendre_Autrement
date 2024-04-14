@@ -148,11 +148,12 @@
 
       $('#btn-verifier').click(function() {
         var code = editor.getValue();
-
+        var gold = indiceCount;
+        //id var
         $.ajax({
           url: 'test2.php',
           type: 'POST',
-          data: { code: code },
+          data: { code: code,Gold: gold,Id: id },
           success: function(response) {
             var elements = response.split("\n");
             $('#resultat').text("")

@@ -9,6 +9,8 @@
     padding: 0px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     z-index: 2000;
+    box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .3);
+    transition: box-shadow 1s;
 }
 
 .assistant-image img {
@@ -20,8 +22,12 @@
 
 .assistant-texte {
     margin-left: 10px;
+    margin-right: 5px;
+    padding: 5px;
+    padding-bottom: 0px;
     background-color: #ffffff;
 }
+
 .container {
     margin-top: 50px;
   }
@@ -82,4 +88,9 @@
     margin-top : -40px;
     padding-bottom: 40px;
 
+  }
+  @keyframes blinker {
+    50% {
+      box-shadow: 0 0 0 1vh rgba(255, 0, 0, 1);
+    }
   }

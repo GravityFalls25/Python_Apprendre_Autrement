@@ -9,7 +9,14 @@
 <body>
     <div id="assistant-virtuel" class="assistant-container">
         <div class="assistant-texte">
-            <p id="texte-description">Cliquez sur un bouton pour obtenir des informations.</p>
+          <div class="row">
+            <div class="col-md-auto">
+              <p id="assistant-dialogue">Salut étranger!</p>
+            </div>
+            <div class="col">
+              <button id="btn-assistant" class="btn btn-dark btn-sm">Suivant</button> 
+            </div>
+          </div>  
         </div>
         <div class="assistant-image">
             <img src="children.png" alt="Assistant">
@@ -18,26 +25,16 @@
     </div>
   <div class="container">
     <div class="text-center" id="InfoSup">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaleOnglets">
+      <button type="button" id="btn_info_sup" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaleOnglets">
         Information supplementaire
       </button>
     </div>
     <div class="row">
-      <div class="col-lg-4">
-        <div class="text-container burn-effect" >
-          <h1>Liste des input</h1>
-          <div class="texte" contenteditable="true">
-                <p></p>
-          </div>
-        </div>
-        <button id="btn-reset" data-assistant="Cliquez ici pour réinitialiser les champs de saisie." class="btn btn-primary btn-block mt-3">Réinitialiser</button>
-      </div>
-      
-
+      <div class="col-lg-2"> </div>
       <div class="col-lg-8">
-        <div id="editor" style="height: 500px;">
-</div>
-       </div>
+        <div id="editor" style="height: 500px;border-radius: 10px;">
+        </div>
+      </div>
         <div class="btn-container">
           <button id="btn-executer" class="btn btn-success">Executer</button>
           <button id="btn-verifier" class="btn btn-primary">Verifier</button>
@@ -56,21 +53,20 @@
             <!-- Onglets -->
             <ul class="nav nav-tabs" id="onglet" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="aide-tab" data-bs-toggle="tab" data-bs-target="#aideContent" type="button" role="tab" aria-controls="aideContent" aria-selected="true">Aide</button>
+                <button class="nav-link active" id="rappel-tab" data-bs-toggle="tab" data-bs-target="#rappelContent" type="button" role="tab" aria-controls="rappelContent" aria-selected="true">Rappel de la Quête</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="aide-tab" data-bs-toggle="tab" data-bs-target="#aideContent" type="button" role="tab" aria-controls="aideContent" aria-selected="false">Aide</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="output-tab" data-bs-toggle="tab" data-bs-target="#exempleContent" type="button" role="tab" aria-controls="outputContent" aria-selected="false">Output Attendu</button>
-              </li>
-              
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="rappel-tab" data-bs-toggle="tab" data-bs-target="#rappelContent" type="button" role="tab" aria-controls="rappelContent" aria-selected="false">Rappel de la Quête</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="indice-tab" data-bs-toggle="tab" data-bs-target="#indiceContent" type="button" role="tab" aria-controls="indiceContent" aria-selected="false">Indice</button>
               </li>
             </ul>
             <div class="tab-content" id="ongletContent">
-              <div class="tab-pane fade show active" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
+              <div class="tab-pane fade" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
                 <!-- Contenu de l'aide -->
                 <p>Aide</p>
               </div>
@@ -94,7 +90,7 @@
             </div>
               
               
-              <div class="tab-pane fade" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
+              <div class="tab-pane fade show active" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
 Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repondre              </div>
               <div class="tab-pane fade" id="indiceContent" role="tabpanel" aria-labelledby="indice-tab">
                 <!-- Indice supplémentaire -->

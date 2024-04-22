@@ -19,7 +19,7 @@
 #     app.run(debug=True)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-def html(Quest = 0,Id = 0):
+def html(Quest = 0,Id = 0, Tavern = 0):
     # -*- coding: utf-8 -*-
     """
     Created on Wed Apr 10 09:50:41 2024
@@ -29,7 +29,9 @@ def html(Quest = 0,Id = 0):
 
     quete = Quest
     id = Id
-    with open("quest.txt",'r',encoding='utf-8') as fin:
+    tavern = str(Tavern)
+    fichier_txt = "quest" + tavern + ".txt"
+    with open(fichier_txt,'r',encoding='utf-8') as fin:
         texte = fin.read().split("\n")
         texte2 = list()
         for ligne in texte:
@@ -76,7 +78,7 @@ def html(Quest = 0,Id = 0):
         
             
     #Ecriture code test
-    with open("test_new.py", 'w') as fout:
+    with open("test_new.py", 'w',encoding='utf-8') as fout:
         fout.write("import mock\n")
         fout.write("import importlib\n")
         fout.write("from io import StringIO\n")
@@ -217,15 +219,18 @@ def html(Quest = 0,Id = 0):
                     
                 
 
-
-
-    
-                
-
+import atexit
 
 
 app = Flask(__name__)
 CORS(app)  # Active les en-têtes CORS pour toutes les routes de l'application
+
+def on_exit():
+    print("Le programme a été arrêté.")
+
+# Enregistrer la fonction on_exit pour qu'elle soit appelée lorsque le programme se termine
+atexit.register(on_exit)
+
 
 @app.route('/', methods=["POST"])
 def traiter_requete():

@@ -1,1 +1,3 @@
-print("Je vais bien")
+import mock
+with mock.patch("builtins.input", side_effect=[]):
+    

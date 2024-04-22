@@ -92,9 +92,16 @@ function getQueryParams() {
   let indiceDial=0;
   document.getElementById('btn-assistant').addEventListener('click', function(){
     const dialogue = [
-      "Il semblerait que tu aies perdu la memoire alors laisse moi te reexpliquer comment ca fonctionne",
+      "Je suis la pour t'expliquer le reste des details que j'ai volontairement omis tout à l'heure",
+      "Dans la majorité des quetes, tu devra creer un code qui calculera un resultat, aussi appellé \"Output\", en fonction de certaines données, aussi appellé \"Input\"",
+      "Dans cette zone sera marqué les inputs que ton code utilisera quand tu appuyeras sur le bouton Executer ",
       ""
     ];
+
+  if (indiceDial===2){
+    document.getElementById('Listeinput').style.boxShadow="0 0 0 1vh rgba(255, 0, 0, 0)";
+    document.getElementById('Listeinput').style.animation="blinker 2.5s linear infinite";
+  }
   if (indiceDial < dialogue.length) {
     document.getElementById('assistant-dialogue').innerText = dialogue[indiceDial] ;
     indiceDial++;

@@ -31,13 +31,15 @@
     </div>
     <div class="row">
       <div class="col-lg-4">
-        <div class="text-container burn-effect" >
+        <div id="Listeinput" class="text-container burn-effect" >
           <h1>Liste des input</h1>
           <div class="texte" contenteditable="true">
-                <p></p>
+                <p>3</p>
+                <p>5</p>
+                <p>1</p>
           </div>
         </div>
-        <button id="btn-reset" data-assistant="Cliquez ici pour réinitialiser les champs de saisie." class="btn btn-primary btn-block mt-3">Réinitialiser</button>
+        <button id="btn-reset" class="btn btn-primary btn-block mt-3">Réinitialiser</button>
       </div>
       
 
@@ -78,9 +80,12 @@
               </li>
             </ul>
             <div class="tab-content" id="ongletContent">
-              <div class="tab-pane fade show active" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
+              <div class="tab-pane fade" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
                 <!-- Contenu de l'aide -->
-                <p>Aide</p>
+                <p> = : permet d'enregistrer la valeur a droite du symbole dans une variable a gauche du symbole. Une variable a besoin d'un nom qui doit obligatoirement commencer par une lettre et qui doit etre different des noms des autres fonctions</p>
+                <p>print() : permet d'afficher ce qui est écrit dedans que ce soit une phrase ou la valeur d'une variable</p>
+                <p>input() : permet de recuperer une seule ligne de l'input (note: on peut afficher une phrase si elle se trouve dans les parantheses de l'input() de la meme maniere que pour un print() avant de recuperer l'input)</p>
+                <p>+ - * ** / //: symboles qui permette de faire une operation mathematique entre le terme a gauche et le terme a droite du symbole. Les symboles representent respectivement l'addition, la soustraction, la multiplication, l'exposant, la division et la division entiere (c-a-d sans chiffre apres la virgule)</p>
               </div>
               <div class="tab-pane fade" id="exempleContent" role="tabpanel" aria-labelledby="exemple-tab">
                 <div class="row">
@@ -102,7 +107,7 @@
             </div>
               
               
-              <div class="tab-pane fade" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
+              <div class="tab-pane fade show active" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
 Navi te demande de l'aide pour calculer la quantité totale de champignons qu'elle a ramassé en sachant qu'elle a recolté a1 champignons brun, a2 champignons rouge et a3 champignons blanc       </div>
               <div class="tab-pane fade" id="indiceContent" role="tabpanel" aria-labelledby="indice-tab">
                 <!-- Indice supplémentaire -->
@@ -127,7 +132,9 @@ Navi te demande de l'aide pour calculer la quantité totale de champignons qu'el
       const texte = $('.texte');
 
       const contenuInitial = `
-<p></p>      `
+      <p>3</p>
+                <p>5</p>
+                <p>1</p>     `
       ;
 
       btnReset.on('click', function() {

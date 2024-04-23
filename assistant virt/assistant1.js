@@ -95,7 +95,7 @@ function getQueryParams() {
       "Je suis la pour t'expliquer le reste des details que j'ai volontairement omis tout à l'heure",
       "Dans la majorité des quetes, tu devra creer un code qui calculera un resultat, aussi appellé \"Output\", en fonction de certaines données, aussi appellé \"Input\"",
       "Dans cette zone sera marqué les inputs que ton code utilisera quand tu appuyeras sur le bouton Executer",
-      "Tu es libre de modifier cette zone pour faire tes test et le bouton reinitialiser permet de recuperer les inputs qui etaient de base dans cette zone",
+      "Tu es libre de modifier cette zone pour faire tes test et le bouton Reinitialiser permet de recuperer les inputs qui etaient de base dans cette zone",
       "Cependant quand tu appuyeras sur le bouton verifier alors le code va utiliser des inputs qui te sont pour la majorite cachés",
       "Tu as tout de meme acces aux premiers inputs dans l'onglet \"Output attendu\"",
       "J'ai fini d'expliquer tout ce que je voulais te dire, maintenant c'est à toi de jouer !",

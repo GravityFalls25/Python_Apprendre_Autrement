@@ -6,9 +6,86 @@ define j= Character(_("Navi"), color="#92eb2c")
 
 init python:
     import uuid
+    import webbrowser
+
+    #Cases quetes
+    style.quest_frame = Style(style.default)
+    style.quest_frame.background = "#1c2de3"  # Couleur de fond
+    style.quest_frame.xpadding = 10  # Espacement interne horizontal
+    style.quest_frame.ypadding = 10  # Espacement interne vertical
+    style.quest_frame.xmargin = 5  # Espacement externe horizontal
+    style.quest_frame.ymargin = 5  # Espacement externe vertical
+    style.quest_frame.box_wrap = True
+    style.quest_frame.box_reverse = True
+    style.quest_frame.box_spacing = 1  # Espace entre les bords de la boîte et le contenu
+
+    # Définir un style personnalisé pour le bouton de retour
+    style.retour_taverne = Style(style.default)
+    style.retour_taverne.background = "#443322"  # Couleur de fond marron
+    style.retour_taverne.padding = (10, 5)  # Padding intérieur (vertical, horizontal)
+    style.retour_taverne.margin = (5, 5)  # Marges autour du bouton
+    
+    def send_quest_data(quest_id):
+        postData = {"valeur": quest_id}
+        url = 'http://127.0.0.1:5000'
+        response = renpy.fetch(url, json=postData)
+        # if response.status == 200:
+        #     return response.json()  # Traitez la réponse comme nécessaire
+        # else:
+        #     renpy.error("Erreur de requête: {}".format(response.status))
+    def handle_quest_and_redirect(quest_id, url):
+    # Envoie les données de la quête
+        send_quest_data(quest_id)
+        renpy.call("dialogue_aubergiste", quest_id, url)
+
+    Quete_faite = set()
+
     def getid():
         return str(uuid.uuid4())
     id = getid()
+
+    def calculate_rows(quests, cols):
+            return (len(quests) + cols - 1) // cols
+
+screen quest_menu(id_tavern):
+        python:
+            postData = list(Quete_faite)
+            url = 'http://127.0.0.1:5000/get_mission_tavern'
+            response = renpy.fetch(url, json=postData)
+            print(response)
+            import json
+
+            # Décodez la chaîne de caractères en Unicode
+            decoded_response = response.decode('utf-8')
+            # Chargez la chaîne de caractères comme un objet JSON
+            json_data = json.loads(decoded_response)
+            pairs_list = [(item[0], item[1],item[2]) for item in json_data]
+
+            # Convertir la liste de tuples en un ensemble
+            quests = set(pairs_list)
+        frame:
+            xpadding 5
+            ypadding 5
+            vbox:
+                spacing 5
+                textbutton "Retour à la taverne" action Jump("taverne") style "retour_taverne"
+                viewport:
+                    draggable True
+                    scrollbars "vertical"
+                    mousewheel True
+                    
+                    grid 3 calculate_rows(quests, 3):  # Dynamiquement calculé
+                        spacing 10
+                        
+                        for quest in quests:
+                            frame:
+                                style "quest_frame"
+                                vbox:
+                                        text quest[0]
+                                        text "Difficulté: {}".format(quest[2])
+                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest[0], "http://localhost/Python_Apprendre_Autrement/index2.html")
+    
+
 
 # Le jeu commence ici
 label start:
@@ -177,7 +254,7 @@ label deuxieme:
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
             reussi, gold = request['mission_state']
-            renpay.say(j, "Waouw merci, tu as gagné [gold]")
+            renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
@@ -246,17 +323,16 @@ label troisieme:
     $ reussi = False
     python:
         # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = "http://localhost/Python_Apprendre_Autrement/api.php"
+        url = 'http://127.0.0.1:5000/get_mission_state'
 
         try:
-            response = renpy.fetch(url, result="text")
-
-            if response.strip() == "True":
-                #screen score  A faire
-                reussi = True
-            else:
+            request= renpy.fetch(url, json = {"player_id":id}, result="json")
+            reussi, gold = request['mission_state']
+            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
+                
 
         except Exception as erreur:
             # Gère les erreurs potentielles lors de la requête
@@ -271,3 +347,36 @@ label troisieme:
     define v= Character(_("Villageois"), color="#446d14")
     
     v ""
+
+
+label tavern_village:
+
+    scene tavern
+    "Bienvenue dans ma taverne que puis je faire pour vous"
+    menu: 
+        "Voir les quetes disponibles":
+            call screen quest_menu(0)
+        "Repartir":
+            return
+
+label dialogue_aubergiste(quest_id, url):
+    "Aubergiste: Bonjour, bon courage pour la quête!"
+    menu:
+        "Commencer la quête":
+            "Aubergiste: Parfait, voici les détails..."
+            $ webbrowser.open(url)  # Redirige vers la page web si validé
+            call quete_aubergiste(quest_id, url)
+        "Annuler":
+            "Aubergiste: C'est dommage, peut-être une autre fois."
+            jump taverne_village
+label quete_aubergiste(quest_id, url):
+    "Aubergiste: Bonjour, bon courage pour la quête!"
+    menu:
+        "Valider la quête":
+            
+            
+            jump tavern_village
+        "Abandonner":
+            "Aubergiste: C'est dommage, peut-être une autre fois."
+            jump tavern_village
+    

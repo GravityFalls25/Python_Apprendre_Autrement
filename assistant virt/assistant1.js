@@ -94,8 +94,10 @@ function getQueryParams() {
     const dialogue = [
       "Je suis la pour t'expliquer le reste des details que j'ai volontairement omis tout à l'heure",
       "Dans la majorité des quetes, tu devra creer un code qui calculera un resultat, aussi appellé \"Output\", en fonction de certaines données, aussi appellé \"Input\"",
-      "Dans cette zone sera marqué les inputs que ton code utilisera quand tu appuyeras sur le bouton Executer ",
-      ""
+      "Dans cette zone sera marqué les inputs que ton code utilisera quand tu appuyeras sur le bouton Executer",
+      "Tu es libre de modifier cette zone pour faire tes test",
+      "Cependant quand tu appuyeras sur le bouton verifier alors le code va utiliser des inputs qui te sont pour la majorite cachés",
+      "Tu aura tout de meme acces aux premiers dans l'onglet \"Output attendu\""
     ];
 
   if (indiceDial===2){

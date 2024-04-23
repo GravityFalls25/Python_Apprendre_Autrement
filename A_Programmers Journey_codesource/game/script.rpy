@@ -68,7 +68,7 @@ screen quest_menu(id_tavern):
             ypadding 5
             vbox:
                 spacing 5
-                textbutton "Retour à la taverne" action Jump("taverne") style "retour_taverne"
+                textbutton "Retour à la taverne" action Jump("tavern_village") style "retour_taverne"
                 viewport:
                     draggable True
                     scrollbars "vertical"
@@ -93,7 +93,7 @@ label start:
     #play sound "voiture_qui_freine.mp3"
     "Je pense que c'est ici"
 
-    scene maison_random with fade
+    scene maison with fade
     "C'est la dernière maison que je dois visiter et apres j'aurai droit à un weekend bien merité."
 
     #play sound "toc_toc.mp3"
@@ -114,7 +114,7 @@ label start:
 
     c "Ah parfait je vous attendais, suivez moi"
 
-    scene mur_suspect
+    scene chamber
     show client at right
     c "Voici le mur en question, il a l'air instable et j'ai peur qu'il s'effrondre"
 
@@ -200,7 +200,7 @@ label premiere:
 
     "Wow cette fois j'ai vraiment reussi a parler"
 
-    show children happy
+    show children
     i "Ah parfait vous semblez avoir repris les esprits"
     
     j "Je m'appelle Navi et vous, qui etes vous et comment ca se fait que vous etiez allongé sur le sol ? "
@@ -300,13 +300,13 @@ label deuxieme:
 
     j "Ah! je vois les portes du village"
 
-    scene village_au_loin
+    scene village far fire
 
     m "Mais dis-moi c'est normal qu'il y ait autant de fumée qui vienne du village ?"
 
     j "Non ce n'est pas normal, je pense que le village est en feu, depechons-nous"
 
-    scene village_feu
+    scene village fire
 
     "Quelle scene apocalyptique, il y a plusieurs maisons en feu"
 
@@ -350,9 +350,11 @@ label troisieme:
 
 
 label tavern_village:
-
+    define T= Character(_("Tavernier"), color="#446d14")
     scene tavern
-    "Bienvenue dans ma taverne que puis je faire pour vous"
+    show tavernier
+
+    T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 
         "Voir les quetes disponibles":
             call screen quest_menu(0)
@@ -368,7 +370,7 @@ label dialogue_aubergiste(quest_id, url):
             call quete_aubergiste(quest_id, url)
         "Annuler":
             "Aubergiste: C'est dommage, peut-être une autre fois."
-            jump taverne_village
+            jump tavern_village
 label quete_aubergiste(quest_id, url):
     "Aubergiste: Bonjour, bon courage pour la quête!"
     menu:

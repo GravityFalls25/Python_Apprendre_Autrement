@@ -12,7 +12,17 @@ Deny from all
     Allow from all
 </FilesMatch>
 
-# Autoriser l'accès à tous les fichiers JavaScript
+# Autoriser l'accès à tous les fichiers php
 <FilesMatch "\.php$">
+    Allow from all
+</FilesMatch>
+
+# Autoriser l'accès à tous les fichiers jpg
+<FilesMatch "\.jpg$">
+    Allow from all
+</FilesMatch>
+
+# Autoriser l'accès à tous les fichiers css
+<FilesMatch "\.css$">
     Allow from all
 </FilesMatch>

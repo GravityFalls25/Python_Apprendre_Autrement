@@ -19,6 +19,39 @@
 #     app.run(debug=True)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+import json
+def lecture_txt(Tavern = 0):
+    tavern = str(Tavern)
+    fichier_txt = "quest" + tavern + ".txt"
+    with open(fichier_txt,'r',encoding='utf-8') as fin:
+        texte = fin.read().split("\n")
+        texte2 = list()
+        for ligne in texte:
+            if ligne == "nan":
+                ligne = ""
+            texte2.append( ligne.split(r"\n"))
+        Quete_tavern_complet = set()
+        Quete_tavern_complet_0diff = set()
+        n_ligne, n_colonne = list(map(int,texte2[0][0].split()))
+        for quete in range(n_ligne):
+            for i in range(n_colonne):
+                if texte2[i+1][0] == "ID quete":
+                    ID_quete = texte2[n_colonne + 1 + i*n_ligne + quete][0]
+                    
+                if texte2[i+1][0] == "Nom_Quete":
+                    Nom_Quete = texte2[n_colonne + 1 + i*n_ligne + quete][0]
+                if texte2[i+1][0] == "Difficulté":
+                    Difficulté = texte2[n_colonne + 1 + i*n_ligne + quete][0]
+            
+            
+            Quete_tavern_complet.add((ID_quete,Nom_Quete,Difficulté))
+            Quete_tavern_complet_0diff.add((ID_quete,Nom_Quete))
+                
+    return Quete_tavern_complet,Quete_tavern_complet_0diff
+
+
+
 def html(Quest = 0,Id = 0, Tavern = 0):
     # -*- coding: utf-8 -*-
     """
@@ -230,7 +263,7 @@ def on_exit():
 
 # Enregistrer la fonction on_exit pour qu'elle soit appelée lorsque le programme se termine
 atexit.register(on_exit)
-
+df_complet = lecture_txt()
 
 @app.route('/', methods=["POST"])
 def traiter_requete():
@@ -282,6 +315,26 @@ def get_mission_state():
         return jsonify({'error': 'Aucun état de la mission trouvé pour le joueur spécifié'}), 404
     
     return jsonify({'mission_state': mission_state}), 200
+
+
+@app.route('/get_mission_tavern', methods=['POST'])
+def get_mission_tavern():
+    data = request.json
+    # Convertir chaque paire "ID quete" et "Nom_Quete" en tuple et les ajouter à une liste
+    pairs_list = [(item[0], item[1]) for item in data]
+
+    # Convertir la liste de tuples en un ensemble
+    Quete_faite = set(pairs_list)
+    Quete_tavern_complet,Quete_tavern_complet_0diff = lecture_txt(0)
+
+    Quete_a_faire_0diff = Quete_tavern_complet_0diff.difference(Quete_faite)
+    Quete_a_faire = {(id_quete, nom_quete, difficulte) for id_quete, nom_quete, difficulte in Quete_tavern_complet if (id_quete, nom_quete) in Quete_a_faire_0diff}
+    Quete_a_faire = json.dumps(list(Quete_a_faire), indent = 1)
+
+    del(Quete_tavern_complet,Quete_tavern_complet_0diff,Quete_a_faire_0diff,Quete_faite)
+    
+    
+    return Quete_a_faire, 200
 
 if __name__ == "__main__":
     app.run(debug=False)

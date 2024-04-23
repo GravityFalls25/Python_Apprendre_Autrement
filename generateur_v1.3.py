@@ -7,7 +7,7 @@ Created on Wed Apr 10 09:50:41 2024
 
 quete = 0
 id = 0
-with open("quest.txt",'r',encoding='utf-8') as fin:
+with open("quest0.txt",'r',encoding='utf-8') as fin:
     texte = fin.read().split("\n")
     texte2 = list()
     for ligne in texte:

@@ -1,3 +1,4 @@
-import mock
-with mock.patch("builtins.input", side_effect=[]):
-    
+a = int(input())
+b = int(input())
+c = int(input())
+print(a+b+c)

@@ -7,7 +7,9 @@ define j= Character(_("Navi"), color="#92eb2c")
 init python:
     import uuid
     import webbrowser
+    import json
 
+    cached_quests = None
     #Cases quetes
     style.quest_frame = Style(style.default)
     style.quest_frame.background = "#1c2de3"  # Couleur de fond
@@ -15,6 +17,10 @@ init python:
     style.quest_frame.ypadding = 10  # Espacement interne vertical
     style.quest_frame.xmargin = 5  # Espacement externe horizontal
     style.quest_frame.ymargin = 5  # Espacement externe vertical
+    style.quest_frame.xsize = 500
+    style.quest_frame.ysize = 100
+    
+    style.quest_frame.background = "blue_background"  
     style.quest_frame.box_wrap = True
     style.quest_frame.box_reverse = True
     style.quest_frame.box_spacing = 1  # Espace entre les bords de la boîte et le contenu
@@ -37,6 +43,22 @@ init python:
     # Envoie les données de la quête
         send_quest_data(quest_id)
         renpy.call("dialogue_aubergiste", quest_id, url)
+    def load_quests():
+        #print("Je passe surement ici pour rien")
+
+        global cached_quests
+        
+        if voir_tavern_quete:
+            #print("J'ai quand meme reussi a passer")
+            if cached_quests is None:
+                postData = list(Quete_faite)
+                url = 'http://127.0.0.1:5000/get_mission_tavern'
+                response = renpy.fetch(url, json=postData)
+                decoded_response = response.decode('utf-8')
+                json_data = json.loads(decoded_response)
+                cached_quests = [(item[0], item[1], item[2]) for item in json_data]
+            return set(cached_quests)
+        return None
 
     Quete_faite = set()
 
@@ -49,24 +71,18 @@ init python:
 
 screen quest_menu(id_tavern):
         python:
-            postData = list(Quete_faite)
-            url = 'http://127.0.0.1:5000/get_mission_tavern'
-            response = renpy.fetch(url, json=postData)
-            print(response)
-            import json
+            quests = load_quests()
+            voir_tavern_quete = False
+            
 
-            # Décodez la chaîne de caractères en Unicode
-            decoded_response = response.decode('utf-8')
-            # Chargez la chaîne de caractères comme un objet JSON
-            json_data = json.loads(decoded_response)
-            pairs_list = [(item[0], item[1],item[2]) for item in json_data]
 
             # Convertir la liste de tuples en un ensemble
-            quests = set(pairs_list)
         frame:
-            xpadding 5
-            ypadding 5
+            
+            background Solid("#000000ae")
+            
             vbox:
+                
                 spacing 5
                 textbutton "Retour à la taverne" action Jump("tavern_village") style "retour_taverne"
                 viewport:
@@ -76,8 +92,10 @@ screen quest_menu(id_tavern):
                     
                     grid 3 calculate_rows(quests, 3):  # Dynamiquement calculé
                         spacing 10
-                        
-                        for quest in quests:
+                        python:
+                            #liste_quete = sorted(list(quests), key=lambda x: float(x[1]))
+                            liste_quete = sorted(list(quests))
+                        for quest in liste_quete:
                             frame:
                                 style "quest_frame"
                                 vbox:
@@ -347,6 +365,7 @@ label troisieme:
     define v= Character(_("Villageois"), color="#446d14")
     
     v ""
+    jump tavern_village
 
 
 label tavern_village:
@@ -357,8 +376,10 @@ label tavern_village:
     T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 
         "Voir les quetes disponibles":
+            $ voir_tavern_quete = True
             call screen quest_menu(0)
         "Repartir":
+            $ voir_tavern_quete = False
             return
 
 label dialogue_aubergiste(quest_id, url):

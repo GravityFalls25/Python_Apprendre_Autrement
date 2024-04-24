@@ -36,8 +36,8 @@ Bonjour ?
 nan
 nan
 0
-nan
-nan
+En python, pour écrire un message dans la console\nOn utilise la fonction print()\nainsi, pour utiliser cette fonction, on fera par exemple :\nprint("HelloWorld")\n\nTu peux voir que les " sont importants, ils permettent de dire qu'il sagit d'un texte
+En python, pour récuperer un message de quelqu'un dans la console\non utilisera la fonction input()\nainsi on fera par exemple\nmessage = input()\nAttention le message ici sera considéré comme un texte\nPour preciser qu'il s'agit d'un nombre entier, on utilisera la fonction int()\nOn aura ainsi\nnombre = int(input())\nici, la variable nombre aura alors la valeur entrée par l'utilisateur\nSi jamais on a besoin de stoquer une deuxieme valeur, on utilisera alors une autre variable\nnombre2 = int(input())
 Vous voici sur une page où vous allez devoir coder 
 nan
 2\n1\n3

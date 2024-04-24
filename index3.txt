@@ -65,7 +65,7 @@
             <div class="tab-content" id="ongletContent">
               <div class="tab-pane fade show active" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
                 <!-- Contenu de l'aide -->
-                <p>Aide</p>
+                
               </div>
               <div class="tab-pane fade" id="exempleContent" role="tabpanel" aria-labelledby="exemple-tab">
                 <div class="row">

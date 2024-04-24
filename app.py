@@ -151,7 +151,11 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                         mot = exemple.strip('"')
                         fout.write(f"                <p>{mot}</p>\n")
                     continue
-                
+                if "<!-- Contenu de l'aide -->" in ligne:
+                    aide = df['aide']
+                    for phrase in aide:
+                        phrase = phrase.strip('"')
+                        fout.write(f"<p>{phrase}</p>\n")
                 if "<!-- Code init -->" in ligne:
                     fout.write(f"{df['Code_init'][0]}")
                     continue

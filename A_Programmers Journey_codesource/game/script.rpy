@@ -12,15 +12,16 @@ init python:
     cached_quests = None
     #Cases quetes
     style.quest_frame = Style(style.default)
-    style.quest_frame.background = "#1c2de3"  # Couleur de fond
+    style.quest_frame.background = Frame("blue_background",xsize = 500, ysize = 200)
+    #style.quest_frame.background = "#1c2de3"  # Couleur de fond
     style.quest_frame.xpadding = 10  # Espacement interne horizontal
     style.quest_frame.ypadding = 10  # Espacement interne vertical
     style.quest_frame.xmargin = 5  # Espacement externe horizontal
     style.quest_frame.ymargin = 5  # Espacement externe vertical
     style.quest_frame.xsize = 500
-    style.quest_frame.ysize = 100
+    style.quest_frame.ysize = 200
     
-    style.quest_frame.background = "blue_background"  
+    #
     style.quest_frame.box_wrap = True
     style.quest_frame.box_reverse = True
     style.quest_frame.box_spacing = 1  # Espace entre les bords de la boîte et le contenu

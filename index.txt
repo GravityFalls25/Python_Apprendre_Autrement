@@ -19,8 +19,7 @@
         <div class="text-container burn-effect" >
           <h1>Liste des input</h1>
           <div class="texte" contenteditable="true">
-            <p>Pierre</p>
-            <p>Papier</p>
+            <!-- Liste des input -->
           </div>
         </div>
         <button id="btn-reset" class="btn btn-primary btn-block mt-3">Réinitialiser</button>
@@ -28,35 +27,9 @@
       
 
       <div class="col-lg-8">
-        <div id="editor" style="height: 500px;">J1 =input("Pierre, Papier ou Ciseaux: ")
-J2 = input("Pierre, Papier ou Ciseaux: ")
-              
-              
-if J1 == J2:
-    print('Egalite')
-              
-elif J1 == "Pierre" and J2 == "Papier":
-    print("J2 gagne")
-    pass
-    
-elif J1 == "Pierre" and J2 == "Ciseaux":
-    print("J1 gagne")
-    pass
-elif J1 == "Papier" and J2 == "Ciseaux":
-    print("J2 gagne")
-        
-    pass
-elif J1 == "Papier" and J2 == "Pierre":
-    print("J1 gagne")
-    pass
-elif J1 == "Ciseaux" and J2 == "Pierre":
-    print("J2 gagne")
-    pass
-elif J1 == "Ciseaux" and J2 == "Papier":
-    print("J1 gagne")
-    pass
-else:
-    print("Erreur")</div>
+        <div id="editor" style="height: 500px;border-radius: 10px;">
+        <!-- Code init -->
+</div>
        </div>
         <div class="btn-container">
           <button id="btn-executer" class="btn btn-success">Executer</button>
@@ -92,7 +65,7 @@ else:
             <div class="tab-content" id="ongletContent">
               <div class="tab-pane fade show active" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
                 <!-- Contenu de l'aide -->
-                <p>Aide</p>
+                
               </div>
               <div class="tab-pane fade" id="exempleContent" role="tabpanel" aria-labelledby="exemple-tab">
                 <div class="row">
@@ -139,7 +112,10 @@ else:
       const btnReset = $('#btn-reset');
       const texte = $('.texte');
 
-      const contenuInitial = `<p>Pierre</p><p>Papier</p>`;
+      const contenuInitial = `
+      //Input initial
+      `
+      ;
 
       btnReset.on('click', function() {
         texte.html(contenuInitial);
@@ -172,11 +148,12 @@ else:
 
       $('#btn-verifier').click(function() {
         var code = editor.getValue();
-
+        var gold = indiceCount;
+        //id var
         $.ajax({
           url: 'test2.php',
           type: 'POST',
-          data: { code: code },
+          data: { code: code,Gold: gold,Id: id },
           success: function(response) {
             var elements = response.split("\n");
             $('#resultat').text("")

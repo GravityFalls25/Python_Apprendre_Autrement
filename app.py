@@ -21,6 +21,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import json
+import os
 def lecture_txt(Tavern = 0):
     tavern = str(Tavern)
     fichier_txt = "quest" + tavern + ".txt"
@@ -64,6 +65,8 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     id = Id
     tavern = str(Tavern)
     fichier_txt = "quest" + tavern + ".txt"
+    
+
     with open(fichier_txt,'r',encoding='utf-8') as fin:
         texte = fin.read().split("\n")
         texte2 = list()
@@ -141,7 +144,15 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         fout.write("myobj = {'player_id': id,'state': ok, 'gold':gold }\n")
         fout.write("x = requests.post(url, json = myobj)\n")
     #Ecriture HTML
-    with open("index3.txt",'r',encoding='utf-8') as fin:
+    if quete == 1:
+        ref = "assistant1html.txt"
+    elif quete == 0:
+        ref = "assistanthtml.txt"
+    else :
+        ref = "index.txt"
+
+
+    with open(ref,'r',encoding='utf-8') as fin:
         with open("index2.html",'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
             for ligne in texte:
@@ -182,7 +193,15 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                 fout.write(f"{ligne}\n")
                 
     #Ecriture JS
-    with open("script.txt", 'r', encoding='utf-8') as fin:
+
+    if quete == 1:
+        ref = "assistant1js.txt"
+    elif quete == 0:
+        ref = "assistantjs.txt"
+    else :
+        ref = "script.txt"
+
+    with open(ref, 'r', encoding='utf-8') as fin:
         with open("index.js",'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
             n = "\n"
@@ -339,6 +358,14 @@ def get_mission_tavern():
     
     
     return Quete_a_faire, 200
+
+@app.route('/clear_quete', methods=['POST'])
+def clear_quete():
+    data = request.json
+    if "Id_joueur" in mission_states:
+        mission_states.pop("Id_joueur") 
+    if os.path.exists("index2_0.html"):
+        os.remove("index2_0.html")
 
 if __name__ == "__main__":
     app.run(debug=False)

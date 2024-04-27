@@ -113,13 +113,16 @@ label start:
     "Je pense que c'est ici"
 
     scene maison with fade
-    "C'est la dernière maison que je dois visiter et apres j'aurai droit à un weekend bien merité."
+    "C'est la dernière maison que je dois visiter et après j'aurai droit à un weekend bien merité."
 
     #play sound "toc_toc.mp3"
+    define m= Character(_("[name]"),color="#0b29d4")
     show client at right
-    "Bonjour je suis le bricoleur que vous avez appellez pour reparer votre mur"
+    c "Bonjour ?"
 
-    "je me presente"
+    "Bonjour je suis le bricoleur que vous avez appelé pour réparer votre mur"
+
+    "Je me presente"
 
     python:
         name=renpy.input("je suis ")
@@ -127,9 +130,9 @@ label start:
         if name == "":
             name="Bricoleur"
 
-    "je suis [name]"
+    "Je suis [name]"
 
-    define m= Character(_("[name]"),color="#0b29d4")
+    
 
     c "Ah parfait je vous attendais, suivez moi"
 
@@ -139,22 +142,22 @@ label start:
 
     m "En effet, le mur a l'air .... suspect"
 
-    m "Heureusement je suis le meilleur bricoleur des environs et je ferai de mon mieux pour le reparer grace a ma fidele boite à outils"
+    m "Heureusement je suis le meilleur bricoleur des environs et je ferai de mon mieux pour reparer votre grâce à ma fidele boite à outils"
 
     "{i}Le client semble s'amuser à ma remarque{/i}"
 
-    c "Bon et bien si vous travaillez aussi bien que vous parlez alors je vous fait confiance pour reparer tous ces problemes."
+    c "Bon et bien dans ce cas, je vous fait confiance."
 
     c "Bonne chance"
 
     hide client with moveoutright
     "{i} Le client repart en ricanant {/i}"
 
-    m "C'est vraiment un orignal ce client"
+    m "Quel curieux personnage..."
 
     m "Bon allons-y"
 
-    "je me rapproche du mur et lorsque je tend ma main pour toucher le mur un immense flash de lumiere m'aveugle"
+    "{i}Je décide alors de me rapprocher du mur mais lorsque tout à coup, un immense flash de lumiere m'aveugla{i}"
     
     scene black with fade
 
@@ -168,20 +171,20 @@ label start:
 
     scene forest
     show children
-    "Au moment ou j'ouvre les yeux, je vois qu'une jeune fille se tient au-dessus moi"
-    "Peut-etre qu'elle pourra m'aider a savoir ou je suis"
+    "Au moment où j'ouvre les yeux, je vois qu'une jeune fille se tient au-dessus moi"
+    "Qu'est ce qu'elle fait la ?"
 
     m "...."
 
-    "mais au moment ou j'ouvre la bouche aucun son ne sort"
+    "{i}mais au moment où j'ouvre la bouche aucun son ne sort{i}"
 
-    i "Vous allez bien monsieur ? Il semblerait que vous avez prit un coup sur la tete"
+    i "Vous allez bien monsieur ? J'ai l'impression que vous avez pris un coup sur la tete"
 
-    i "Repetez lentement apres moi:"
+    i "Répétez lentement apres moi:"
 
     i 'print("je vais bien")'
 
-    "Huh ? mais qu'est ce que raconte cette gamine"
+    "Huh ? mais qu'est ce qu'elle me raconte cette gamine"
 label premiere:
     python:
         
@@ -202,7 +205,7 @@ label premiere:
             request = renpy.fetch(url , json ={"player_id":id}, result="json")
             
             reussi, gold = request['mission_state']
-            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            renpy.say(None, "Tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Essayer encore de cliquer sur le texte")
                 reussi = False
@@ -215,46 +218,48 @@ label premiere:
     if reussi != True:
         jump premiere
 
-    m "je vais bien"
+    m "Je vais bien"
 
-    "Wow cette fois j'ai vraiment reussi a parler"
+    "Wow cette fois j'ai réussi à parler"
 
     show children
-    i "Ah parfait vous semblez avoir repris les esprits"
+    i "Ah parfait vous semblez avoir repris vos esprits"
     
-    j "Je m'appelle Navi et vous, qui etes vous et comment ca se fait que vous etiez allongé sur le sol ? "
+    j "Je m'appelle Navi et vous, qui êtes vous ? Comment ça se fait que vous étiez allongé sur le sol ? "
 
     "Je pense avoir compris le truc pour parler"
 
-    m "Je m'appelle [name] et j'etais entrain de reparer un mur quand soudain je me suis retrouvé ici"
+    m "Je m'appelle [name] et j'etais en train de réparer un mur quand soudain je me suis retrouvé ici"
 
-    j "Un mur ? Au plein milieu de cette foret ? mais le village le plus proche se trouve à plus de 30 minutes a pied d'ici"
+    j "Un mur ? Au plein milieu de cette foret ? Mais le village le plus proche se trouve à plus de 30 minutes à pied d'ici"
 
-    m "Un village ? mais ou est-je atterri ?"
+    m "Un village ? Mais où est ce que j'ai atterri ?"
 
-    j "Vous etes actuellement au plein milieu de la foret des legendes et le village le plus proche s'appelle Stringfield"
+    j "Vous êtes actuellement au plein milieu de la forêt des legendes et le village le plus proche s'appelle Stringfield"
 
-    j "Avez-vous un endroit ou passer la nuit ou voulez-vous que je vous emmene à mon village ?"
+    j "Avez-vous un endroit où passer la nuit ou voulez-vous que je vous emmène à mon village ?"
 
     "Il semblerait que j'ai été transporté à un autre endroit mais je n'ai jamais entendu qu'une foret s'appellait \"foret des legendes\""
 
     "On dirait un nom sorti tout droit d'un jeu video..."
 
-    "Attend une minute peut-etre que je n'ai pas été transporté juste dans un autre endroit mais plutot..."
+    "Attend une minute."
+
+    "Peut-etre que je n'ai pas été transporté juste dans un autre endroit mais plutot..."
 
     "Dans un autre monde ???!!!!!"
 
     "{i}Voyant mon visage inquiet Navi se rapproche{/i}"
 
-    j "Ducoup vous avez un endroit ou dormir ?"
+    j "Du coup, vous avez un endroit où dormir ?"
 
-    m "Ah oui desolé j'etais perdu dans mes pensées, je n'ai nulle part ou aller donc j'accepte ta proposition"
+    m "Ah oui desolé j'étais perdu dans mes pensées, je n'ai nulle part où aller donc j'accepte ta proposition"
 
-    j "Parfait mais avant de rentrer je dois encore ceuillir de quoi manger ce soir"
+    j "Parfait mais avant de rentrer je dois encore cueillir de quoi manger ce soir"
 
     "{i}Quelques dizaines de minutes plus tard{/i}"
 
-    j "J'ai ceuilli quelques champignons en plus mais je sais pas si ca sera assez car je suis pas tres bonne pour calculer"
+    j "J'ai cueilli quelques champignons en plus mais je sais pas si ça sera assez car je suis pas très bonne pour calculer"
 label deuxieme:
     python:
         
@@ -273,7 +278,7 @@ label deuxieme:
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
             reussi, gold = request['mission_state']
-            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            renpy.say(None, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
@@ -293,25 +298,25 @@ label deuxieme:
 
     "Sur le chemin vers le village Navi et moi avons fait plus ample connaissance"
 
-    m "D'ailleur tu sais pourquoi cette foret s'appelle la \"foret des legendes\" ?"
+    m "D'ailleurs tu sais pourquoi cette foret s'appelle la \"forêt des legendes\" ?"
 
-    j "Oui bien sur, ca vient d'une ancienne histoire que mon grand-pere me racontait"
+    j "Oui bien sur, ça vient d'une ancienne histoire que mon grand-pere me racontait"
 
-    j "Il y a fort longtemps quand l'humanité n'etait encore que dans son stade le plus primitif, le Serpent du Temps, un etre divin d'une puissance infinie, décida dans un geste de générosité d'octroyer aux humains des artefacts d'une puissance incommensurable"
+    j "Il y a fort longtemps quand l'humanité n'était encore que dans son stade le plus primitif, le Serpent du Temps, un être divin d'une puissance infinie, décida dans un geste de générosité d'octroyer aux humains des artefacts d'une puissance incommensurable"
 
-    j "Il donna alors des outils divins à certain élus avec pour une seule exigence qu'ils soient utilisés avec sagesse et compassion, pour le bien de tous les êtres vivants"
+    j "Il donna alors des outils divins à certains élus avec,pour seule exigence, qu'ils soient utilisés avec sagesse et compassion, pour le bien de tous les êtres vivants"
 
-    j "Ces outils étaient nommé \"Les fonctions divines\""
+    j "Ces outils étaient nommés \"Les fonctions divines\""
 
-    j "Grace a ces outils, les elus ont multiplié les recoltes, ont toujours pu faire le meilleur choix ou ont encore automatisé des travails qui etaient auparavant penibles"
+    j "Grace à ces outils, les élus ont multiplié les recoltes, ont toujours pu faire le meilleur choix ou ont encore pu automatisé des taches qui etaient auparavant pénibles"
 
     j "L'humanité a alors regné en maitre sur la nature pendant des centaines voire des milliers d'années"
 
     j "Cependant, l'orgueil et l'avidité des humains finirent par corrompre leurs cœurs, détournant les bénédictions du Serpent du Temps à des fins égoïstes et destructrices"
 
-    j "Voyant Sa confiance baffoué, le Serpent du Temps rentra dans une colere noire et punissa l'humanité en tuant les elus, en recuperant les artifacts divins et en fesant regner le chaos sur terre"
+    j "Voyant sa confiance baffouée, le Serpent du Temps rentra dans une colere noire et punissa l'humanité en tuant les elus, en recuperant les artifacts divins et en faisant regner le chaos sur terre"
 
-    j "Mais dans ce chaos constant, tout espoir n'etait pas perdu. En effet, un oracle a prophetisé qu'un hero apparaitra un jour dans la foret dans laquelle nous sommes"
+    j "Mais dans ce chaos constant, tout espoir n'était pas perdu. En effet, un oracle a prophetisé qu'un hero apparaitra un jour dans la foret dans laquelle nous sommes"
 
     j "Cet hero sera destiné à nous liberer du joug du Serpent du Temps et ainsi ramenant la paix et la prosperité à l'humanité"
 

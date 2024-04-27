@@ -368,6 +368,26 @@ label troisieme:
     v ""
     jump tavern_village
 
+label dialogue_aubergiste(quest_id, url):
+    T " Bonjour, bon courage pour la quête!"
+    menu:
+        "Commencer la quête":
+            T "Parfait, voici les détails..."
+            $ webbrowser.open(url)  # Redirige vers la page web si validé
+            call quete_aubergiste(quest_id, url)
+        "Annuler":
+            T " C'est dommage, peut-être une autre fois."
+            jump tavern_village
+label quete_aubergiste(quest_id, url):
+    T " Bonjour, bon courage pour la quête!"
+    menu:
+        "Valider la quête":
+            
+            
+            jump tavern_village
+        "Abandonner":
+            T " C'est dommage, peut-être une autre fois."
+            jump tavern_village
 
 label tavern_village:
     define T= Character(_("Tavernier"), color="#446d14")
@@ -382,25 +402,4 @@ label tavern_village:
         "Repartir":
             $ voir_tavern_quete = False
             return
-
-label dialogue_aubergiste(quest_id, url):
-    "Aubergiste: Bonjour, bon courage pour la quête!"
-    menu:
-        "Commencer la quête":
-            "Aubergiste: Parfait, voici les détails..."
-            $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste(quest_id, url)
-        "Annuler":
-            "Aubergiste: C'est dommage, peut-être une autre fois."
-            jump tavern_village
-label quete_aubergiste(quest_id, url):
-    "Aubergiste: Bonjour, bon courage pour la quête!"
-    menu:
-        "Valider la quête":
-            
-            
-            jump tavern_village
-        "Abandonner":
-            "Aubergiste: C'est dommage, peut-être une autre fois."
-            jump tavern_village
     

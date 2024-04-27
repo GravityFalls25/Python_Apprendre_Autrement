@@ -104,7 +104,14 @@ screen quest_menu(id_tavern):
                                         text "Difficulté: {}".format(quest[2])
                                         textbutton quest[1] action Function(handle_quest_and_redirect, quest[0], "http://localhost/Python_Apprendre_Autrement/index2.html")
     
-
+screen Map():
+    add "Game_plan.png"
+    imagebutton:
+        xpos 335
+        ypos 685
+        hover "vill1_hover.png"
+        idle "vill1_idle.png"
+        action Jump("place_village")
 
 # Le jeu commence ici
 label start:
@@ -202,7 +209,7 @@ label premiere:
             request = renpy.fetch(url , json ={"player_id":id}, result="json")
             
             reussi, gold = request['mission_state']
-            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Essayer encore de cliquer sur le texte")
                 reussi = False
@@ -219,7 +226,6 @@ label premiere:
 
     "Wow cette fois j'ai vraiment reussi a parler"
 
-    show children
     i "Ah parfait vous semblez avoir repris les esprits"
     
     j "Je m'appelle Navi et vous, qui etes vous et comment ca se fait que vous etiez allongé sur le sol ? "
@@ -245,11 +251,14 @@ label premiere:
     "Dans un autre monde ???!!!!!"
 
     "{i}Voyant mon visage inquiet Navi se rapproche{/i}"
-
+    show children:
+        ease 0.5 yalign 0.0 zoom 2.0
+    
     j "Ducoup vous avez un endroit ou dormir ?"
 
     m "Ah oui desolé j'etais perdu dans mes pensées, je n'ai nulle part ou aller donc j'accepte ta proposition"
-
+    show children:
+        ease 0.7 yalign 1.0 zoom 1.0
     j "Parfait mais avant de rentrer je dois encore ceuillir de quoi manger ce soir"
 
     "{i}Quelques dizaines de minutes plus tard{/i}"
@@ -296,14 +305,18 @@ label deuxieme:
     m "D'ailleur tu sais pourquoi cette foret s'appelle la \"foret des legendes\" ?"
 
     j "Oui bien sur, ca vient d'une ancienne histoire que mon grand-pere me racontait"
+    scene black with fade
+    j "Voici l'histoire de ce monde :"
 
-    j "Il y a fort longtemps quand l'humanité n'etait encore que dans son stade le plus primitif, le Serpent du Temps, un etre divin d'une puissance infinie, décida dans un geste de générosité d'octroyer aux humains des artefacts d'une puissance incommensurable"
+    j "Il y a fort fort longtemps à une époque où l'humanité n'etait encore que dans son stade le plus primitif"
+    scene ourobors with fade
+    j "Ouroboros le Serpent du Temps, un etre divin d'une puissance infinie, décida dans un geste de générosité d'octroyer aux humains des artefacts d'une puissance incommensurable"
 
     j "Il donna alors des outils divins à certain élus avec pour une seule exigence qu'ils soient utilisés avec sagesse et compassion, pour le bien de tous les êtres vivants"
 
     j "Ces outils étaient nommé \"Les fonctions divines\""
 
-    j "Grace a ces outils, les elus ont multiplié les recoltes, ont toujours pu faire le meilleur choix ou ont encore automatisé des travails qui etaient auparavant penibles"
+    j "Grace a ces outils, les elus ont multiplié les recoltes, ont toujours pu faire le meilleur choix ou ont encore automatisé des taches qui etaient auparavant penibles"
 
     j "L'humanité a alors regné en maitre sur la nature pendant des centaines voire des milliers d'années"
 
@@ -314,12 +327,13 @@ label deuxieme:
     j "Mais dans ce chaos constant, tout espoir n'etait pas perdu. En effet, un oracle a prophetisé qu'un hero apparaitra un jour dans la foret dans laquelle nous sommes"
 
     j "Cet hero sera destiné à nous liberer du joug du Serpent du Temps et ainsi ramenant la paix et la prosperité à l'humanité"
-
+    
+    scene black with fade
     "Wow l'histoire de ce monde est lourde"
 
     j "Ah! je vois les portes du village"
 
-    scene village far fire
+    scene village far fire with hpunch
 
     m "Mais dis-moi c'est normal qu'il y ait autant de fumée qui vienne du village ?"
 
@@ -360,15 +374,94 @@ label troisieme:
 
     if reussi != True:
         jump troisieme
-    
-    j "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
+label test:
+    m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")
+    show villageoiq
+    v "Ce sont les troupes d'Ouroboros qui ont causé ce chaos"
+
+    v "Ils sont venu pour nous prendre de la nourriture et en voyant le peu de nourriture que nous avions, ces monstres se sont enervés et ont mis le feu a notre village"
+    show villageoiq with ease:
+        xzoom -1.0
+        xalign 0.1
+    show children_angry with vpunch :
+        xalign 0.9
+        yalign 1.0
+    j "Encore eux ?"
+
+    j "ils ne lasseront donc jamais de causer du mal à des innocents ?"
+
+    j "Il est grand temps d'arranger ce probleme une fois pour toute"
+
+    v "Calme toi Navi, on doit juste tenir jusqu'à que le hero de la prophetie vienne nous secourir"
+
+    j "Cette prophetie date d'il y a des dizaines voire de centaines d'années si ca se trouve on sera tous mort d'ici a que cet hero apparaisse"
+
+    j "Je vais prendre les choses en main, apres tout parfois il faut savoir forcer le destin pour obtenir le futur voulu"
+    hide villageoiq
+    show children_angry at center with ease
+    j "[name], je pourrais pas me rebeller face à ce Serpent toute seule peut tu me preter main forte ?"
+
+    menu:
+        "Oui bien sur":
+            j "Parfait, j'aime cette reponse rempli de confiance"
+        "...":
+            j "Je vois à ton regard rempli de determination que toi non plus tu refuse de voir les villageois souffrir plus longtemps"
     
-    v ""
-    jump tavern_village
+    hide children_angry
+    show children at center
 
+    j "Mais avant de faire quoi que ce soit, il faut reparer les degats causé par l'incendie"
 
+    m "Laissez-moi vous aider car apres tout je suis le meilleur bricoleur des environs"
+
+    scene black with fade
+    "Quelques heures plus tard"
+
+    scene bg_village_lateday with fade
+    show children at center
+    j "Merci de ton aide [name], si tu avais pas été la ca aurait prit beaucoup plus de temps"
+
+    m "De rien, c'etait la moindre des choses"
+
+    m "D'ailleurs par rapport a ce que tu as dis plus tot, si tu veux vraiment t'attaquer au Serpent du temps, tu dois avoir un plan"
+
+    j "J'avoue avoir dit ca sous le coup de la colere et je n'ai pas vraiment de plan mais ma determination est elle bien reelle"
+
+    j "Juste laisse moi un peu de temps pour penser à un plan"
+
+    m "Est-ce que je peux t'aider à quelque chose ?"
+
+    j "Oui, comme dans tous les cas il faudra voyager on aura besoin d'un peu d'argent pour la nourriture et les autres frais du voyage"
+
+    j "500 piece d'or devrait etre suffisant"
+
+    j "Tu peux gagner un peu d'argent en acceptant des quetes dans la taverne"
+
+    j "Une fois que tu as assez d'or vient me retrouver à l'entrée du village"
+
+    m "Ok bien compris, à demain alors"
+    scene black with fade
+
+    "Le lendemain matin"
+label place_village:
+    scene bg_village_day with fade
+    $ quick_menu = True
+    menu:
+        "Bon que devrais-je faire maintenant"
+        "Aller à la taverne":
+            jump tavern_village
+        "Aller à l'entrée du village":
+            python:
+                if int(gold)>=500:
+                    renpy.jump("fin_chap1")
+                else:
+                    renpy.say(None,"j'ai pas encore assez d'or")
+                    renpy.jump("place_village")
+        "voir la map":
+            $ quick_menu = False
+            call screen Map with fade
 label tavern_village:
     define T= Character(_("Tavernier"), color="#446d14")
     scene tavern
@@ -381,26 +474,24 @@ label tavern_village:
             call screen quest_menu(0)
         "Repartir":
             $ voir_tavern_quete = False
-            return
+            jump place_village
 
 label dialogue_aubergiste(quest_id, url):
-    "Aubergiste: Bonjour, bon courage pour la quête!"
+    T "Bonjour, bon courage pour la quête!"
     menu:
         "Commencer la quête":
-            "Aubergiste: Parfait, voici les détails..."
+            T "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
             call quete_aubergiste(quest_id, url)
         "Annuler":
-            "Aubergiste: C'est dommage, peut-être une autre fois."
+            T "C'est dommage, peut-être une autre fois."
             jump tavern_village
 label quete_aubergiste(quest_id, url):
-    "Aubergiste: Bonjour, bon courage pour la quête!"
+    T "Alors, tu avance bien dans ta quete ?"
     menu:
         "Valider la quête":
-            
-            
             jump tavern_village
         "Abandonner":
-            "Aubergiste: C'est dommage, peut-être une autre fois."
+            T "C'est dommage, peut-être une autre fois."
             jump tavern_village
     

@@ -148,7 +148,7 @@
 
       $('#btn-verifier').click(function() {
         var code = editor.getValue();
-        var gold = indiceCount;
+        var gold = 3 - indiceCount;
         //id var
         $.ajax({
           url: 'test2.php',

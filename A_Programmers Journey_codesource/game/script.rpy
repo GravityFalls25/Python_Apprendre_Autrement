@@ -54,7 +54,7 @@ init python:
         return set(cached_quests)
 
     Quete_faite = set()
-
+    gold = 0
     def getid():
         return str(uuid.uuid4())
     id = getid()
@@ -196,7 +196,8 @@ label premiere:
         try:
             request = renpy.fetch(url , json ={"player_id":id}, result="json")
             
-            reussi, gold = request['mission_state']
+            reussi, gold_gagne = request['mission_state']
+            gold = gold + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Essayer encore de cliquer sur le texte")
@@ -272,8 +273,9 @@ label deuxieme:
 
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
-            reussi, gold = request['mission_state']
-            renpy.say(None, "Waouw merci, tu as gagné [gold]")
+            reussi, gold_gagne = request['mission_state']
+            gold = gold + int(gold_gagne)
+            renpy.say(None, "Waouw merci, tu as gagné [gold_gagne]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
@@ -351,8 +353,9 @@ label troisieme:
 
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
-            reussi, gold = request['mission_state']
-            renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            reussi, gold_gagne = request['mission_state']
+            gold = gold + int(gold_gagne)
+            renpy.say(j, "Waouw merci, tu as gagné [gold_gagne]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                 reussi = False
@@ -467,7 +470,7 @@ label tavern_village:
             $ quests = load_quests()
             call screen quest_menu(0,quests)
         "Repartir":
-            $ voir_tavern_quete = False
+            
             jump place_village
 
 label dialogue_aubergiste(quest_id,quest_nom, url):
@@ -492,8 +495,9 @@ label quete_aubergiste(quest_id,quest_nom, url):
 
                 try:
                     request= renpy.fetch(url, json = {"player_id":id}, result="json")
-                    reussi, gold = request['mission_state']
-                    renpy.say(T, "Waouw merci, tu as gagné [gold]")
+                    reussi, gold_gagne = request['mission_state']
+                    gold = gold + int(gold_gagne)
+                    renpy.say(T, "Waouw merci, tu as gagné [gold_gagne]")
                     if not reussi:
                         renpy.say(None, "Mauvaise reponse reessayer encore une fois")
                         reussi = False

@@ -4,6 +4,17 @@ define flash = Fade(.25, 0.0, .75, color="#fff")
 define i= Character(_("????"), color="#ffffff")
 define j= Character(_("Navi"), color="#92eb2c")
 
+image client = "images/client.png"
+image client content  = "images/client_heureux.png"
+image Navi = "images/children.png"
+image Navi angry = "images/children_angry.png"
+
+transform middleright:
+    xalign 0.7
+    ypos 0.06
+    
+    
+
 init python:
     import uuid
     import webbrowser
@@ -109,7 +120,7 @@ label start:
 
     play sound "triKnock01.mp3"
     define m= Character(_("[name]"),color="#0b29d4")
-    show client at right
+    show client at middleright
     c "Bonjour ?"
 
     "Bonjour je suis le bricoleur que vous avez appelé pour réparer votre mur"
@@ -129,13 +140,15 @@ label start:
     c "Ah parfait je vous attendais, suivez moi"
 
     scene chamber
-    show client at right
+    show client at middleright
+    show client at right with ease
     c "Voici le mur en question, il a l'air instable et j'ai peur qu'il s'effrondre"
 
     m "En effet, le mur a l'air .... suspect"
 
     m "Heureusement je suis le meilleur bricoleur des environs et je ferai de mon mieux pour reparer votre grâce à ma fidele boite à outils"
-
+    
+    show client content at right
     "{i}Le client semble s'amuser à ma remarque{/i}"
 
     c "Bon et bien dans ce cas, je vous fait confiance."
@@ -151,7 +164,7 @@ label start:
 
     "{i}Je décide alors de me rapprocher du mur mais lorsque tout à coup, un immense flash de lumiere m'aveugla{i}"
     
-    scene black with fade
+    scene black with flash
 
     i "...llez bien .."
 
@@ -162,7 +175,7 @@ label start:
     "J'ai l'impression qu'on m'appelle"
 
     scene forest
-    show children
+    show Navi
     "Au moment où j'ouvre les yeux, je vois qu'une jeune fille se tient au-dessus moi"
     "Qu'est ce qu'elle fait la ?"
 
@@ -215,7 +228,7 @@ label premiere:
 
     "Wow cette fois j'ai réussi à parler"
 
-    show children
+    show Navi
     i "Ah parfait vous semblez avoir repris vos esprits"
     
     j "Je m'appelle Navi et vous, qui êtes vous ? Comment ça se fait que vous étiez allongé sur le sol ? "
@@ -243,13 +256,13 @@ label premiere:
     "Dans un autre monde ???!!!!!"
 
     "{i}Voyant mon visage inquiet Navi se rapproche{/i}"
-    show children:
+    show Navi:
         ease 0.5 yalign 0.0 zoom 2.0
     
     j "Du coup, vous avez un endroit où dormir ?"
 
     m "Ah oui desolé j'étais perdu dans mes pensées, je n'ai nulle part où aller donc j'accepte ta proposition"
-    show children:
+    show Navi:
         ease 0.7 yalign 1.0 zoom 1.0
     j "Parfait mais avant de rentrer je dois encore cueillir de quoi manger ce soir"
 
@@ -379,7 +392,7 @@ label test:
     show villageoiq with ease:
         xzoom -1.0
         xalign 0.1
-    show children_angry with vpunch :
+    show Navi angry with vpunch :
         xalign 0.9
         yalign 1.0
     j "Encore eux ?"
@@ -394,7 +407,7 @@ label test:
 
     j "Je vais prendre les choses en main, apres tout parfois il faut savoir forcer le destin pour obtenir le futur voulu"
     hide villageoiq
-    show children_angry at center with ease
+    show Navi angry at center with ease
     j "[name], je pourrais pas me rebeller face à ce Serpent toute seule peut tu me preter main forte ?"
 
     menu:
@@ -403,8 +416,7 @@ label test:
         "...":
             j "Je vois à ton regard rempli de determination que toi non plus tu refuse de voir les villageois souffrir plus longtemps"
     
-    hide children_angry
-    show children at center
+    show Navi at center
 
     j "Mais avant de faire quoi que ce soit, il faut reparer les degats causé par l'incendie"
 
@@ -414,7 +426,7 @@ label test:
     "Quelques heures plus tard"
 
     scene bg_village_lateday with fade
-    show children at center
+    show Navi at center
     j "Merci de ton aide [name], si tu avais pas été la ca aurait prit beaucoup plus de temps"
 
     m "De rien, c'etait la moindre des choses"

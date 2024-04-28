@@ -31,7 +31,7 @@ df = pd.read_excel('Classeur1.xlsx',dtype=str)
 # Afficher le DataFrame avec les résultats des tests
 #print(df['Tests'][0])
 
-with open("quest.txt",'w',encoding='utf-8') as fout:
+with open("quest0.txt",'w',encoding='utf-8') as fout:
     fout.write(f"{df.shape[0]} {df.shape[1]}\n")
     for column_name in df.columns:
         fout.write(f"{column_name}\n")

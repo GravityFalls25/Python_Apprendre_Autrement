@@ -453,6 +453,7 @@ label test:
     "Le lendemain matin"
 label place_village:
     scene bg_village_day with fade
+    play music "mist_covered_mountains.mp3" if_changed
     $ quick_menu = True
     menu:
         "Bon que devrais-je faire maintenant"

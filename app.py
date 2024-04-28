@@ -178,7 +178,10 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write(f"{df['input_exemple_1'][0]}")
                     continue
                 if "<!-- Rappel de la quête -->" in ligne:
-                    fout.write(f"{df['Rappel_de_la_quete'][0]}")
+                    rappel = df['Rappel_de_la_quete']
+                    for phrase in rappel:
+                        phrase = phrase.strip('"')
+                        fout.write(f"<p>{phrase}</p>\n")
                     continue
                 if "//Input initial" in ligne:
                     input_exemple = df['input_exemple_1']

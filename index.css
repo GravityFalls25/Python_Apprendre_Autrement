@@ -44,7 +44,7 @@ body {
   background-size: cover; /* Ajuste la taille de l'image pour couvrir tout le fond */
   background-repeat: no-repeat; /* Empêche la répétition de l'image */
   background-position: center center; /* Centre l'image */
-  height: 100vh; /* Taille de la fenêtre visible */
+  /*height: 100vh; /* Taille de la fenêtre visible */
 
 }
 .text-container {

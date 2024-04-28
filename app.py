@@ -365,10 +365,14 @@ def get_mission_tavern():
 @app.route('/clear_quete', methods=['POST'])
 def clear_quete():
     data = request.json
-    if "Id_joueur" in mission_states:
-        mission_states.pop("Id_joueur") 
-    if os.path.exists("index2_0.html"):
-        os.remove("index2_0.html")
+    Id_joueur = data.get('player_id')
+    print(Id_joueur)
+    if Id_joueur in mission_states:
+        print("A supprimé")
+        mission_states.pop(Id_joueur) 
+    if os.path.exists("index2.html"):
+        os.remove("index2.html")
+    return jsonify({'success': 1}), 200
 
 if __name__ == "__main__":
     app.run(debug=False)

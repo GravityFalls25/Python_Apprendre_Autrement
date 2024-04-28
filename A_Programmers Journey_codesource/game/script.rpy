@@ -33,33 +33,25 @@ init python:
     style.retour_taverne.margin = (5, 5)  # Marges autour du bouton
     
     def send_quest_data(quest_id):
-        postData = {"valeur": quest_id}
+        postData = {"valeur": quest_id, "id":id}
         url = 'http://127.0.0.1:5000'
         response = renpy.fetch(url, json=postData)
         # if response.status == 200:
         #     return response.json()  # Traitez la réponse comme nécessaire
         # else:
         #     renpy.error("Erreur de requête: {}".format(response.status))
-    def handle_quest_and_redirect(quest_id, url):
+    def handle_quest_and_redirect(quest, url):
     # Envoie les données de la quête
-        send_quest_data(quest_id)
-        renpy.call("dialogue_aubergiste", quest_id, url)
+        send_quest_data(quest[0])
+        renpy.call("dialogue_aubergiste", quest[0],quest[1], url)
     def load_quests():
-        #print("Je passe surement ici pour rien")
-
-        global cached_quests
-        
-        if voir_tavern_quete:
-            #print("J'ai quand meme reussi a passer")
-            if cached_quests is None:
-                postData = list(Quete_faite)
-                url = 'http://127.0.0.1:5000/get_mission_tavern'
-                response = renpy.fetch(url, json=postData)
-                decoded_response = response.decode('utf-8')
-                json_data = json.loads(decoded_response)
-                cached_quests = [(item[0], item[1], item[2]) for item in json_data]
-            return set(cached_quests)
-        return None
+        postData = list(Quete_faite)
+        url = 'http://127.0.0.1:5000/get_mission_tavern'
+        response = renpy.fetch(url, json=postData)
+        decoded_response = response.decode('utf-8')
+        json_data = json.loads(decoded_response)
+        cached_quests = [(item[0], item[1], item[2]) for item in json_data]
+        return set(cached_quests)
 
     Quete_faite = set()
 
@@ -70,16 +62,9 @@ init python:
     def calculate_rows(quests, cols):
             return (len(quests) + cols - 1) // cols
 
-screen quest_menu(id_tavern):
-        python:
-            quests = load_quests()
-            voir_tavern_quete = False
-            
-
-
-            # Convertir la liste de tuples en un ensemble
+screen quest_menu(id_tavern,quests):
         frame:
-            
+                
             background Solid("#000000ae")
             
             vbox:
@@ -102,7 +87,7 @@ screen quest_menu(id_tavern):
                                 vbox:
                                         text quest[0]
                                         text "Difficulté: {}".format(quest[2])
-                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest[0], "http://localhost/Python_Apprendre_Autrement/index2.html")
+                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, "http://localhost/Python_Apprendre_Autrement/index2.html")
     
 screen Map():
     add "Game_plan.png"
@@ -479,26 +464,60 @@ label tavern_village:
     T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 
         "Voir les quetes disponibles":
-            $ voir_tavern_quete = True
-            call screen quest_menu(0)
+            $ quests = load_quests()
+            call screen quest_menu(0,quests)
         "Repartir":
             $ voir_tavern_quete = False
             jump place_village
 
-label dialogue_aubergiste(quest_id, url):
+label dialogue_aubergiste(quest_id,quest_nom, url):
     T "Bonjour, bon courage pour la quête!"
     menu:
         "Commencer la quête":
             T "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste(quest_id, url)
+            call quete_aubergiste(quest_id,quest_nom, url)
         "Annuler":
             T "C'est dommage, peut-être une autre fois."
             jump tavern_village
-label quete_aubergiste(quest_id, url):
-    T "Alors, tu avance bien dans ta quete ?"
+label quete_aubergiste(quest_id,quest_nom, url):
+    T "Alors, tu avances bien dans ta quete ?"
     menu:
         "Valider la quête":
+
+            $ reussi = False
+            python:
+                # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
+                url = 'http://127.0.0.1:5000/get_mission_state'
+
+                try:
+                    request= renpy.fetch(url, json = {"player_id":id}, result="json")
+                    reussi, gold = request['mission_state']
+                    renpy.say(T, "Waouw merci, tu as gagné [gold]")
+                    if not reussi:
+                        renpy.say(None, "Mauvaise reponse reessayer encore une fois")
+                        reussi = False
+                        
+
+                except Exception as erreur:
+                    # Gère les erreurs potentielles lors de la requête
+                    renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
+
+
+            if reussi != True:
+                python:
+                    url = 'http://127.0.0.1:5000/clear_quete'
+                    request= renpy.fetch(url, json = {"player_id":id}, result="json")
+                call quete_aubergiste(quest_id,quest_nom, url)
+
+            $ Quete_faite.add((quest_id, quest_nom))
+            python:
+                url = 'http://127.0.0.1:5000/clear_quete'
+                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+
+
+
+
             jump tavern_village
         "Abandonner":
             T "C'est dommage, peut-être une autre fois."

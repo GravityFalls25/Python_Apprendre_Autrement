@@ -109,13 +109,13 @@ screen quest_menu(id_tavern):
 # Le jeu commence ici
 label start:
     
-    #play sound "voiture_qui_freine.mp3"
+    play sound "door_opening.mp3"
     "Je pense que c'est ici"
 
     scene maison with fade
     "C'est la dernière maison que je dois visiter et après j'aurai droit à un weekend bien merité."
 
-    #play sound "toc_toc.mp3"
+    play sound "triKnock01.mp3"
     define m= Character(_("[name]"),color="#0b29d4")
     show client at right
     c "Bonjour ?"
@@ -395,9 +395,11 @@ label quete_aubergiste(quest_id, url):
             jump tavern_village
 
 label tavern_village:
+    play music "Tavern_song.mp3" if_changed
     define T= Character(_("Tavernier"), color="#446d14")
     scene tavern
     show tavernier
+
 
     T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 

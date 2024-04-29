@@ -24,7 +24,7 @@ import json
 import os
 def lecture_txt(Tavern = 0):
     tavern = str(Tavern)
-    fichier_txt = "quest" + tavern + ".txt"
+    fichier_txt = "Quete/quest" + tavern + ".txt"
     with open(fichier_txt,'r',encoding='utf-8') as fin:
         texte = fin.read().split("\n")
         texte2 = list()
@@ -54,17 +54,11 @@ def lecture_txt(Tavern = 0):
 
 
 def html(Quest = 0,Id = 0, Tavern = 0):
-    # -*- coding: utf-8 -*-
-    """
-    Created on Wed Apr 10 09:50:41 2024
-
-    @author: thiba
-    """
 
     quete = Quest
     id = Id
     tavern = str(Tavern)
-    fichier_txt = "quest" + tavern + ".txt"
+    fichier_txt = "Quete/quest" + tavern + ".txt"
     
 
     with open(fichier_txt,'r',encoding='utf-8') as fin:
@@ -143,17 +137,18 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         fout.write("url = 'http://127.0.0.1:5000/update_mission_state'\n")
         fout.write("myobj = {'player_id': id,'state': ok, 'gold':gold }\n")
         fout.write("x = requests.post(url, json = myobj)\n")
-    #Ecriture HTML
-    if quete == 1:
-        ref = "assistant1html.txt"
-    elif quete == 0:
-        ref = "assistanthtml.txt"
-    else :
-        ref = "index.txt"
 
+    #Ecriture HTML
+    
+    if quete == 1:
+        ref = "Template/Page_aide_sup/assistant1html.txt"
+    elif quete == 0:
+        ref = "Template/Page_aide_sup/assistanthtml.txt"
+    else :
+        ref = "Template/index.txt"
 
     with open(ref,'r',encoding='utf-8') as fin:
-        with open("index2.html",'w',encoding='utf-8') as fout:
+        with open("index.html",'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
             for ligne in texte:
                 if "<!-- Liste des input -->" in ligne:
@@ -198,11 +193,11 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     #Ecriture JS
 
     if quete == 1:
-        ref = "assistant1js.txt"
+        ref = "Template/Page_aide_sup/assistant1js.txt"
     elif quete == 0:
-        ref = "assistantjs.txt"
+        ref = "Template/Page_aide_sup/assistantjs.txt"
     else :
-        ref = "script.txt"
+        ref = "Template/script.txt"
 
     with open(ref, 'r', encoding='utf-8') as fin:
         with open("index.js",'w',encoding='utf-8') as fout:
@@ -263,7 +258,19 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write('"\n')
                     continue
                 if "//liste output" in ligne:
-                    mot = str([df['output_attendu_1'][0], df['output_attendu_2'][0], df['output_attendu_3'][0]]).strip("[").strip("]")
+                    outputs = df['output_attendu_1']
+                    output_1 = ""
+                    for output in outputs:
+                          output_1 += output + n 
+                    outputs = df['output_attendu_2']
+                    output_2 = ""
+                    for output in outputs:
+                          output_2 += output + n 
+                    outputs = df['output_attendu_3']
+                    output_3 = ""
+                    for output in outputs:
+                          output_3 += output + n
+                    mot = str([output_1,output_2,output_3]).strip("[").strip("]")
                     fout.write(f"{mot}\n")
                     continue
             
@@ -370,8 +377,8 @@ def clear_quete():
     if Id_joueur in mission_states:
         print("A supprimé")
         mission_states.pop(Id_joueur) 
-    if os.path.exists("index2.html"):
-        os.remove("index2.html")
+    if os.path.exists("index.html"):
+        os.remove("index.html")
     return jsonify({'success': 1}), 200
 
 if __name__ == "__main__":

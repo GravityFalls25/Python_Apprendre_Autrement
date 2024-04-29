@@ -1,0 +1,226 @@
+8 25
+Chap
+Nom_Quete
+ID quete
+Difficulté
+aide
+input_exemple_1
+input_exemple_2
+input_exemple_3
+output_attendu_1
+output_attendu_2
+output_attendu_3
+Rappel_de_la_quete
+Indice_1
+Indice_2
+Indice_3
+Code_init
+n_test
+input_test_1
+output_test_1
+input_test_2
+output_test_2
+input_test_3
+output_test_3
+input_test_4
+output_test_4
+0
+0
+0
+4
+0
+0
+0
+0
+Je vais bien
+Combien de champignon
+Arrete l'incendie
+Pentagone
+Operation
+Cube
+Ascii code
+Bonjour ?
+0
+1
+2
+3
+4
+5
+6
+7
+0
+0
+0
+2
+1
+1
+1
+0
+En python, pour écrire un message dans la console\nOn utilise la fonction print()\nainsi, pour utiliser cette fonction, on fera par exemple :\nprint("HelloWorld")\n\nTu peux voir que les " sont importants, ils permettent de dire qu'il sagit d'un texte
+En python, pour récuperer un message de quelqu'un dans la console\non utilisera la fonction input()\nainsi on fera par exemple\nmessage = input()\nAttention le message ici sera considéré comme un texte\nPour preciser qu'il s'agit d'un nombre entier, on utilisera la fonction int()\nOn aura ainsi\nnombre = int(input())\nici, la variable nombre aura alors la valeur entrée par l'utilisateur\nSi jamais on a besoin de stoquer une deuxieme valeur, on utilisera alors une autre variable\nnombre2 = int(input())
+nan
+nan
+nan
+nan
+Pour obtenir le code ascii d'un char, utilise la fonction ord()
+Vous voici sur une page où vous allez devoir coder 
+nan
+2\n1\n3
+1\n5\n4\n2\n2\n3\n2\n1\n6\n4\n5\n2\n5\n2\n3\n1\n4\n6\n3\n1
+1
+2
+2
+a
+Pierre\nPapier
+nan
+4\n2\n1
+2\n4\n6\n2\n1\n3\n2\n1\n5\n4\n5\n2\n6\n2\n3\n1\n4\n6\n2\n1
+2
+3
+3
+@
+Papier\nPierre
+nan
+8\n5\n1
+1\n1\n1\n2\n2\n3\n2\n1\n1\n4\n5\n2\n7\n2\n3\n1\n5\n6\n3\n2
+3
+5
+4
+C
+Papier\nPapier
+Je vais bien
+6
+Il faut apporter 4000mL d'eau pour la maison 1\nIl faut apporter 1200mL d'eau pour la maison 2\nIl faut apporter 24000mL d'eau pour la maison 3\nIl faut apporter 3000mL d'eau pour la maison 4\nIl faut apporter 7200mL d'eau pour la maison 5\nIl faut apporter 39400mL d'eau au total
+1
+4\n0.6666666666666666\n0
+8
+97
+J2 gagne
+Je vais bien
+7
+Il faut apporter 9600mL d'eau pour la maison 1\nIl faut apporter 600mL d'eau pour la maison 2\nIl faut apporter 20000mL d'eau pour la maison 3\nIl faut apporter 3600mL d'eau pour la maison 4\nIl faut apporter 4800mL d'eau pour la maison 5\nIl faut apporter 38600mL d'eau au total
+5
+9\n1.0\n0
+27
+64
+J1 gagne
+Je vais bien
+14
+Il faut apporter 200mL d'eau pour la maison 1\nIl faut apporter 1200mL d'eau pour la maison 2\nIl faut apporter 4000mL d'eau pour la maison 3\nIl faut apporter 4200mL d'eau pour la maison 4\nIl faut apporter 18000mL d'eau pour la maison 5\nIl faut apporter 27600mL d'eau au total
+16
+25\n1.6666666666666667\n1
+64
+67
+Egalité
+Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repondre
+Compte les champignons pour savoir combien vous en avez\nIl y a ici 3 types de champignons
+Vite tu dois arreter l'incendie\nIl y a 5 maisons mais tu ne sais pas a l'avance quelle quantité d'eau tu as besoin\nNavi est partie te dire l'étendue des flammes pendant que tu es parti cherché de l'eau\nNavi te dire les informations dans l'ordre suivant:\nla puissance des flammes\nla longueur de la maison\nla largeur de la maison\nla nombre d'étage de la maison\n\nElle répetera ces informations pour les 5 maisons\nAprès chaque maison, tu devras lui dire quel quantité d'eau ammener\nUne fois les 5 maisons éteintes, tu devras annoncer quel quantité d'eau vous avez utilisés\n\nUne maison avec un incendie de puissance 1, de longueur 1, de largeur 1 et de 1 étage demandera 100mL d'eau 
+Ecrivez une fonction qui prend un entier positif ‘num’ et calcule combien de points existent dans une forme pentagonale autour du point central à la Nième itération. Dans l'image ci-dessous, vous pouvez voir que la première itération ne comporte qu'un seul point. À la deuxième itération, il y a 6 points. Sur la troisième, il y a 16 points, et sur la quatrième, il y a 31 points. Renvoie le nombre de points qui existent dans le pentagone entier à la Nième itération.
+Ecrire un programme qui demande à l'utilisateur de saisir un nombre entier N et d’afficher la valeur et le type de son carré, sa division par 3 et sa division entière par 5 ;
+Ecrire un programme qui demande à l'utilisateur de saisir : un nombre réel F et d’afficher son cube
+Pour un char un caractère Ch et d’afficher son code ascii
+Un groupe d'enfant vous a demandé de créer un pierre papier ciseaux, vous devrez donc, dans votre progamme, demander a chacun des participant, si il veut jouer "Pierre", "Papier","Ciseaux" et d'afficher le resultat "J2 gagne", "J1 gagne" Egalité
+Ici il suffit d'ecrire le message qu'elle t'a dit
+Il faudra additionner les trois nombres
+Multiplie chacune des valeurs pour obtenir le volume de flamme à éteindre
+nan
+nan
+nan
+nan
+N'ayez pas peur de preparer tous les cas possibles
+Si tu écris un texte, n'oublie pas les "
+attention, l'instruction input() renvoie un String (du texte) il faut donc le caster (convertir) en int (entier)
+Mutliplie le resultat par 100 pour obtenir la quantité d'eau
+nan
+nan
+nan
+nan
+il y a le cas J1 joue "Pierre" et J2 joue "Ciseaux", si vous voyez cela, le joueur 1 gagne
+print("Je vais bien")
+a = int(input())\nb = int(input())\nc = int(input())\nprint(a+b+c)
+Voici une solution possible pour une maison\np_f_1 = int(input())\nx_m_1 = int(input())\ny_m_1 = int(input())\nz_m_1 = int(input())\neau_1 = p_f_1*x_m_1*y_m_1*z_m_1\nprint(f"Il faut apporter {eau_1*100}mL d'eau pour la maison 1")\n\nEnsuite calcule la somme d'eau
+nan
+nan
+nan
+nan
+voici le début d'un code fonctionnel : \nJ1 =input("Pierre, Papier ou Ciseaux: ")\nJ2 = input("Pierre, Papier ou Ciseaux: ")\n\nif J1 == J2:\n    print('Egalité')\n\nelif J1 == "Pierre" and J2 == "Papier":\n    print("J2 gagne")\n    pass\n\nelif J1 == "Pierre" and J2 == "Ciseaux":\n    print("J1 gagne")
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+print("Hello World")
+1
+4
+3
+4
+4
+4
+3
+3
+nan
+2\n1\n3
+1\n5\n4\n2\n2\n3\n2\n1\n6\n4\n5\n2\n5\n2\n3\n1\n4\n6\n3\n1
+1
+2
+2
+a
+Pierre\nPapier
+Je vais bien
+6
+Il faut apporter 4000mL d'eau pour la maison 1\nIl faut apporter 1200mL d'eau pour la maison 2\nIl faut apporter 24000mL d'eau pour la maison 3\nIl faut apporter 3000mL d'eau pour la maison 4\nIl faut apporter 7200mL d'eau pour la maison 5\nIl faut apporter 39400mL d'eau au total
+1
+4\n0.6666666666666666\n0
+8
+97
+J2 gagne
+nan
+4\n2\n1
+2\n4\n6\n2\n1\n3\n2\n1\n5\n4\n5\n2\n6\n2\n3\n1\n4\n6\n2\n1
+8
+3
+3
+M
+Papier\nPierre
+nan
+7
+Il faut apporter 9600mL d'eau pour la maison 1\nIl faut apporter 600mL d'eau pour la maison 2\nIl faut apporter 20000mL d'eau pour la maison 3\nIl faut apporter 3600mL d'eau pour la maison 4\nIl faut apporter 4800mL d'eau pour la maison 5\nIl faut apporter 38600mL d'eau au total
+141
+9\n1.0\n0
+27
+77
+J1 gagne
+nan
+8\n5\n1
+1\n1\n1\n2\n2\n3\n2\n1\n1\n4\n5\n2\n7\n2\n3\n1\n5\n6\n3\n2
+10
+5
+4
+.
+Papier\nPapier
+nan
+14
+Il faut apporter 200mL d'eau pour la maison 1\nIl faut apporter 1200mL d'eau pour la maison 2\nIl faut apporter 4000mL d'eau pour la maison 3\nIl faut apporter 4200mL d'eau pour la maison 4\nIl faut apporter 18000mL d'eau pour la maison 5\nIl faut apporter 27600mL d'eau au total
+226
+25\n1.6666666666666667\n1
+64
+46
+Egalité
+nan
+5\n5\n1
+nan
+15
+25
+10
+nan
+nan
+nan
+11
+nan
+526
+625\n8.333333333333334\n5
+1000
+nan
+nan

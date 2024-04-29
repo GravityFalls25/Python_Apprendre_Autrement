@@ -56,7 +56,7 @@ init python:
         send_quest_data(quest[0])
         renpy.call("dialogue_aubergiste", quest[0],quest[1], url)
     def load_quests():
-        postData = list(Quete_faite)
+        postData = persistent.Quete_faite
         url = 'http://127.0.0.1:5000/get_mission_tavern'
         response = renpy.fetch(url, json=postData)
         decoded_response = response.decode('utf-8')
@@ -64,8 +64,7 @@ init python:
         cached_quests = [(item[0], item[1], item[2]) for item in json_data]
         return set(cached_quests)
 
-    Quete_faite = set()
-    gold = 0
+    
     def getid():
         return str(uuid.uuid4())
     id = getid()
@@ -111,7 +110,10 @@ screen Map():
 
 # Le jeu commence ici
 label start:
-    
+    if not persistent.Quete_faite:
+        default persistent.Quete_faite = list()
+    if not persistent.gold:
+        default persistent.gold = 0
     play sound "door_opening.mp3"
     "Je pense que c'est ici"
 
@@ -210,7 +212,7 @@ label premiere:
             request = renpy.fetch(url , json ={"player_id":id}, result="json")
             
             reussi, gold_gagne = request['mission_state']
-            gold = gold + int(gold_gagne)
+            persistent.gold = persistent.gold + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Essayer encore de cliquer sur le texte")
@@ -287,7 +289,7 @@ label deuxieme:
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
             reussi, gold_gagne = request['mission_state']
-            gold = gold + int(gold_gagne)
+            persistent.gold = persistent.gold + int(gold_gagne)
             renpy.say(None, "Waouw merci, tu as gagné [gold_gagne]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
@@ -367,7 +369,7 @@ label troisieme:
         try:
             request= renpy.fetch(url, json = {"player_id":id}, result="json")
             reussi, gold_gagne = request['mission_state']
-            gold = gold + int(gold_gagne)
+            persistent.gold = persistent.gold + int(gold_gagne)
             renpy.say(j, "Waouw merci, tu as gagné [gold_gagne]")
             if not reussi:
                 renpy.say(None, "Mauvaise reponse reessayer encore une fois")
@@ -461,7 +463,7 @@ label place_village:
             jump tavern_village
         "Aller à l'entrée du village":
             python:
-                if int(gold)>=500:
+                if int(persistent.gold)>=500:
                     renpy.jump("fin_chap1")
                 else:
                     renpy.say(None,"j'ai pas encore assez d'or")
@@ -475,7 +477,7 @@ label tavern_village:
     scene tavern
     show tavernier
 
-
+    $ renpy.save_persistent()
     T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 
         "Voir les quetes disponibles":
@@ -508,7 +510,7 @@ label quete_aubergiste(quest_id,quest_nom, url):
                 try:
                     request= renpy.fetch(url, json = {"player_id":id}, result="json")
                     reussi, gold_gagne = request['mission_state']
-                    gold = gold + int(gold_gagne)
+                    persistent.gold = persistent.gold + int(gold_gagne)
                     renpy.say(T, "Waouw merci, tu as gagné [gold_gagne]")
                     if not reussi:
                         renpy.say(None, "Mauvaise reponse reessayer encore une fois")
@@ -526,7 +528,7 @@ label quete_aubergiste(quest_id,quest_nom, url):
                     request= renpy.fetch(url, json = {"player_id":id}, result="json")
                 call quete_aubergiste(quest_id,quest_nom, url)
 
-            $ Quete_faite.add((quest_id, quest_nom))
+            $ persistent.Quete_faite.append((quest_id, quest_nom))
             python:
                 url = 'http://127.0.0.1:5000/clear_quete'
                 request= renpy.fetch(url, json = {"player_id":id}, result="json")

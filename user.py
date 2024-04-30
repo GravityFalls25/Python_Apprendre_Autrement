@@ -1,1 +1,2 @@
-print("Je vais bien")
+n = int(input())
+print(n**3)

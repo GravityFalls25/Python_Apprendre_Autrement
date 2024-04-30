@@ -8,7 +8,7 @@ Created on Thu Apr 11 00:40:00 2024
 import pandas as pd
 
 # Charger le fichier Excel
-df = pd.read_excel('Classeur1.xlsx',dtype=str)
+df = pd.read_excel('Aventure.xlsx',dtype=str)
 # df['Tests'] = None
 
 # Parcourir chaque ligne du DataFrame

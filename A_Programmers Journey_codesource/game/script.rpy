@@ -19,7 +19,7 @@ init python:
     import uuid
     import webbrowser
     import json
-
+    
     cached_quests = None
     #Cases quetes
     style.quest_frame = Style(style.default)
@@ -68,6 +68,7 @@ init python:
     def getid():
         return str(uuid.uuid4())
     id = getid()
+    site = "http://localhost/Python_Apprendre_Autrement/index_" + id + ".html"
 
     def calculate_rows(quests, cols):
             return (len(quests) + cols - 1) // cols
@@ -97,7 +98,7 @@ screen quest_menu(id_tavern,quests):
                                 vbox:
                                         text quest[0]
                                         text "Difficulté: {}".format(quest[2])
-                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, "http://localhost/Python_Apprendre_Autrement/index2.html")
+                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, site)
     
 screen Map():
     add "Game_plan.png"
@@ -198,7 +199,7 @@ label premiere:
         postData = {"valeur": "0", "id":id}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
-        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        url = site
         lien = "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}"
         renpy.say(None,lien)
 
@@ -225,6 +226,9 @@ label premiere:
 
     if reussi != True:
         jump premiere
+    python:
+                url = 'http://127.0.0.1:5000/clear_quete'
+                request= renpy.fetch(url, json = {"player_id":id}, result="json")
 
     m "Je vais bien"
 
@@ -277,7 +281,7 @@ label deuxieme:
         postData = {"valeur": "1", "id": id}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
-        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        url = site
         lien = "{a="+url+"}Tu veux bien les compter ?{/a}"
         renpy.say(None,lien)
 
@@ -303,7 +307,10 @@ label deuxieme:
 
     if reussi != True:
         jump deuxieme
-    
+    python:
+                url = 'http://127.0.0.1:5000/clear_quete'
+                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+
     j "Merci beaucoup !"
 
     j "On peut maintenant rentrer au village"
@@ -357,7 +364,7 @@ label troisieme:
         postData = {"valeur": "2"}
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData)
-        url = "http://localhost/Python_Apprendre_Autrement/index2.html"
+        url = site
         lien = "{a="+url+"}Vite il y a un puit la-bas, va chercher de l'eau{/a}"
         renpy.say(j,lien)
 
@@ -383,6 +390,9 @@ label troisieme:
 
     if reussi != True:
         jump troisieme
+    python:
+                url = 'http://127.0.0.1:5000/clear_quete'
+                request= renpy.fetch(url, json = {"player_id":id}, result="json")
 label test:
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 

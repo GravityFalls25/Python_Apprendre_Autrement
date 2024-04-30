@@ -56,7 +56,7 @@ def lecture_txt(Tavern = 0):
 def html(Quest = 0,Id = 0, Tavern = 0):
 
     quete = Quest
-    id = Id
+    id = str(Id)
     tavern = str(Tavern)
     fichier_txt = "Quete/quest" + tavern + ".txt"
     
@@ -108,7 +108,8 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         
             
     #Ecriture code test
-    with open("test_new.py", 'w',encoding='utf-8') as fout:
+    ref_w = "test_new_" + id + ".py"
+    with open(ref_w, 'w',encoding='utf-8') as fout:
         fout.write("import mock\n")
         fout.write("import importlib\n")
         fout.write("from io import StringIO\n")
@@ -141,14 +142,15 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     #Ecriture HTML
     
     if quete == 1:
-        ref = "Template/Page_aide_sup/assistant1html.txt"
+        ref_r = "Template/Page_aide_sup/assistant1html.txt"
     elif quete == 0:
-        ref = "Template/Page_aide_sup/assistanthtml.txt"
+        ref_r = "Template/Page_aide_sup/assistanthtml.txt"
     else :
-        ref = "Template/index.txt"
+        ref_r = "Template/index.txt"
+    ref_w = "index_" + id + ".html"
 
-    with open(ref,'r',encoding='utf-8') as fin:
-        with open("index.html",'w',encoding='utf-8') as fout:
+    with open(ref_r,'r',encoding='utf-8') as fin:
+        with open(ref_w,'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
             for ligne in texte:
                 if "<!-- Liste des input -->" in ligne:
@@ -178,6 +180,10 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                         phrase = phrase.strip('"')
                         fout.write(f"<p>{phrase}</p>\n")
                     continue
+                if '<script src="index.js"> </script>' in ligne:
+                    new_line = '<script src="index_'+ id + '.js"> </script>\n'
+                    fout.write(new_line)
+                    continue
                 if "//Input initial" in ligne:
                     input_exemple = df['input_exemple_1']
                     for exemple in input_exemple:
@@ -193,14 +199,14 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     #Ecriture JS
 
     if quete == 1:
-        ref = "Template/Page_aide_sup/assistant1js.txt"
+        ref_r = "Template/Page_aide_sup/assistant1js.txt"
     elif quete == 0:
-        ref = "Template/Page_aide_sup/assistantjs.txt"
+        ref_r = "Template/Page_aide_sup/assistantjs.txt"
     else :
-        ref = "Template/script.txt"
-
-    with open(ref, 'r', encoding='utf-8') as fin:
-        with open("index.js",'w',encoding='utf-8') as fout:
+        ref_r = "Template/script.txt"
+    ref_w = "index_" + id + ".js"
+    with open(ref_r, 'r', encoding='utf-8') as fin:
+        with open(ref_w,'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
             n = "\n"
             n2 = r"\n\ ".strip(" ") + "\n" 
@@ -377,8 +383,15 @@ def clear_quete():
     if Id_joueur in mission_states:
         print("A supprimé")
         mission_states.pop(Id_joueur) 
-    if os.path.exists("index.html"):
-        os.remove("index.html")
+    ref_html = "index_" + Id_joueur + ".html"
+    ref_js = "index_" + Id_joueur + ".js"
+    ref_py = "test_new_" + Id_joueur + ".py"
+    if os.path.exists(ref_html):
+        os.remove(ref_html)
+    if os.path.exists(ref_js):
+        os.remove(ref_js)
+    if os.path.exists(ref_py):
+        os.remove(ref_py)
     return jsonify({'success': 1}), 200
 
 if __name__ == "__main__":

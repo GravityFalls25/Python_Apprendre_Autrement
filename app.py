@@ -22,6 +22,8 @@ from flask_cors import CORS
 
 import json
 import os
+
+#En fonction de la zone, retourne deux sets tout deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
 def lecture_txt(Tavern = 0):
     tavern = str(Tavern)
     fichier_txt = "Quete/quest" + tavern + ".txt"
@@ -52,7 +54,7 @@ def lecture_txt(Tavern = 0):
     return Quete_tavern_complet,Quete_tavern_complet_0diff
 
 
-
+#Créations des fichiers correspondant a la partie web/exercice
 def html(Quest = 0,Id = 0, Tavern = 0):
 
     quete = Quest
@@ -304,6 +306,7 @@ def on_exit():
 atexit.register(on_exit)
 df_complet = lecture_txt()
 
+#Crée la page quete
 @app.route('/', methods=["POST"])
 def traiter_requete():
     data = request.json
@@ -355,7 +358,7 @@ def get_mission_state():
     
     return jsonify({'mission_state': mission_state}), 200
 
-
+#Obtenir toutes les missions pas encore faite pour le joueur
 @app.route('/get_mission_tavern', methods=['POST'])
 def get_mission_tavern():
     data = request.json
@@ -375,6 +378,7 @@ def get_mission_tavern():
     
     return Quete_a_faire, 200
 
+#Supprime les fichiers en lien avec l quete créée
 @app.route('/clear_quete', methods=['POST'])
 def clear_quete():
     data = request.json

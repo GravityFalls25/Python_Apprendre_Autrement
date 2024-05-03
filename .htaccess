@@ -30,3 +30,7 @@ Deny from all
 <FilesMatch "\.css$">
     Allow from all
 </FilesMatch>
+
+<FilesMatch "\.html$">
+    Allow from all
+</FilesMatch>

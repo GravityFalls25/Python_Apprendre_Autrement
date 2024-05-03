@@ -88,6 +88,9 @@ body {
   padding-bottom: 40px;
 
 }
+#blocklyDiv {
+  border: 1px solid black;
+}
 @keyframes blinker {
   50% {
     box-shadow: 0 0 0 1vh rgba(255, 0, 0, 1);

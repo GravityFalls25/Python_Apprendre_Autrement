@@ -7,7 +7,6 @@ label start:
     "C'est la dernière maison que je dois visiter et après j'aurai droit à un weekend bien merité."
 
     play sound "triKnock01.mp3"
-    define m= Character(_("[name]"),color="#0b29d4")
     show client at middleright
     c "Bonjour ?"
 
@@ -69,7 +68,7 @@ label start:
 
     m "...."
 
-    "{i}mais au moment où j'ouvre la bouche aucun son ne sort{i}"
+    "{i}mais au moment où j'ouvre la bouche aucun son ne sort{/i}"
 
     j "Vous allez bien monsieur ? J'ai l'impression que vous avez pris un coup sur la tete"
 

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 15: end of line expected.
-    with fade:
-             ^
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch, play sound "giant-walking.mp3" volume 0.3
+                                       ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Sat Mar  9 23:51:41 2024
+Sat May  4 15:07:33 2024

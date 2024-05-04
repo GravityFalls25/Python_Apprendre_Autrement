@@ -1,18 +1,17 @@
-2024-04-13 17:16:17 UTC
+2024-05-04 13:00:16 UTC
 Windows-10-10.0.19045
 Ren'Py 8.2.1.24030407
 
-Early init took 0.08s
+Early init took 0.07s
 Loading error handling took 0.03s
-Loading script took 0.18s
+Loading script took 0.24s
 Loading save slot metadata took 0.03s
 Loading persistent took 0.00s
 Running init code took 0.05s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.02s
+Reloading save slot metadata took 0.03s
 Index archives took 0.00s
-Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
 Dump and make backups took 0.06s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
@@ -24,30 +23,30 @@ Creating interface object took 0.20s
 Cleaning stores took 0.00s
 Init translation took 0.03s
 Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.02s
+Load screen analysis took 0.03s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
 Prepare screens took 0.06s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.02s
 Running _start took 0.00s
-Interface start took 0.05s
+Interface start took 0.06s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1440, 900)
 swap interval: 1 frames
-Windowed mode.
+Fullscreen mode.
 Vendor: "b'NVIDIA Corporation'"
 Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
 Version: b'4.6.0 NVIDIA 551.52'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1338, 753) drawable=(1338, 753)
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
 Maximum texture size: 4096x4096
 Resetting cache.
-Early init took 84.22s
+Early init took 36.88s
 Loading error handling took 0.03s
-Loading script took 0.14s
-Loading save slot metadata took 0.02s
+Loading script took 0.18s
+Loading save slot metadata took 0.03s
 Loading persistent took 0.00s
 Running init code took 0.03s
 Loading analysis data took 0.01s
@@ -62,7 +61,7 @@ Initial gc took 0.04s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 0.21s
+Creating interface object took 0.19s
 Cleaning stores took 0.00s
 Init translation took 0.03s
 Build styles took 0.00s
@@ -71,138 +70,126 @@ Analyze screens took 0.01s
 Save screen analysis took 0.02s
 Prepare screens took 0.06s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.02s
+Save bytecode. took 0.01s
 Running _start took 0.00s
 Interface start took 0.04s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1440, 900)
 swap interval: 1 frames
-Windowed mode.
+Fullscreen mode.
 Vendor: "b'NVIDIA Corporation'"
 Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
 Version: b'4.6.0 NVIDIA 551.52'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1338, 753) drawable=(1338, 753)
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
 Maximum texture size: 4096x4096
 
 Full traceback:
-  File "game/script.rpy", line 83, in script
+  File "game/Script/Chapter2/dedale.rpy", line 47, in script
     python:
   File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 86, in <module>
+  File "game/Script/Chapter2/dedale.rpy", line 50, in <module>
     val = renpy.fetch(url, json = postData)
   File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\exports.py", line 4909, in fetch
     raise content # type: ignore
-FetchError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000000005684af0>: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))
+FetchError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000000000561c100>: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))
 
 While running game code:
-  File "game/script.rpy", line 83, in script
+  File "game/Script/Chapter2/dedale.rpy", line 47, in script
     python:
-  File "game/script.rpy", line 86, in <module>
+  File "game/Script/Chapter2/dedale.rpy", line 50, in <module>
     val = renpy.fetch(url, json = postData)
-FetchError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000000005684af0>: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))
-
-Full traceback:
-  File "game/script.rpy", line 111, in script
-    if reussi != True:
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 1842, in execute
-    if renpy.python.py_eval(condition):
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1209, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 111, in <module>
-    if reussi != True:
-NameError: name 'reussi' is not defined
-
-While running game code:
-  File "game/script.rpy", line 111, in script
-    if reussi != True:
-  File "game/script.rpy", line 111, in <module>
-    if reussi != True:
-NameError: name 'reussi' is not defined
-Cleaning stores took 0.00s
-Init translation took 0.00s
-Build styles took 0.00s
-Load screen analysis took 0.03s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
-Running _start took 0.00s
-
-Full traceback:
-  File "game/script.rpy", line 118, in script
-    show children happy
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 1113, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 1076, in show_imspec
-    renpy.config.show(name,
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\exports.py", line 739, in show
-    if not base.find_target() and renpy.config.missing_show:
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\image.py", line 421, in find_target
-    self.target = target._duplicate(a)
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\displayable.py", line 246, in _duplicate
-    args.extraneous()
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\displayable.py", line 109, in extraneous
-    raise Exception("Image '{}' does not accept attributes '{}'.".format(
-Exception: Image 'children' does not accept attributes 'happy'.
-
-While running game code:
-  File "game/script.rpy", line 118, in script
-    show children happy
-Exception: Image 'children' does not accept attributes 'happy'.
+FetchError: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000000000561c100>: Failed to establish a new connection: [WinError 10061] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée'))
 Resetting cache.
-Early init took 701.30s
+Early init took 180.67s
 Loading error handling took 0.02s
-Loading script took 0.14s
-Loading save slot metadata took 0.02s
+Loading script took 0.13s
+Loading save slot metadata took 0.03s
 Loading persistent took 0.00s
-Running init code took 0.04s
-Loading analysis data took 0.01s
-Analyze and compile ATL took 0.00s
-Reloading save slot metadata took 0.02s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
-Dump and make backups took 0.06s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc took 0.05s
+
+File "game/Script/Chapter2/dedale.rpy", line 82: expected ':' not found.
+    label test
+              ^
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 0.20s
-Cleaning stores took 0.00s
-Init translation took 0.04s
-Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.01s
-Save screen analysis took 0.02s
-Prepare screens took 0.06s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.02s
-Running _start took 0.00s
-Interface start took 0.05s
+Interface start took 0.27s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1440, 900)
 swap interval: 1 frames
-Windowed mode.
+Fullscreen mode.
 Vendor: "b'NVIDIA Corporation'"
 Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
 Version: b'4.6.0 NVIDIA 551.52'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1338, 753) drawable=(1338, 753)
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
 Maximum texture size: 4096x4096
 Resetting cache.
-Early init took 764.00s
+Early init took 186.84s
 Loading error handling took 0.02s
 Loading script took 0.14s
-Loading save slot metadata took 0.02s
+Loading save slot metadata took 0.03s
 Loading persistent took 0.00s
-Running init code took 0.04s
+
+The label test is defined twice, at File "game/Script/Chapter1/village.rpy", line 42:
+label test:
+and File "game/Script/Chapter2/dedale.rpy", line 82:
+label test:
+
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.34s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 188.00s
+Loading error handling took 0.02s
+Loading script took 0.12s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+
+The label test is defined twice, at File "game/Script/Chapter1/village.rpy", line 42:
+label test:
+and File "game/Script/Chapter2/dedale.rpy", line 82:
+label test:
+
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.32s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 198.67s
+Loading error handling took 0.02s
+Loading script took 0.16s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
 Reloading save slot metadata took 0.02s
@@ -215,7 +202,7 @@ Initial gc took 0.05s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object took 0.20s
+Creating interface object took 0.22s
 Cleaning stores took 0.00s
 Init translation took 0.04s
 Build styles took 0.00s
@@ -231,17 +218,517 @@ Interface start took 0.06s
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1440, 900)
 swap interval: 1 frames
-Windowed mode.
+Fullscreen mode.
 Vendor: "b'NVIDIA Corporation'"
 Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
 Version: b'4.6.0 NVIDIA 551.52'
 Display Info: None
-Screen sizes: virtual=(1920, 1080) physical=(1338, 753) drawable=(1338, 753)
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
 Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 329.90s
+Loading error handling took 0.02s
+Loading script took 0.15s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.02s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.22s
 Cleaning stores took 0.00s
-Init translation took 0.00s
+Init translation took 0.04s
 Build styles took 0.00s
-Load screen analysis took 0.03s
-Analyze screens took 0.00s
-Prepare screens took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.02s
 Running _start took 0.00s
+Interface start took 0.05s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+
+Full traceback:
+  File "game/Script/Chapter2/dedale.rpy", line 145, in script
+    m "...le minotaure..."
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 2557, in execute
+    Say.execute(self)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 583, in execute
+    statement_name(stmt_name)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 52, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 122, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 70, in _window_show
+    renpy.with_statement(trans)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\exports.py", line 1781, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\core.py", line 1548, in do_with
+    return self.interact(trans_pause=True,
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\core.py", line 2165, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\display\core.py", line 3022, in interact_core
+    renpy.audio.audio.periodic()
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1205, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "lib/python3.9/future/utils/__init__.py", line 444, in raise_
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1183, in periodic_thread_main
+    periodic_pass()
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\audio\audio.py", line 1125, in periodic_pass
+    c.periodic()
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\audio\audio.py", line 534, in periodic
+    topf = load(filename)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\audio\audio.py", line 72, in load
+    rv = renpy.loader.load(fn, directory="audio")
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\loader.py", line 672, in load
+    raise IOError("Couldn't find file '%s'." % name)
+OSError: Couldn't find file 'giant_walking.mp3'.
+
+While running game code:
+  File "game/Script/Chapter2/dedale.rpy", line 145, in script
+    m "...le minotaure..."
+  File "renpy/common/000window.rpy", line 122, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 70, in _window_show
+    renpy.with_statement(trans)
+OSError: Couldn't find file 'giant_walking.mp3'.
+Resetting cache.
+Early init took 383.77s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.03s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.19s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.02s
+Running _start took 0.00s
+Interface start took 0.04s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 403.81s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.02s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch play sound "giant-walking.mp3" volume 0.3
+                                        ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.28s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 412.98s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.02s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch play sound and "giant-walking.mp3" volume 0.3
+                                        ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.27s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 422.15s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch and play sound "giant-walking.mp3" volume 0.3
+                                                 ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.34s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 424.69s
+Loading error handling took 0.02s
+Loading script took 0.13s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch and play sound "giant-walking.mp3" volume 0.3
+                                                 ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.26s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 426.52s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch and play sound "giant-walking.mp3" volume 0.3
+                                                 ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.29s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 437.17s
+Loading error handling took 0.02s
+Loading script took 0.13s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+
+File "game/Script/Chapter2/dedale.rpy", line 143: end of line expected.
+    scene centre_labyrinthe with hpunch, play sound "giant-walking.mp3" volume 0.3
+                                       ^
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Interface start took 0.26s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 446.33s
+Loading error handling took 0.02s
+Loading script took 0.15s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.05s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.02s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.04s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.18s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.02s
+Running _start took 0.00s
+Interface start took 0.04s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 470.10s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.02s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.19s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.01s
+Running _start took 0.00s
+Interface start took 0.04s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 511.41s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.03s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.20s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.01s
+Running _start took 0.00s
+Interface start took 0.04s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 1008.17s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.04s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.03s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.20s
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.06s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.01s
+Running _start took 0.00s
+Interface start took 0.05s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 1023.60s
+Loading error handling took 0.02s
+Loading script took 0.14s
+Loading save slot metadata took 0.03s
+Loading persistent took 0.00s
+Running init code took 0.03s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.02s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\johan ruiz\\AppData\\Roaming/RenPy/backups\\A_Programmers Journey_codesource':
+Dump and make backups took 0.06s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc took 0.05s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.22s
+Cleaning stores took 0.00s
+Init translation took 0.05s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.07s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.01s
+Running _start took 0.00s
+Interface start took 0.07s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1440, 900)
+swap interval: 1 frames
+Fullscreen mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 551.52'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
+Maximum texture size: 4096x4096
+
+Full traceback:
+  File "game/Script/Chapter2/dedale.rpy", line 192, in script
+    python:
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/Script/Chapter2/dedale.rpy", line 193, in <module>
+    if int(persistent.point)>=5:
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+While running game code:
+  File "game/Script/Chapter2/dedale.rpy", line 192, in script
+    python:
+  File "game/Script/Chapter2/dedale.rpy", line 193, in <module>
+    if int(persistent.point)>=5:
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'

@@ -39,7 +39,7 @@ label troisieme:
     python:
                 url = 'http://127.0.0.1:5000/clear_quete'
                 request= renpy.fetch(url, json = {"player_id":id}, result="json")
-label test:
+
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")
@@ -193,3 +193,31 @@ label quete_aubergiste(quest_id,quest_nom, url):
             T "C'est dommage, peut-être une autre fois."
             jump tavern_village
     
+label fin_chap1:
+    scene entree_village
+    show children
+    j "Voila je pense qu'on a reuni assez d'argent"
+    
+    j "De mon coté, j'ai fini le plan pour vaincre le Serpent du Temps"
+
+    j "Comme tu le sais nous avons perdu l'acces aux fonctions, cependant certains elus ont sachant que leur heure etait venue ont eu le temps de cacher leur fonction"
+
+    j "Selon la legende, une de ces fonctions a été caché non loin d'ici dans le grand dedale des milles choix"
+
+    j "Nous ne rendrons la-bas, recuperons la fonction et apres nous nous rendrons dans la ville ou se trouve la bibliotheque-monde"
+
+    j "Nous irons la-bas pour trouver toutes les informations qui nous seront utiles à la suite de notre voyage"
+
+    "Est-ce qu'elle vient juste de dire qu'on irait dans un labyrinthe ?"
+
+    "Ca m'a l'air dangereux"
+
+    m "Comment on va faire pour ne pas se perdre dans le labyrinthe ?"
+
+    j "Aucune idée on verra à ce moment-là"
+
+    "Cette fille va finir par me tuer"
+
+    j "Bon allons-y"
+
+    jump chap2

@@ -155,6 +155,7 @@ label test:
     mino "Qui ose s'introduire de mon domaine ?"
     
     "Je savais que c'etait une mauvaise idée de venir ici, on va tous mourir ici de la main de cet immense et terrifiant minautaure"
+    play music "Minotaur_song.mp3"
     show minotaure 
     mino "Au mon dieu, est-ce que ce sont des humains ? Ca fait des dizaines d'années depuis que la derniere fois que j'ai vu un humain"
 
@@ -182,7 +183,7 @@ label test:
 
 label place_dedale:
     scene centre_labyrinthe with fade
-    play music "mist_covered_mountains.mp3" if_changed
+    play music "Minotaur_song.mp3" if_changed
     $ quick_menu = True
     menu:
         "Bon que devrais-je faire maintenant"
@@ -200,7 +201,7 @@ label place_dedale:
             call screen Map with fade
 
 label tavern_dedale:
-    play music "Tavern_song.mp3" if_changed
+    play music "Minotaur_song.mp3" if_changed
     scene centre_labyrinthe
     show minotaure happy
 

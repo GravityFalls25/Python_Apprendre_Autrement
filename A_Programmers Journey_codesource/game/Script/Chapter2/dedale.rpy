@@ -165,9 +165,40 @@ label tavern_dedale:
     T "Tu es pret à resoudre mes enigmes ?"
     menu: 
         "Voir les enigmes disponibles":
-            $ quests = load_quests()
-            call screen quest_menu(1,quests)
+            $ quests = load_quests(2)
+            call screen quest_menu(2,quests,"dialogue_aubergiste_minotaur")
         "Repartir":
             
             jump place_dedale
+label dialogue_aubergiste_minotaur(quest_id,quest_nom, url):
+    T "Bonjour, bon courage pour la quête!"
+    menu:
+        "Commencer la quête":
+            T "Parfait, voici les détails..."
+            $ webbrowser.open(url)  # Redirige vers la page web si validé
+            call quete_aubergiste(quest_id,quest_nom, url)
+        "Annuler":
+            T "C'est dommage, peut-être une autre fois."
+            jump tavern_dedale
+label quete_aubergiste_minotaur(quest_id,quest_nom, url):
+    T "Alors, tu avances bien dans ta quete ?"
+    menu:
+        "Valider la quête":
+
+            python:
+                
+                reussi = False
+                reussi,gold_gagne = verif_quete(id)
+
+            if reussi != True:
+                jump tavern_dedale
+            python:
+                remove_html(id)
+                persistent.Quete_faite.append((quest_id, quest_nom))
+            call screen ecran_victoire(quest_nom,gold_gagne,persistent.gold)
+
+            jump tavern_dedale
+        "Abandonner":
+            T "C'est dommage, peut-être une autre fois."
+            jump tavern_dedale
 

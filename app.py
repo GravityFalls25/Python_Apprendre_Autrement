@@ -22,34 +22,22 @@ from flask_cors import CORS
 
 import json
 import os
+import pandas as pd
 
 #En fonction de la zone, retourne deux sets tout deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
 def lecture_txt(Tavern = 0):
     tavern = str(Tavern)
-    fichier_txt = "Quete/quest" + tavern + ".txt"
-    with open(fichier_txt,'r',encoding='utf-8') as fin:
-        texte = fin.read().split("\n")
-        texte2 = list()
-        for ligne in texte:
-            if ligne == "nan":
-                ligne = ""
-            texte2.append( ligne.split(r"\n"))
-        Quete_tavern_complet = set()
-        Quete_tavern_complet_0diff = set()
-        n_ligne, n_colonne = list(map(int,texte2[0][0].split()))
-        for quete in range(n_ligne):
-            for i in range(n_colonne):
-                if texte2[i+1][0] == "ID quete":
-                    ID_quete = texte2[n_colonne + 1 + i*n_ligne + quete][0]
-                    
-                if texte2[i+1][0] == "Nom_Quete":
-                    Nom_Quete = texte2[n_colonne + 1 + i*n_ligne + quete][0]
-                if texte2[i+1][0] == "Difficulté":
-                    Difficulté = texte2[n_colonne + 1 + i*n_ligne + quete][0]
-            
-            
-            Quete_tavern_complet.add((ID_quete,Nom_Quete,Difficulté))
-            Quete_tavern_complet_0diff.add((ID_quete,Nom_Quete))
+    if tavern == '0':
+        fichier = 'Quete/Aventure.xlsx'
+    else:
+        fichier = "Quete/Taverne" + tavern + ".xlsx"
+    df = pd.read_excel(fichier,dtype=str)
+    df.fillna("", inplace=True)
+    Quete_tavern_complet = set()
+    Quete_tavern_complet_0diff = set()      
+    for index, row in df.iterrows():   
+        Quete_tavern_complet.add((str(df["ID quete"][index]),str(df["Nom_Quete"][index]),str(df["Difficulté"][index])))
+        Quete_tavern_complet_0diff.add((str(df["ID quete"][index]),str(df["Nom_Quete"][index])))
                 
     return Quete_tavern_complet,Quete_tavern_complet_0diff
 
@@ -60,24 +48,24 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     quete = Quest
     id = str(Id)
     tavern = str(Tavern)
-    fichier_txt = "Quete/quest" + tavern + ".txt"
+    if tavern == '0':
+        fichier = 'Quete/Aventure.xlsx'
+    else:
+        fichier = "Quete/Taverne" + tavern + ".xlsx"
     
-
-    with open(fichier_txt,'r',encoding='utf-8') as fin:
-        texte = fin.read().split("\n")
-        texte2 = list()
-        for ligne in texte:
-            if ligne == "nan":
-                ligne = ""
-            texte2.append( ligne.split(r"\n"))
-        df = dict()
-        n_ligne, n_colonne = list(map(int,texte2[0][0].split()))
-        
-        for i in range(n_colonne):
-            df[texte2[i+1][0]] = texte2[n_colonne + 1 + i*n_ligne + quete]
-            
+    df = pd.read_excel(fichier,dtype=str)
+    df.fillna("", inplace=True)
+    
+    df = df[df['ID quete'] == str(Quest)]
+    df['Tests'] = None
+    df.fillna("", inplace=True)
+    df = df.to_dict(orient='records')
+    df = df[0]
+    
+    df = {key: value.split('\n') for key, value in df.items()}
+    
     n1 = "\\n"         
-    for j in range(n_colonne):
+    for j in range(len(df)):
         # Créer une liste de tuples pour stocker les résultats des tests
         tests = []
         
@@ -142,11 +130,13 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         fout.write("x = requests.post(url, json = myobj)\n")
 
     #Ecriture HTML
-    
-    if quete == 1:
-        ref_r = "Template/Page_aide_sup/assistant1html.txt"
-    elif quete == 0:
-        ref_r = "Template/Page_aide_sup/assistanthtml.txt"
+    if tavern == "0":
+        if quete == 1:
+            ref_r = "Template/Page_aide_sup/assistant1html.txt"
+        elif quete == 0:
+            ref_r = "Template/Page_aide_sup/assistanthtml.txt"
+        else :
+            ref_r = "Template/index.txt"   
     else :
         ref_r = "Template/index.txt"
     ref_w = "index_" + id + ".html"
@@ -199,13 +189,15 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                 fout.write(f"{ligne}\n")
                 
     #Ecriture JS
-
-    if quete == 1:
-        ref_r = "Template/Page_aide_sup/assistant1js.txt"
-    elif quete == 0:
-        ref_r = "Template/Page_aide_sup/assistantjs.txt"
+    if tavern == "0":
+        if quete == 1:
+            ref_r = "Template/Page_aide_sup/assistant1js.txt"
+        elif quete == 0:
+            ref_r = "Template/Page_aide_sup/assistantjs.txt"
+        else :
+            ref_r = "Template/script.txt"
     else :
-        ref_r = "Template/script.txt"
+            ref_r = "Template/script.txt"
     ref_w = "index_" + id + ".js"
     with open(ref_r, 'r', encoding='utf-8') as fin:
         with open(ref_w,'w',encoding='utf-8') as fout:
@@ -313,8 +305,9 @@ def traiter_requete():
     data = request.json
     valeur = data.get('valeur')
     id = data.get('id')
-    print(valeur)
-    name = html(int(valeur), id)
+    tavern = data.get('tavern')
+    print(tavern)
+    name = html(int(valeur), id,tavern)
      
     return jsonify({"message": "Commande PHP exécutée avec succès","name": name})
 
@@ -363,12 +356,14 @@ def get_mission_state():
 @app.route('/get_mission_tavern', methods=['POST'])
 def get_mission_tavern():
     data = request.json
+    quete = data.get('quete')
     # Convertir chaque paire "ID quete" et "Nom_Quete" en tuple et les ajouter à une liste
-    pairs_list = [(item[0], item[1]) for item in data]
+    pairs_list = [(item[0], item[1]) for item in quete]
 
+    id_tavern = data.get('tavern')
     # Convertir la liste de tuples en un ensemble
     Quete_faite = set(pairs_list)
-    Quete_tavern_complet,Quete_tavern_complet_0diff = lecture_txt(0)
+    Quete_tavern_complet,Quete_tavern_complet_0diff = lecture_txt(int(id_tavern))
 
     Quete_a_faire_0diff = Quete_tavern_complet_0diff.difference(Quete_faite)
     Quete_a_faire = {(id_quete, nom_quete, difficulte) for id_quete, nom_quete, difficulte in Quete_tavern_complet if (id_quete, nom_quete) in Quete_a_faire_0diff}

@@ -113,8 +113,8 @@ label tavern_village:
     T "Bienvenue dans ma taverne que puis je faire pour vous"
     menu: 
         "Voir les quetes disponibles":
-            $ quests = load_quests()
-            call screen quest_menu(0,quests)
+            $ quests = load_quests(1)
+            call screen quest_menu(1,quests,"dialogue_aubergiste")
         "Repartir":
             
             jump place_village
@@ -140,10 +140,10 @@ label quete_aubergiste(quest_id,quest_nom, url):
                 reussi,gold_gagne = verif_quete(id)
 
             if reussi != True:
-                jump premiere
+                jump tavern_village
             python:
                 remove_html(id)
-
+                persistent.Quete_faite.append((quest_id, quest_nom))
             call screen ecran_victoire(quest_nom,gold_gagne,persistent.gold)
 
             jump tavern_village

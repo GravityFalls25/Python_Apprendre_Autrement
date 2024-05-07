@@ -26,6 +26,28 @@ init python:
     style.retour_taverne.padding = (10, 5)  # Padding intérieur (vertical, horizontal)
     style.retour_taverne.margin = (5, 5)  # Marges autour du bouton
     
+    style.titre_victoire = Style(style.default)
+    style.titre_victoire.color = "#ffffff"
+    style.titre_victoire.bold = True
+
+    style.details_quete = Style(style.default)
+    style.details_quete.color = "#ffff00"  # Jaune pour le texte
+
+
+    style.details_or = Style(style.default)
+    style.details_or.color = "#ffd700"  # Or
+
+
+    style.details_score = Style(style.default)
+    style.details_score.color = "#00ff00"  # Vert
+
+
+    style.bouton_retour = Style(style.default)
+    style.bouton_retour.background = "#333333"
+    style.bouton_retour.color = "#ffffff"
+    style.bouton_retour.padding = (5, 10)
+
+
     def send_quest_data(quest_id):
         postData = {"valeur": quest_id, "id":id}
         url = 'http://127.0.0.1:5000'
@@ -55,3 +77,36 @@ init python:
 
     def calculate_rows(quests, cols):
             return (len(quests) + cols - 1) // cols
+
+    def create_html(id_quest,id,who,message):
+        postData = {"valeur": id_quest, "id": id}
+        url = 'http://127.0.0.1:5000'
+        val = renpy.fetch(url, json = postData, result = "json")
+        url = site
+        lien = "{a="+url+"}"+message+"{/a}"
+        renpy.say(who,lien)
+        return val['name']
+    
+    def verif_quete(id):
+        url = 'http://127.0.0.1:5000/get_mission_state'
+        reussi = None
+        gold_gagne = None
+        try:
+            request = renpy.fetch(url , json ={"player_id":id}, result="json")
+            
+            reussi, gold_gagne = request['mission_state']
+            persistent.gold = persistent.gold + int(gold_gagne)
+            #renpy.say(j, "Waouw merci, tu as gagné [gold]")
+            if not reussi:
+                renpy.say(None, "Essaye encore de cliquer sur le texte")
+                reussi = False
+
+        except Exception as erreur:
+            # Gère les erreurs potentielles lors de la requête
+            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
+        
+        return reussi,gold_gagne
+
+    def remove_html(id):
+        url = 'http://127.0.0.1:5000/clear_quete'
+        request= renpy.fetch(url, json = {"player_id":id}, result="json")

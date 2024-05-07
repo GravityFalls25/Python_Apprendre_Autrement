@@ -283,6 +283,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     continue
             
                 fout.write(f"{ligne}\n")
+    return df['Nom_Quete']
         
                 
                 
@@ -313,9 +314,9 @@ def traiter_requete():
     valeur = data.get('valeur')
     id = data.get('id')
     print(valeur)
-    html(int(valeur), id)
+    name = html(int(valeur), id)
      
-    return jsonify({"message": "Commande PHP exécutée avec succès"})
+    return jsonify({"message": "Commande PHP exécutée avec succès","name": name})
 
 
 # Dictionnaire pour stocker l'état de la mission pour chaque joueur

@@ -31,7 +31,35 @@ screen quest_menu(id_tavern,quests):
                                         text quest[0]
                                         text "Difficulté: {}".format(quest[2])
                                         textbutton quest[1] action Function(handle_quest_and_redirect, quest, site)
-    
+
+screen ecran_victoire(nom_quete,or_gagne,score_total):
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 20
+        ypadding 20
+        background "#444444"  # Une couleur de fond gris foncé
+
+        vbox:
+            align (0.5, 0.5)
+            spacing 10
+
+            text "Victoire !":
+                style "titre_victoire"
+            
+            text "Quête: [nom_quete]":
+                style "details_quete"
+            
+            text "Or gagné: [or_gagne]":
+                style "details_or"
+            
+            text "Score Total: [score_total]":
+                style "details_score"
+            
+            textbutton "Retour au jeu" action Return() style "bouton_retour"
+
+
+
 screen Map():
     add "Game_plan.png"
     imagebutton:
@@ -40,3 +68,5 @@ screen Map():
         hover "vill1_hover.png"
         idle "vill1_idle.png"
         action Jump("place_village")
+
+

@@ -79,41 +79,16 @@ label start:
     "Huh ? mais qu'est ce qu'elle me raconte cette gamine"
 label premiere:
     python:
-        
-        postData = {"valeur": "0", "id":id}
-        url = 'http://127.0.0.1:5000'
-        val = renpy.fetch(url, json = postData)
-        url = site
-        lien = "{a="+url+"}Bon c'est pas grave, je vais quand meme essayer pour lui faire plaisir{/a}"
-        renpy.say(None,lien)
-
-
-    $ reussi = False
-    python:
-        # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = 'http://127.0.0.1:5000/get_mission_state'
-
-        try:
-            request = renpy.fetch(url , json ={"player_id":id}, result="json")
-            
-            reussi, gold_gagne = request['mission_state']
-            persistent.gold = persistent.gold + int(gold_gagne)
-            #renpy.say(j, "Waouw merci, tu as gagné [gold]")
-            if not reussi:
-                renpy.say(None, "Essayer encore de cliquer sur le texte")
-                reussi = False
-
-        except Exception as erreur:
-            # Gère les erreurs potentielles lors de la requête
-            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
-
+        nom_quete = create_html(0,id,m,"Je devrais peut etre lui faire plaisir")
+        reussi = False
+        reussi,gold_gagne = verif_quete(id)
 
     if reussi != True:
         jump premiere
     python:
-                url = 'http://127.0.0.1:5000/clear_quete'
-                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+        remove_html(id)
 
+    call screen ecran_victoire(nom_quete,gold_gagne,persistent.gold)
     m "Je vais bien"
 
     "Wow cette fois j'ai réussi à parler"
@@ -163,39 +138,17 @@ label premiere:
     j "J'ai cueilli quelques champignons en plus mais je sais pas si ça sera assez car je suis pas très bonne pour calculer"
 label deuxieme:
     python:
-        
-        postData = {"valeur": "1", "id": id}
-        url = 'http://127.0.0.1:5000'
-        val = renpy.fetch(url, json = postData)
-        url = site
-        lien = "{a="+url+"}Tu veux bien les compter ?{/a}"
-        renpy.say(None,lien)
-
-    $ reussi = False
-    python:
-        # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = 'http://127.0.0.1:5000/get_mission_state'
-
-        try:
-            request= renpy.fetch(url, json = {"player_id":id}, result="json")
-            reussi, gold_gagne = request['mission_state']
-            persistent.gold = persistent.gold + int(gold_gagne)
-            renpy.say(None, "Waouw merci, tu as gagné [gold_gagne]")
-            if not reussi:
-                renpy.say(None, "Mauvaise reponse reessayer encore une fois")
-                reussi = False
-                
-
-        except Exception as erreur:
-            # Gère les erreurs potentielles lors de la requête
-            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
-
+        nom_quete = create_html(1,id,j,"Peux tu les compter pour moi?")
+        reussi = False
+        reussi,gold_gagne = verif_quete(id)
 
     if reussi != True:
+
         jump deuxieme
     python:
-                url = 'http://127.0.0.1:5000/clear_quete'
-                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+        remove_html(id)
+
+    call screen ecran_victoire("Compte les champignons",gold_gagne,persistent.gold)
 
     j "Merci beaucoup !"
 

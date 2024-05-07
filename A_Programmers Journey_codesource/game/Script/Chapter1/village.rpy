@@ -7,39 +7,16 @@ label village_en_feu:
 
 label troisieme:
     python:
-        postData = {"valeur": "2","id": id}
-        url = 'http://127.0.0.1:5000'
-        val = renpy.fetch(url, json = postData)
-        url = site
-        lien = "{a="+url+"}Vite il y a un puit la-bas, va chercher de l'eau{/a}"
-        renpy.say(j,lien)
-
-    $ reussi = False
-    python:
-        # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-        url = 'http://127.0.0.1:5000/get_mission_state'
-
-        try:
-            request= renpy.fetch(url, json = {"player_id":id}, result="json")
-            reussi, gold_gagne = request['mission_state']
-            persistent.gold = persistent.gold + int(gold_gagne)
-            renpy.say(j, "Waouw merci, tu as gagné [gold_gagne]")
-            if not reussi:
-                renpy.say(None, "Mauvaise reponse reessayer encore une fois")
-                reussi = False
-                
-
-        except Exception as erreur:
-            # Gère les erreurs potentielles lors de la requête
-            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
-
+        nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, vs vite chercher de l'eau")
+        reussi = False
+        reussi,gold_gagne = verif_quete(id)
 
     if reussi != True:
         jump troisieme
     python:
-                url = 'http://127.0.0.1:5000/clear_quete'
-                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+        remove_html(id)
 
+    call screen ecran_victoire("Incendie au village",gold_gagne,persistent.gold)
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")
@@ -157,36 +134,17 @@ label quete_aubergiste(quest_id,quest_nom, url):
     menu:
         "Valider la quête":
 
-            $ reussi = False
             python:
-                # Remplacez l'URL ci-dessous par l'URL où votre script PHP est accessible
-                url = 'http://127.0.0.1:5000/get_mission_state'
-
-                try:
-                    request= renpy.fetch(url, json = {"player_id":id}, result="json")
-                    reussi, gold_gagne = request['mission_state']
-                    persistent.gold = persistent.gold + int(gold_gagne)
-                    renpy.say(T, "Waouw merci, tu as gagné [gold_gagne]")
-                    if not reussi:
-                        renpy.say(None, "Mauvaise reponse reessayer encore une fois")
-                        reussi = False
-                        
-
-                except Exception as erreur:
-                    # Gère les erreurs potentielles lors de la requête
-                    renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
-
+                
+                reussi = False
+                reussi,gold_gagne = verif_quete(id)
 
             if reussi != True:
-                python:
-                    url = 'http://127.0.0.1:5000/clear_quete'
-                    request= renpy.fetch(url, json = {"player_id":id}, result="json")
-                call quete_aubergiste(quest_id,quest_nom, url)
-
-            $ persistent.Quete_faite.append((quest_id, quest_nom))
+                jump premiere
             python:
-                url = 'http://127.0.0.1:5000/clear_quete'
-                request= renpy.fetch(url, json = {"player_id":id}, result="json")
+                remove_html(id)
+
+            call screen ecran_victoire(quest_nom,gold_gagne,persistent.gold)
 
             jump tavern_village
         "Abandonner":

@@ -5,7 +5,7 @@ transform middleright:
     
 define flash = Fade(.25, 0.0, .75, color="#fff") 
 
-screen quest_menu(id_tavern,quests):
+screen quest_menu(id_tavern,quests,label):
         frame:
                 
             background Solid("#000000ae")
@@ -30,7 +30,7 @@ screen quest_menu(id_tavern,quests):
                                 vbox:
                                         text quest[0]
                                         text "Difficulté: {}".format(quest[2])
-                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, site)
+                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, site,None,"",id_tavern,label)
 
 screen ecran_victoire(nom_quete,or_gagne,score_total):
     frame:

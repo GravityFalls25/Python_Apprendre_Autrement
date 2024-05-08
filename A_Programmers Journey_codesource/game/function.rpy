@@ -56,12 +56,13 @@ init python:
         #     return response.json()  # Traitez la réponse comme nécessaire
         # else:
         #     renpy.error("Erreur de requête: {}".format(response.status))
-    def handle_quest_and_redirect(quest, url):
+    def handle_quest_and_redirect(quest, url,who,message,tavern,label):
     # Envoie les données de la quête
-        send_quest_data(quest[0])
-        renpy.call("dialogue_aubergiste", quest[0],quest[1], url)
-    def load_quests():
-        postData = persistent.Quete_faite
+ 
+        create_html(quest[0],id,who,message,tavern = tavern)
+        renpy.call(label, quest[0],quest[1], url)
+    def load_quests(tavern):
+        postData = {"quete":persistent.Quete_faite,"tavern":tavern}
         url = 'http://127.0.0.1:5000/get_mission_tavern'
         response = renpy.fetch(url, json=postData)
         decoded_response = response.decode('utf-8')
@@ -78,13 +79,14 @@ init python:
     def calculate_rows(quests, cols):
             return (len(quests) + cols - 1) // cols
 
-    def create_html(id_quest,id,who,message):
-        postData = {"valeur": id_quest, "id": id}
+    def create_html(id_quest,id,who,message,tavern = 0):
+        postData = {"valeur": id_quest, "id": id, "tavern" : tavern }
         url = 'http://127.0.0.1:5000'
         val = renpy.fetch(url, json = postData, result = "json")
         url = site
         lien = "{a="+url+"}"+message+"{/a}"
-        renpy.say(who,lien)
+        if tavern == 0:
+            renpy.say(who,lien)
         return val['name']
     
     def verif_quete(id):

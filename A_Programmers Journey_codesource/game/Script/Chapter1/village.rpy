@@ -114,7 +114,7 @@ label tavern_village:
     menu: 
         "Voir les quetes disponibles":
             $ quests = load_quests(1)
-            call screen quest_menu(1,quests,"dialogue_aubergiste")
+            call screen quest_menu(1,quests,"dialogue_aubergiste","tavern_village")
         "Repartir":
             
             jump place_village

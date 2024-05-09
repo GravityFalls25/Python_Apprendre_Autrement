@@ -166,7 +166,7 @@ label tavern_dedale:
     menu: 
         "Voir les enigmes disponibles":
             $ quests = load_quests(2)
-            call screen quest_menu(2,quests,"dialogue_aubergiste_minotaur")
+            call screen quest_menu(2,quests,"dialogue_aubergiste_minotaur","tavern_dedale")
         "Repartir":
             
             jump place_dedale

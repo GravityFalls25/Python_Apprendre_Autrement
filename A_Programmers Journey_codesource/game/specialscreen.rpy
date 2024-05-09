@@ -5,7 +5,7 @@ transform middleright:
     
 define flash = Fade(.25, 0.0, .75, color="#fff") 
 
-screen quest_menu(id_tavern,quests,label):
+screen quest_menu(id_tavern,quests,label,label_retour):
         frame:
                 
             background Solid("#000000ae")
@@ -13,7 +13,7 @@ screen quest_menu(id_tavern,quests,label):
             vbox:
                 
                 spacing 5
-                textbutton "Retour à la taverne" action Jump("tavern_village") style "retour_taverne"
+                textbutton "Retour" action Jump(label_retour) style "retour_taverne"
                 viewport:
                     draggable True
                     scrollbars "vertical"

@@ -89,7 +89,7 @@ init python:
             renpy.say(who,lien)
         return val['name']
     
-    def verif_quete(id):
+    def verif_quete(id,chap = 0):
         url = 'http://127.0.0.1:5000/get_mission_state'
         reussi = None
         gold_gagne = None
@@ -97,7 +97,11 @@ init python:
             request = renpy.fetch(url , json ={"player_id":id}, result="json")
             
             reussi, gold_gagne = request['mission_state']
-            persistent.gold = persistent.gold + int(gold_gagne)
+            if chap == 1:
+                persistent.gold = persistent.gold + int(gold_gagne)
+            elif chap == 2:
+                persistent.point_de_valeur = persistent.point_de_valeur + int(gold_gagne)
+            persistent.score = persistent.score + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
                 renpy.say(None, "Essaye encore de cliquer sur le texte")
@@ -105,7 +109,7 @@ init python:
 
         except Exception as erreur:
             # Gère les erreurs potentielles lors de la requête
-            renpy.say(None, "Erreur lors de la requête : {}".format(str(erreur)))
+            renpy.say(None, "Je pense qu'il y a eu un probleme")
         
         return reussi,gold_gagne
 

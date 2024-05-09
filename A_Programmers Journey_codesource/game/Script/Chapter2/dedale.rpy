@@ -47,14 +47,14 @@ label quatrieme:
     python:
         nom_quete = create_html(3,id,j,"Resolvez cette enigme et le meilleur choix s'offrera a vous")
         reussi = False
-        reussi,gold_gagne = verif_quete(id)
+        reussi,gold_gagne = verif_quete(id,2)
 
     if reussi != True:
         jump quatrieme
     python:
         remove_html(id)
 
-    call screen ecran_victoire(nom_quete,gold_gagne,persistent.gold)
+    call screen ecran_victoire(nom_quete,gold_gagne,2)
 label test1:
     j "Parfait on peut continuer d'avancer maintenant"
 
@@ -79,14 +79,14 @@ label cinquieme:
     python:
         nom_quete = create_html(4,id,m,"Bien vu, ca sera suffisant pour que je decode ca")
         reussi = False
-        reussi,gold_gagne = verif_quete(id)
+        reussi,gold_gagne = verif_quete(id,2)
 
     if reussi != True:
         jump cinquieme
     python:
         remove_html(id)
 
-    call screen ecran_victoire(nom_quete,gold_gagne,persistent.gold)
+    call screen ecran_victoire(nom_quete,gold_gagne,2)
 label test2:
     m "Pour trouver le centre de ce dédale il suffit de dire a haute voix la formule suivante \"with open(\"door.obj\",'w')\" "
     
@@ -166,7 +166,7 @@ label tavern_dedale:
     menu: 
         "Voir les enigmes disponibles":
             $ quests = load_quests(2)
-            call screen quest_menu(2,quests,"dialogue_aubergiste_minotaur")
+            call screen quest_menu(2,quests,"dialogue_aubergiste_minotaur","tavern_dedale")
         "Repartir":
             
             jump place_dedale
@@ -188,14 +188,14 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
             python:
                 
                 reussi = False
-                reussi,gold_gagne = verif_quete(id)
+                reussi,gold_gagne = verif_quete(id,2)
 
             if reussi != True:
                 jump tavern_dedale
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
-            call screen ecran_victoire(quest_nom,gold_gagne,persistent.gold)
+            call screen ecran_victoire(quest_nom,gold_gagne,2)
 
             jump tavern_dedale
         "Abandonner":

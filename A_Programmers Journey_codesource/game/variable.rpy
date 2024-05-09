@@ -1,4 +1,5 @@
 default Navi_name ="????"
+default name="Bricoleur"
 
 if not persistent.score:
         default persistent.score = 0

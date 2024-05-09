@@ -1,0 +1,1 @@
+image Navi inquiet="images/children_inquiet.png"

@@ -162,7 +162,7 @@ label fin_chap1:
 
     j "Selon la legende, une de ces fonctions a été caché non loin d'ici dans le grand dedale des milles choix"
 
-    j "Nous ne rendrons la-bas, recuperons la fonction et apres nous nous rendrons dans la ville ou se trouve la bibliotheque-monde"
+    j "Nous ne rendrons la-bas, recuperons la fonction et apres nous nous rendrons dans Temporium la ville ou se trouve la bibliotheque-monde"
 
     j "Nous irons la-bas pour trouver toutes les informations qui nous seront utiles à la suite de notre voyage"
 

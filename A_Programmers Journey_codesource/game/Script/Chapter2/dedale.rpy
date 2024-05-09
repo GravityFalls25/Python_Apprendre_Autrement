@@ -162,7 +162,7 @@ label tavern_dedale:
     show minotaure happy
 
     $ renpy.save_persistent()
-    T "Tu es pret à resoudre mes enigmes ?"
+    mino "Tu es pret à resoudre mes enigmes ?"
     menu: 
         "Voir les enigmes disponibles":
             $ quests = load_quests(2)
@@ -171,19 +171,19 @@ label tavern_dedale:
             
             jump place_dedale
 label dialogue_aubergiste_minotaur(quest_id,quest_nom, url):
-    T "Bonjour, bon courage pour la quête!"
+    mino "J'espere que tu es pret"
     menu:
-        "Commencer la quête":
-            T "Parfait, voici les détails..."
+        "Commencer l'enigme":
+            mino "Parfait, alors l'enigme est..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste(quest_id,quest_nom, url)
+            call quete_aubergiste_minotaur(quest_id,quest_nom, url)
         "Annuler":
-            T "C'est dommage, peut-être une autre fois."
+            mino "C'est dommage, peut-être une autre fois."
             jump tavern_dedale
 label quete_aubergiste_minotaur(quest_id,quest_nom, url):
-    T "Alors, tu avances bien dans ta quete ?"
+    mino "Alors, tu pense avoir resolu mon enigme ?"
     menu:
-        "Valider la quête":
+        "Valider l'enigme":
 
             python:
                 
@@ -199,6 +199,25 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
 
             jump tavern_dedale
         "Abandonner":
-            T "C'est dommage, peut-être une autre fois."
+            mino "C'est dommage, peut-être une autre fois."
             jump tavern_dedale
+
+label fin_chap2:
+    mino "Je pense que tu as suffisamment prouvé ta valeur et tu es digne de recuperer cet artefact"
+    #mettre ecran de victoire "if permanent"
+    j "Felicitation [name], maintenant on peut continuer notre voyage"
+
+    m "Quel est notre prochaine destination ?"
+
+    j "Notre prochain objectif est d'en apprendre davantage sur notre ennemi à la bibliotheque-monde"
+
+    j "car tu sais ce qu'on dit: \"Le savoir est l'arme la plus efficace contre les tyrants\""
+
+    "C'est beau ce qu'elle dit"
+
+    "Je me demande bien qui sont les gens qui disent ca"
+
+    m "Tres bien alors, allons-y !"
+
+    jump Temporium
 

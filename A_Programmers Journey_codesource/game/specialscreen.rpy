@@ -61,12 +61,43 @@ screen ecran_victoire(nom_quete,or_gagne,score_total):
 
 
 screen Map():
-    add "Game_plan.png"
+    add "carte_fin.png"
     imagebutton:
-        xpos 335
-        ypos 685
-        hover "vill1_hover.png"
-        idle "vill1_idle.png"
+        xpos 1249
+        ypos 649
+        hover "village1_hover.png"
+        idle "village1_idle.png"
         action Jump("place_village")
+    imagebutton:
+        xpos 827
+        ypos 653
+        hover "dedale_hover.png"
+        idle "dedale_idle.png"
+        action Jump("place_dedale")
+    imagebutton:
+        xpos 745
+        ypos 473
+        hover "temporium_hover.png"
+        idle "temporium_idle.png"
+        action Jump("place_temporium")
 
 
+screen debloquer():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 20
+        ypadding 20
+        background "#ffd700"
+        vbox:
+            textbutton "Next" action Show("debloquer_2"),Hide("debloquer")
+
+screen debloquer_2():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 20
+        ypadding 20
+        background "#ffd700"
+        vbox:
+            textbutton "Retour au jeu" action Hide("debloquer_2"),Return()

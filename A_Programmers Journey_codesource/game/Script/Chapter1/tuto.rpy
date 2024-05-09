@@ -88,7 +88,7 @@ label premiere:
     python:
         remove_html(id)
 
-    call screen ecran_victoire(nom_quete,gold_gagne,persistent.gold)
+    call screen ecran_victoire(nom_quete,gold_gagne)
     m "Je vais bien"
 
     "Wow cette fois j'ai réussi à parler"
@@ -148,7 +148,7 @@ label deuxieme:
     python:
         remove_html(id)
 
-    call screen ecran_victoire("Compte les champignons",gold_gagne,persistent.gold)
+    call screen ecran_victoire("Compte les champignons",gold_gagne)
 
     j "Merci beaucoup !"
 

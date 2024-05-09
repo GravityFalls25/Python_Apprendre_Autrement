@@ -9,14 +9,14 @@ label troisieme:
     python:
         nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, vs vite chercher de l'eau")
         reussi = False
-        reussi,gold_gagne = verif_quete(id)
+        reussi,gold_gagne = verif_quete(id,1)
 
     if reussi != True:
         jump troisieme
     python:
         remove_html(id)
 
-    call screen ecran_victoire("Incendie au village",gold_gagne,persistent.gold)
+    call screen ecran_victoire("Incendie au village",gold_gagne,1)
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")
@@ -137,14 +137,14 @@ label quete_aubergiste(quest_id,quest_nom, url):
             python:
                 
                 reussi = False
-                reussi,gold_gagne = verif_quete(id)
+                reussi,gold_gagne = verif_quete(id,1)
 
             if reussi != True:
                 jump tavern_village
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
-            call screen ecran_victoire(quest_nom,gold_gagne,persistent.gold)
+            call screen ecran_victoire(quest_nom,gold_gagne,1)
 
             jump tavern_village
         "Abandonner":

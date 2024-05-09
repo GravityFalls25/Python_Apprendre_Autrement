@@ -32,7 +32,7 @@ screen quest_menu(id_tavern,quests,label,label_retour):
                                         text "Difficulté: {}".format(quest[2])
                                         textbutton quest[1] action Function(handle_quest_and_redirect, quest, site,None,"",id_tavern,label)
 
-screen ecran_victoire(nom_quete,or_gagne,score_total):
+screen ecran_victoire(nom_quete,or_gagne,chap=0):
     frame:
         xalign 0.5
         yalign 0.5
@@ -49,11 +49,19 @@ screen ecran_victoire(nom_quete,or_gagne,score_total):
             
             text "Quête: [nom_quete]":
                 style "details_quete"
+           
+            if chap == 1: 
+                text "Or gagné: [or_gagne]":
+                    style "details_or"
+                text "Or total: [persistent.gold]":
+                    style "details_or"
+            elif chap == 2: 
+                text "Point de valeur gagné: [or_gagne]":
+                    style "details_or"
+                text "Point de valeur total: [persistent.point_de_valeur]":
+                    style "details_or"
             
-            text "Or gagné: [or_gagne]":
-                style "details_or"
-            
-            text "Score Total: [score_total]":
+            text "Score Total: [persistent.score]":
                 style "details_score"
             
             textbutton "Retour au jeu" action Return() style "bouton_retour"

@@ -64,7 +64,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     
     df = {key: value.split('\n') for key, value in df.items()}
     
-    n1 = "\\n"         
+    n1 = "\n"         
     for j in range(len(df)):
         # Créer une liste de tuples pour stocker les résultats des tests
         tests = []
@@ -98,36 +98,22 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         
             
     #Ecriture code test
+    ref_r = "Template/test_prompt.txt"
     ref_w = "test_new_" + id + ".py"
-    with open(ref_w, 'w',encoding='utf-8') as fout:
-        fout.write("import mock\n")
-        fout.write("import importlib\n")
-        fout.write("from io import StringIO\n")
-        fout.write("import requests\n")
-        fout.write("import sys\n\n")
-        fout.write("gold = sys.argv[1]\n")
-        fout.write("id = sys.argv[2]\n")
-        fout.write("ok = True\n")
-        prime = True
-        for side_effects, expected_output in df['Tests']: #Le 0 correspondra a la quete a faire
-            
-            fout.write("output = StringIO()\n")
-            fout.write("sys.stdout = output\n")
-            fout.write(f"with mock.patch('builtins.input', side_effect={side_effects}):\n")
-            if prime:
-                fout.write("    import user\n")
-                prime = False
-            else:
-                fout.write("    importlib.reload(user)\n")
-            fout.write("    sys.stdout = sys.__stdout__\n")
-            fout.write(f'    if output.getvalue().strip() == {expected_output}:\n')
-            fout.write("        print('Correct')\n")
-            fout.write("    else:\n")
-            fout.write("        print('non')\n\n")
-            fout.write("        ok = False\n")
-        fout.write("url = 'http://127.0.0.1:5000/update_mission_state'\n")
-        fout.write("myobj = {'player_id': id,'state': ok, 'gold':gold }\n")
-        fout.write("x = requests.post(url, json = myobj)\n")
+    with open(ref_r,'r',encoding='utf-8') as fin:
+        with open(ref_w, 'w',encoding='utf-8') as fout:
+            texte = fin.read().split("\n")
+            for ligne in texte:
+                if "#tests" in ligne:
+                    for side_effects, expected_output in df["Tests"]:
+
+                        Tests = (side_effects, expected_output.strip('"'))
+                        fout.write(f"        {Tests},\n")
+                        pass
+                             
+                    continue
+                
+                fout.write(f"{ligne}\n")
 
     #Ecriture HTML
     if tavern == "0":
@@ -186,7 +172,8 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write(f"        var id = '{id}'\n")
                     continue
                 if "var gold_total = 0;" in ligne:
-                    fout.write(f"        var gold_total = {df['Difficulté']}*100;")
+                    fout.write(f"        var gold_total = {int(df['Difficulté'][0])}*100;\n")
+                    continue
                 fout.write(f"{ligne}\n")
                 
     #Ecriture JS

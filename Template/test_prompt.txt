@@ -1,0 +1,75 @@
+import mock
+import importlib
+from io import StringIO
+import requests
+import sys
+import multiprocessing
+import time
+
+first = True
+def run_test(inputs, expected_output):
+    output = StringIO()
+    sys.stdout = output
+    with mock.patch('builtins.input', side_effect=inputs):
+        importlib.reload(user)  # Recharger le module utilisateur pour chaque test
+        sys.stdout = sys.__stdout__
+    actual_output = output.getvalue().strip()
+    return actual_output == expected_output
+
+def run_test_1(inputs, expected_output):
+    output = StringIO()
+    sys.stdout = output
+    with mock.patch('builtins.input', side_effect=inputs):
+        import user  # Recharger le module utilisateur pour chaque test
+        sys.stdout = sys.__stdout__
+    actual_output = output.getvalue().strip()
+    return actual_output == expected_output
+
+def run_in_process(queue, inputs, expected_output):
+    global first
+    if first == True:
+        result = run_test_1(inputs, expected_output)
+        first = False
+    else:
+        result = run_test(inputs, expected_output)
+    queue.put(result)
+
+def perform_test(inputs, expected_output, timeout):
+    queue = multiprocessing.Queue()
+    process = multiprocessing.Process(target=run_in_process, args=(queue, inputs, expected_output))
+    process.start()
+    process.join(timeout)
+    if process.is_alive():
+        process.terminate()
+        return "Timeout"
+    else:
+        return queue.get()
+
+def main():
+    gold = sys.argv[1]
+    id = sys.argv[2]
+    ok = True
+    tests = [
+        #tests
+
+    ]
+    timeout = 2  # Temps limite en secondes pour chaque test
+
+    for inputs, expected_output in tests:
+        result = perform_test(inputs, expected_output, timeout)
+        if not result:
+            print('non')
+            ok = False
+        elif result == "Timeout":
+            print("Il y a surement une boucle infinie, verfie ton code")
+            ok = False
+            break
+        else:
+            print('Correct')
+
+    url = 'http://127.0.0.1:5000/update_mission_state'
+    myobj = {'player_id': id, 'state': ok, 'gold': gold}
+    x = requests.post(url, json=myobj)
+
+if __name__ == '__main__':
+    main()

@@ -1,13 +1,13 @@
 label Temporium:
     scene black with fade
-    "Nous sommes enfin arrivé aux porte de Temporium apres un voyage qui m'a semblé interminable"
+    "Nous sommes enfin arrivé aux portes de Temporium apres un voyage qui m'a semblé interminable"
 
     scene ville_temporium with fade
     show garde
 
     garde "Halte la, declinez votre identité"
 
-    j "Nous sommes Navi et [name], des voyageurs à la recherche de la bibliotheque-monde"
+    j "Nous sommes des voyageurs à la recherche de la bibliotheque-monde, Je m'appelle Navi et suis accompagné de [name]"
 
     garde "Tres bien, vous pouvez rentrer"
 
@@ -17,38 +17,39 @@ label Temporium:
     m "Tiens, tu as entendu ca ?"
     j "Entendu quoi ?"
     #boucle 1
-    garde "Ca fesait longtemps que nous avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
+    garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
 
     scene chemin_ville with fade
-    "{i}Nous avancons alors sur le chemin que nous a indiqué le garde{/i}"
+    "{i}Nous avancons alors sur le chemin indiqué par le garde{/i}"
 
     show fermier with vpunch
     fermier "Blep"
-    "Je vois un jeune homme etalé sur le sol couvert de boue"
+    "Je vois un jeune homme étalé sur le sol couvert de boue"
     fermier "Vous pourriez quand meme faire attention"
-    "Au moment ou il dit ca une charette passant à vive allure ecrasa ses pommes"
+    "Au moment où il dit ca une charette passant à vive allure écrasa ses pommes"
     fermier "Oh non mes pommes"
 
-    "En voila quelqu'un qui n'a pas de chance mais il n'a pas l'air d'etre blessé et ses pommes sont irrecuperables, il n'y a rien que je puisse faire"
+    "En voila un qui n'a pas de chance. Heureusement, il n'a pas l'air d'etre blessé mais ses pommes sont irrecuperables, il n'y a rien que je puisse faire"
 
-    "On continue d'avancer"
+    "Continuons d'avancer"
 
     show vendeur
     vendeur "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
 
-    m "Oh ce stand a l'air interressant, il vend plein de produits que je n'ai jamais vu"
+    m "Oh ce stand à l'air interressant, il vend plein de produits que je n'ai jamais vu"
 
     j "On ira voir plus tard, pour l'instant concentrons-nous sur la bibliotheque"
 
     scene black with fade
-    "On arriva enfin en face de l'immense bibliotheque-monde"
+    "Nos arrivames enfin en face de l'immense bibliotheque-monde"
 
     scene bibliotheque with fade
-    m "Wow, cette bibliotheque est vraiment immense mais c'est quoi ce papier sur la porte ?"
+    m "Wow, cette bibliotheque est vraiment immense !"
+    m "Mais c'est quoi ce papier sur la porte ?"
 
     show papier
 
-    m "Il semblerait qu'elle est fermée pour aujourd'hui"
+    m "Il semblerait qu'elle soit fermée pour aujourd'hui"
 
     j "Quel dommage !"
     
@@ -56,13 +57,13 @@ label Temporium:
 
     scene black with fade
 
-    "Nous nous dirigeame vers l'auberge la plus proche et louons directement deux chambres pour passer la nuit"
+    "Nous nous dirigeames vers l'auberge la plus proche et louons directement deux chambres pour passer la nuit"
 
-    m "Je suis vraiment extenué, j'ai l'impression qu'à tout moment je pourrais m'écrouler"
+    m "Je suis vraiment extenué, j'ai l'impression que je pourrais m'écrouler à tout moment"
 
-    m "D'un autre coté, ca fait longtemps que je me suis pas autant amusé"
-
-    m "Je me demande quand meme combien de temps c'est passé dans mon monde originel"
+    m "D'un autre coté, ça fait longtemps que je me suis pas autant amusé"
+    # ça me change quand meme beaucoup de d'habitude
+    m "Je me demande combien de temps s'est passé dans mon monde originel"
 
     "C'est sur cette pensée que je fini par m'assoupir"
 
@@ -83,10 +84,11 @@ label Temporium:
     "Nous nous precipitames sans meme prendre le temps de nous preparer mais le temps d'arriver à la bibliotheque, elle etait deja reduite en cendre"
 
     "On essaye quand meme de fouiller dans les debris pour voir si un livre a survecu mais rien a y faire, tout est irrecuperable"
+    # Tu crois qu'il reste encore quelques livres
+    # Non, il ne reste plus rien, tout est irrecuperable
+    j "Oh non comment vas-t'on faire maintenant. C'etait le seul moyen de savoir où se trouvait Ouroboros et comment le vaincre"
 
-    j "Oh non comment vas-t'on faire maintenant c'etait le seul moyen de savoir où se trouvait Ouroboros et comment le vaincre"
-
-    m "retournons nous coucher, on trouvera une solution demain, à tete reposée"
+    m "Retournons nous coucher, on trouvera une solution demain, à tete reposée"
 
     scene black with fade
     "On retourna dans nos chambres respectives mais comment trouver le sommeil apres ce qui vient de se passer ?"
@@ -95,27 +97,27 @@ label Temporium:
     play sound "call of the witch.mp3"
     scene ville_temporium
 
-    m "Hein quoi ou suis-je, comment je suis arrivé la ?"
+    m "Hein quoi où suis-je, comment je suis arrivé la ?"
 
-    garde "Ca fesait longtemps que nous avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
+    garde "Ca faisait longtemps que nous avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
 
     "J'ai comme une impression de deja-vu"
 
     scene chemin_ville with fade
-    "Nous avancons tout de meme sur le chemin que nous a indiqué le garde"
+    "Nous avancons tout de meme sur le chemin indiqué par le garde"
 
     show Navi with fade
     j "Hey, tu sais comment on est retourné à l'entrée de la ville ?"
 
-    m "Non je n'ai aucune idée et en plus regarde au bout de ce chemin, ce n'est pas la bibliotheque qui est censé avoir brulé hier soir ?"
+    m "Non je n'ai aucune idée et en plus, regarde au bout de ce chemin, ce n'est pas la bibliotheque que l'on a vu bruler hier soir ?"
 
     j "Peut-etre qu'on en saura plus si on se rapproche de la bibliotheque"
-
+    # "ça ne peux pas être possible, allons voir de plus pres"
     show fermier with vpunch
     fermier "Blep"
-    "C'est le meme jeune homme de hier qui est encore etalé au sol, couvert de boue"
+    "C'est le meme jeune homme qu'hier qui est encore etalé au sol, couvert de boue"
     fermier "Vous pourriez quand meme faire attention"
-    "Et au moment ou il dit ca, il y a encore une charette qui ecrasa ses pommes"
+    "Et encore une fois, une charette ecrasa ses pommes"
     fermier "Oh non mes pommes"
 
     "On continue d'avancer"
@@ -132,11 +134,11 @@ label Temporium:
     m "Le papier est toujours la"
     show paper
 
-    m "Voila qui confirme mes soupcons, le jour n'a pas changé, d'une facon ou d'une autre nous sommes remonté dans le temps"
+    m "Voila qui confirme mes soupcons, le jour n'a pas changé, d'une facon ou d'une autre nous avons remonté le temps"
 
     m "Tu sais ce qui a pu causer ca Navi ?"
 
-    j "Il semblerait que ce soit du à la capacité d'une des fonctions divines"
+    j "Je pense que c'est du à la capacité d'une des fonctions divines"
 
     j "Je suspecte l'utilisation de boucles"
 
@@ -148,25 +150,25 @@ label Temporium:
 
     m "Est ce qu'il a un moyen de sortir d'une boucle ?"
 
-    j "Oui c'est possible grace à un break"
+    j "Oui c'est possible, mais pour ça, il nous faut un break"
 
-    m "Comment ca se fait que tu sache autant de choses ?"
+    m "Comment ca se fait que tu saches autant de choses ?"
 
-    j "Mon grand-pere etait passionné par les fonctions divines et il en parlait à longueur de journée"
+    j "Mon grand-pere était passionné par les fonctions divines et il en parlait à longueur de journée"
 
     j "Son reve etait de pouvoir copier les effets des fonctions divines malgres le fait qu'on y avait plus acces"
 
     m "Et il a reussi ?"
 
-    j "Malheureusement, il n'a jamais reussi à copier les effets de fonctions plus complexe car selon lui \"Il faut ressentir les effets d'une fonction  avant de pouvoir la recreer\""
+    j "Malheureusement, il n'a jamais reussi à copier les effets de fonctions plus complexe car selon lui \"Il faut ressentir les effets d'une fonction avant de pouvoir la recreer\""
     
     m "Je vois...."
 
-    m "Mais dis-moi, la on ressent bien les effets de cette fonction, tu pense qu'on serait capable de la recreer ?"
+    m "Mais dis-moi, la on ressent bien les effets de cette fonction, tu penses qu'on serait capable de la recreer ?"
 
-    j "Theoriquement, oui, tu pense en etre capable ?"
+    j "Theoriquement, oui, tu penses en etre capable ?"
 
-    m "Bien sur apres tout je suis le meilleur bricoleur des environs"
+    m "Bien sur ! Apres tout je suis le meilleur bricoleur des environs"
 
     "{i}Navi rigole legerement{/i}"
 
@@ -193,7 +195,7 @@ label Temporium:
 
     m "Vite fait le tour du batiment par la gauche et essaie de voir si il y a quelque chose de suspect, moi je ferai le tour par la droite"
 
-    "{i}Au moment où j'arrive derriere le batiment, une figure encapuchonnée sort a toute vitesse de la bibliotheque {/i}"
+    "{i}Au moment où j'arrive derriere le batiment, une figure encapuchonnée sort à toute vitesse de la bibliotheque {/i}"
 
     m "Hey vous, arretez-vous !"
 

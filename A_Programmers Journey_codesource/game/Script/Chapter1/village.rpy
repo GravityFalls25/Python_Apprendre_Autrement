@@ -7,7 +7,7 @@ label village_en_feu:
 
 label troisieme:
     python:
-        nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, vs vite chercher de l'eau")
+        nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, va vite chercher de l'eau")
         reussi = False
         reussi,gold_gagne = verif_quete(id,1)
 
@@ -23,7 +23,7 @@ label troisieme:
     show villageoiq
     v "Ce sont les troupes d'Ouroboros qui ont causé ce chaos"
 
-    v "Ils sont venu pour nous prendre de la nourriture et en voyant le peu de nourriture que nous avions, ces monstres se sont enervés et ont mis le feu a notre village"
+    v "Ils sont venu pour nous prendre de la nourriture et en voyant le peu que nous avions, ces monstres se sont enervés et ont mis le feu à notre village"
     show villageoiq with ease:
         xzoom -1.0
         xalign 0.1
@@ -32,24 +32,24 @@ label troisieme:
         yalign 1.0
     j "Encore eux ?"
 
-    j "ils ne lasseront donc jamais de causer du mal à des innocents ?"
+    j "Ils ne lasseront donc jamais de causer du mal à des innocents ?"
 
     j "Il est grand temps d'arranger ce probleme une fois pour toute"
 
-    v "Calme toi Navi, on doit juste tenir jusqu'à que le hero de la prophetie vienne nous secourir"
+    v "Calme toi Navi, on doit juste tenir jusqu'à ce que le hero de la prophetie vienne nous secourir"
 
-    j "Cette prophetie date d'il y a des dizaines voire de centaines d'années si ca se trouve on sera tous mort d'ici a que cet hero apparaisse"
+    j "Cette prophetie date d'il y a des dizaines voire de centaines d'années si ca se trouve on sera tous mort d'ici à que ce hero apparaisse"
 
     j "Je vais prendre les choses en main, apres tout parfois il faut savoir forcer le destin pour obtenir le futur voulu"
     hide villageoiq
     show Navi angry at center with ease
-    j "[name], je pourrais pas me rebeller face à ce Serpent toute seule peut tu me preter main forte ?"
+    j "[name], je ne pourrais pas me rebeller face à ce Serpent toute seule peux tu me preter main forte ?"
 
     menu:
         "Oui bien sur":
             j "Parfait, j'aime cette reponse rempli de confiance"
         "...":
-            j "Je vois à ton regard rempli de determination que toi non plus tu refuse de voir les villageois souffrir plus longtemps"
+            j "Je vois à ton regard rempli de determination que toi non plus tu refuses de voir les villageois souffrir plus longtemps"
     
     show Navi at center
 
@@ -62,13 +62,13 @@ label troisieme:
 
     scene bg_village_lateday with fade
     show Navi at center
-    j "Merci de ton aide [name], si tu avais pas été la ca aurait prit beaucoup plus de temps"
+    j "Merci de ton aide [name], si tu n'avais pas été la, on en serait encore loin d'avoir fini"
 
-    m "De rien, c'etait la moindre des choses"
+    m "C'etait la moindre des choses"
 
-    m "D'ailleurs par rapport a ce que tu as dis plus tot, si tu veux vraiment t'attaquer au Serpent du temps, tu dois avoir un plan"
+    m "D'ailleurs par rapport à ce que tu as dis plus tot, si tu veux vraiment t'attaquer au Serpent du temps, tu dois avoir un plan"
 
-    j "J'avoue avoir dit ca sous le coup de la colere et je n'ai pas vraiment de plan mais ma determination est elle bien reelle"
+    j "J'avoue avoir dit ça sous le coup de la colere mais je n'ai pas vraiment de plan. Mais je me battrais jusqu'au bout"
 
     j "Juste laisse moi un peu de temps pour penser à un plan"
 
@@ -80,7 +80,7 @@ label troisieme:
 
     j "Tu peux gagner un peu d'argent en acceptant des quetes dans la taverne"
 
-    j "Une fois que tu as assez d'or vient me retrouver à l'entrée du village"
+    j "Une fois que tu as assez d'or, viens me retrouver à l'entrée du village"
 
     m "Ok bien compris, à demain alors"
     scene black with fade
@@ -156,15 +156,15 @@ label fin_chap1:
     show children
     j "Voila je pense qu'on a reuni assez d'argent"
     
-    j "De mon coté, j'ai fini le plan pour vaincre le Serpent du Temps"
+    j "De mon coté, j'ai fini le plan pour vaincre le Serpent du Temps."
 
-    j "Comme tu le sais nous avons perdu l'acces aux fonctions, cependant certains elus ont sachant que leur heure etait venue ont eu le temps de cacher leur fonction"
+    j "Comme tu le sais nous avons perdu l'acces aux fonctions, cependant certains elus, sachant que leur heure etait venue, ont eu le temps de cacher leur fonction"
 
     j "Selon la legende, une de ces fonctions a été caché non loin d'ici dans le grand dedale des milles choix"
 
-    j "Nous ne rendrons la-bas, recuperons la fonction et apres nous nous rendrons dans Temporium la ville ou se trouve la bibliotheque-monde"
+    j "C'est pourquoi nous commencerons par nous rendre la-bas, une fois récupérée, nous nous rendrons à Temporium, la ville où se trouve la Bibliotheque-monde"
 
-    j "Nous irons la-bas pour trouver toutes les informations qui nous seront utiles à la suite de notre voyage"
+    j "Nous irons la-bas pour trouver toutes les informations qui puissent nous être pour vaincre le Serpent du temps"
 
     "Est-ce qu'elle vient juste de dire qu'on irait dans un labyrinthe ?"
 

@@ -7,39 +7,39 @@ label chap2:
     show children:
         xalign 0.9
         yalign 1.0
-    j "Et voici l'entrée du grand dedale des milles choix"
+    j "Et voici l'entrée du grand dédale des mille choix"
     
     m "Mais c'est juste une porte, il n'y a rien derriere"
 
-    j "Ne te laisse pas tromper par son apparence car lorsque tu traversera la porte, tu verra le labyrinthe"
+    j "Ne te laisse pas tromper par son apparence. Lorsque tu traverseras la porte, tu verras le labyrinthe"
 
-    j "Ne perdons pas plus de temps et allons-y directement"
+    j "Ne perdons pas plus de temps et allons-y directement !"
 
     hide children with moveoutright
-    m "Hey attend moi"
+    m "Hey attend moi !"
 
     scene interieur_labyrinthe with flash
-    m "C'est donc à ca que ressemble le dedale de l'interieur"
+    m "C'est donc à ca que ressemble le dédale de l'interieur"
 
     show children:
         xalign 0.1
         yalign 1.0
-    j "Vient voir il y a message marqué sur le mur"
+    j "Viens voir il y a message marqué sur le mur..."
 
-    "Bienvenue dans ce dedale de choix, où chaque pas est une décision à prendre, chaque tournant une opportunité nouvelle. Ici, les chemins se croisent et se séparent et pour savoir où aller le dedale te donnera la capacité de choisir"
+    "Bienvenue dans ce dédale de choix, où chaque pas est une décision à prendre, chaque tournant une opportunité nouvelle. Ici, les chemins se croisent et se séparent. Le dédale te donnera la capacité de choisir"
 
     "Au bout de ce dédale, tu découvriras que la vraie récompense réside dans la liberté de décider de ton destin. Alors avance avec courage, et que chaque décision te rapproche de cette précieuse récompense : le pouvoir de faire tes propres choix."
 
-    j "\"le dedale te donnera la capacité de choisir\" je me demande ce que ca veut dire"
+    j "\"Le dédale te donnera la capacité de choisir\" Je me demande ce que ca veut dire"
     #pop-up ou on explique comment if-else fct
-    m "Il semblerait qu'on peut utiliser les pouvoirs de la fonction divine tant qu'on est dans le labyrinthe"
+    m "Il semblerait qu'on puisse utiliser les pouvoirs de la fonction divine tant qu'on est dans le labyrinthe"
 
-    j "Parfait alors enfoncons nous dans la labyrinthe"
+    j "Parfait alors enfonçons nous dans la labyrinthe !"
 
     scene portes
     show children at right
 
-    m "il semblerait que ce soit le premier choix qu'il faille faire, quelle porte on choisit ?"
+    m "Il semblerait que ce soit le premier choix qu'il faille faire, quelle porte on choisit ?"
 
     j "Regarde il y a un autre message sur ce mur"
 
@@ -61,19 +61,19 @@ label test1:
     scene interieur_labyrinthe with fade
     m "Tiens il y a encore des ecritures sur le mur mais on dirait que ce n'est pas la meme personne qui l'a ecrit"
 
-    "Mon nom est Elsa et je suis l'elue responsable de la fonction if-else ou du moins je l'etait avant que Ouroboros renie l'humanité"
+    "Mon nom est Elsa et je suis l'elue responsable de la fonction if-else ou du moins je l'étais avant que Ouroboros renie l'humanité"
     
-    "J'ai deja perdu nombre de mes camarades et je sais que je serai bientot la prochaine. C'est pourquoi j'ai decidé de cacher ma fonction au centre de ce dedale protegé par un immense minotaure"
+    "J'ai déjà perdu nombre de mes camarades et je sais que je serai bientot la prochaine. C'est pourquoi j'ai decidé de cacher ma fonction au centre de ce dédale, protegé par un immense minotaure"
 
     "Ce labyrinthe a été créé pour perdre le serpent, en effet celui-ci etant tres impatient il ne prendra jamais le temps de lire ces ecritures"
 
-    "Alors qu'en realité il suffit de lire ces ecritures suivantes pour acceder au centre du labyrinthe. De plus, pour trier les intrus des meritants, j'ai chiffré le message"
+    "De plus, pour trier les intrus des meritants, j'ai chiffré le message permettant d'acceder au centre du labyrinthe"
 
     "Ontq sqntudq kd bdmsqd cd bd cdczkd hk rteehs cd chqd z gztsd unhw kz enqltkd rthuzmsd \"vhsg nodm(\"cnnq.nai\",'v')\" "
 
     m "Par contre, comment allons nous dechiffrer ca ?"
     scene indice_mur
-    j "Regarde il y a encore des choses ecrites sur ce mur, peut-etre ca pourrait nous aider ?"
+    j "Regarde il y a encore des choses écrites sur ce mur, peut-etre cela pourrait nous aider ?"
 
 label cinquieme:
     python:
@@ -88,14 +88,14 @@ label cinquieme:
 
     call screen ecran_victoire(nom_quete,gold_gagne,2)
 label test2:
-    m "Pour trouver le centre de ce dédale il suffit de dire a haute voix la formule suivante \"with open(\"door.obj\",'w')\" "
+    m "Pour trouver le centre de ce dédale il suffit de dire à haute voix la formule suivante \"with open(\"door.obj\",'w')\" "
     
     play sound "stone_door.mp3"
     j "Wow, le mur s'ouvre vraiment !"
 
     scene centre_labyrinthe
     show children at right
-    m "Cet endroit est vraiment magnifique mais si on est vraiment au centre du labyrinthe ca vaut aussi dire que..."
+    m "Cet endroit est vraiment magnifique mais si on est vraiment au centre du labyrinthe, ça vaut aussi dire que..."
 
     play sound "giant-walking.mp3" volume 0.3
     scene centre_labyrinthe with hpunch
@@ -108,34 +108,34 @@ label test2:
     play sound "giant-walking.mp3" volume 1.0
     scene centre_labyrinthe with hpunch
     show minotaure scary with moveinleft
-    mino "Qui ose s'introduire de mon domaine ?"
+    mino "Qui ose s'introduire dans mon domaine ?"
     
     "Je savais que c'était une mauvaise idée de venir ici, on va tous mourir ici de la main de cet immense et terrifiant minautaure"
     play music "Minotaur_song.mp3"
     show minotaure 
-    mino "Au mon dieu, est-ce que ce sont des humains ? Ca fait des dizaines d'années depuis que la derniere fois que j'ai vu un humain"
+    mino "Au mon dieu, est-ce que ce sont des humains ? ça fait des lustres depuis que la derniere fois que j'en ai vu"
 
-    mino "En plus, je ne suis pas bien habillé et je n'ai meme pas fait le menage"
+    mino "Oh non, je ne suis pas bien habillé et je n'ai même pas fait le menage"
 
     jm "Hein ?"
 
-    mino "Excusez-moi j'en oublie mes manieres, je me presente suis le gardien de ce dedale"
+    mino "Excusez-moi j'en oublie mes manieres, je me presente: Je suis le gardien de ce dédale"
     show minotaure happy
     mino "Comment puis-je vous aider ?"
 
-    "J'imagine que c'est ca que Elsa entendait quand elle disait qu'il ne ferait pas de mal a une mouche"
+    "Ouf plus de peur que de mal, il a l'air gentil"
 
-    j "On est a la recherche de la fonction divine qui se trouverait dans ce labyrinthe"
+    j "Nous sommes à la recherche de la fonction divine qui se trouverait dans ce labyrinthe"
 
-    mino "Je vois c'est bien moi qui ai cette artefact"
+    mino "Je vois c'est bien moi qui ai cet artefact"
     show minotaure
     mino "Malheureusement, je suis desolé mais mon maitre m'a interdit de le donner à un aventurier tant qu'il n'a pas prouvé sa valeur"
 
-    mino "Si cela vous convient, je vous propose que si vous arrivez a accumuler 5 points de valeur en repondant à mes enigmes alors je vous cederais l'artefact"
+    mino "Si cela vous convient, je vous propose de répondre à mes enigmes, si vous accumulez assez de points de valeur en répondant correctement, j'accepeterais de vous ceder l'artefact"
 
     mino "Encore desolé du derangement"
 
-    m "Parfait ca nous convient"
+    m "Parfait ça nous convient"
 
 label place_dedale:
     scene centre_labyrinthe with fade
@@ -143,14 +143,14 @@ label place_dedale:
     $ quick_menu = True
     menu:
         "Bon que devrais-je faire maintenant"
-        "Resoudre des enigmes du minotaure":
+        "Resoudre les enigmes du minotaure":
             jump tavern_dedale
         "Recuperer l'artefact":
             python:
                 if int(persistent.point_de_valeur)>=5:
                     renpy.jump("fin_chap2")
                 else:
-                    renpy.say(None,"j'ai pas encore assez de points de valeur")
+                    renpy.say(None,"je n'ai pas encore assez de points de valeur")
                     renpy.jump("place_dedale")
         "voir la map":
             $ quick_menu = False
@@ -181,7 +181,7 @@ label dialogue_aubergiste_minotaur(quest_id,quest_nom, url):
             mino "C'est dommage, peut-être une autre fois."
             jump tavern_dedale
 label quete_aubergiste_minotaur(quest_id,quest_nom, url):
-    mino "Alors, tu pense avoir resolu mon enigme ?"
+    mino "Alors, tu penses avoir resolu mon enigme ?"
     menu:
         "Valider l'enigme":
 
@@ -203,21 +203,21 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
             jump tavern_dedale
 
 label fin_chap2:
-    mino "Je pense que tu as suffisamment prouvé ta valeur et tu es digne de recuperer cet artefact"
+    mino "Je pense que tu as suffisamment prouvé ta valeur. Tu es donc digne de recuperer cet artefact"
     #mettre ecran de victoire "if permanent"
     j "Felicitation [name], maintenant on peut continuer notre voyage"
 
     m "Quel est notre prochaine destination ?"
 
-    j "Notre prochain objectif est d'en apprendre davantage sur notre ennemi à la bibliotheque-monde"
+    j "Notre prochain objectif est d'en apprendre davantage sur notre ennemi à la Bibliotheque-monde"
 
     j "car tu sais ce qu'on dit: \"Le savoir est l'arme la plus efficace contre les tyrants\""
 
     "C'est beau ce qu'elle dit"
 
-    "Je me demande bien qui sont les gens qui disent ca"
+    "Je me demande bien qui sont les gens qui disent ça"
 
-    m "Tres bien alors, allons-y !"
+    m "Très bien alors, allons-y !"
 
     jump Temporium
 

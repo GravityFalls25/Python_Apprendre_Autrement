@@ -149,7 +149,8 @@ Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repon
 
       $('#btn-verifier').click(function() {
         var code = editor.getValue();
-        var gold = 3 - indiceCount;
+        var gold_total = 0;
+        var gold = gold_total - (gold_total/3)*indiceCount;
         //id var
         $.ajax({
           url: 'Verification.php',

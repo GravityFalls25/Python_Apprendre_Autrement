@@ -185,7 +185,8 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                 if "//id var" in ligne:
                     fout.write(f"        var id = '{id}'\n")
                     continue
-                
+                if "var gold_total = 0;" in ligne:
+                    fout.write(f"        var gold_total = {df['Difficulté']}*100;")
                 fout.write(f"{ligne}\n")
                 
     #Ecriture JS

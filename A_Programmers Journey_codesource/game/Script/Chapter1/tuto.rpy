@@ -92,7 +92,7 @@ label premiere:
     m "Je vais bien"
 
     "Wow cette fois j'ai réussi à parler"
-    call screen debloquer
+    call screen debloquer(0)
     show Navi
     j "Ah parfait vous semblez avoir repris vos esprits"
 

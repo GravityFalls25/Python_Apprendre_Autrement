@@ -89,23 +89,66 @@ screen Map():
         idle "temporium_idle.png"
         action Jump("place_temporium")
 
-
-screen debloquer():
-    frame:
+define get_fct=[
+    ["Vous avez compris comment utiliser le print()\n","Le print sert à afficher ce qui est marqué dans ces parentheses","nbr=4\nprint(nbr)\nprint(\"test\")","4\ntest"]
+]
+screen debloquer(id):
+    vbox:
         xalign 0.5
         yalign 0.5
-        xpadding 20
-        ypadding 20
-        background "#ffd700"
-        vbox:
-            textbutton "Next" action Show("debloquer_2"),Hide("debloquer")
+        frame:
+            xalign 0.5
+            background "#d1b30a"
+            vbox:
+                text "Felicitation !":
+                    xalign 0.5
+                    bold True
+                    color "#000"
+        frame:
+            xalign 0.5
+            xpadding 20
+            ypadding 20
+            background "#ffd700"
+            vbox: 
+                text get_fct[id][0]:
+                    color "#000"
+                    line_leading 2
+                text get_fct[id][1]:
+                    color "#000"
+                    line_spacing 2
+                textbutton "Next" action Show("debloquer_2",id=id),Hide("debloquer"):
+                    xalign 1.0
 
-screen debloquer_2():
-    frame:
+screen debloquer_2(id):
+    vbox:
         xalign 0.5
         yalign 0.5
-        xpadding 20
-        ypadding 20
-        background "#ffd700"
-        vbox:
-            textbutton "Retour au jeu" action Hide("debloquer_2"),Return()
+        frame:
+            xalign 0.5
+            background "#d1b30a"
+            vbox:
+                text "En pratique":
+                    xalign 0.5
+                    bold True
+                    underline True
+                    color "#000"
+        frame:
+            xalign 0.5
+            yalign 0.5
+            xpadding 20
+            ypadding 20
+            background "#ffd700"
+            vbox:
+                text "Exemple de code":
+                    color "#000"
+                frame:
+                    background "#26282A"
+                    text get_fct[id][2]
+                text "Output":
+                    color "#000"
+                frame:
+                    background "#26282A"
+                    text get_fct[id][3]
+                hbox:
+                    textbutton "Precedent" action Show("debloquer",id=id),Hide("debloquer_2")
+                    textbutton "Retour au jeu" action Hide("debloquer_2"),Return()

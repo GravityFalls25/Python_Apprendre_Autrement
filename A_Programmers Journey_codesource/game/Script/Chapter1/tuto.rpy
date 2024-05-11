@@ -143,7 +143,6 @@ label deuxieme:
         reussi,gold_gagne = verif_quete(id)
 
     if reussi != True:
-
         jump deuxieme
     python:
         remove_html(id)

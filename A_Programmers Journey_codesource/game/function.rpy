@@ -101,6 +101,8 @@ init python:
                 persistent.gold = persistent.gold + int(gold_gagne)
             elif chap == 2:
                 persistent.point_de_valeur = persistent.point_de_valeur + int(gold_gagne)
+            elif chap == 3:
+                persistent.argent = persistent.argent + int(gold_gagne)
             persistent.score = persistent.score + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
@@ -116,3 +118,10 @@ init python:
     def remove_html(id):
         url = 'http://127.0.0.1:5000/clear_quete'
         request= renpy.fetch(url, json = {"player_id":id}, result="json")
+
+transform mymoveout(timing):
+    linear timing xpos 2.0
+
+transform myfade(timing):
+    alpha 0.00
+    linear timing alpha 1.00

@@ -68,7 +68,7 @@ screen ecran_victoire(nom_quete,or_gagne,chap=0):
 
 
 
-screen Map():
+screen Map(ch):
     add "carte_fin.png"
     imagebutton:
         xpos 1249
@@ -76,21 +76,26 @@ screen Map():
         hover "village1_hover.png"
         idle "village1_idle.png"
         action Jump("place_village")
-    imagebutton:
-        xpos 827
-        ypos 653
-        hover "dedale_hover.png"
-        idle "dedale_idle.png"
-        action Jump("place_dedale")
-    imagebutton:
-        xpos 745
-        ypos 473
-        hover "temporium_hover.png"
-        idle "temporium_idle.png"
-        action Jump("place_temporium")
+    if ch >=2:
+        imagebutton :
+            xpos 827
+            ypos 653
+            hover "dedale_hover.png"
+            idle "dedale_idle.png"
+            action Jump("place_dedale")
+    if ch >=3:
+        imagebutton :
+            xpos 74
+            ypos 473
+            hover "temporium_hover.png"
+            idle "temporium_idle.png"
+            action Jump("place_temporium")
 
 define get_fct=[
-    ["Vous avez compris comment utiliser le print()\n","Le print sert à afficher ce qui est marqué dans ces parentheses","nbr=4\nprint(nbr)\nprint(\"test\")","4\ntest"]
+    ["Vous avez compris comment utiliser le print()\n","Le print sert à afficher ce qui est marqué dans ces parentheses","nbr=4\nprint(nbr)\nprint(\"test\")","4\ntest"],
+    ["","","",""],
+    ["","","",""],
+    ["","","",""]
 ]
 screen debloquer(id):
     vbox:

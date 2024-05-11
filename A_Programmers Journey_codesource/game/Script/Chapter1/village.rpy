@@ -86,6 +86,7 @@ label troisieme:
     scene black with fade
 
     "Le lendemain matin"
+    $ persistent.chap=1
 label place_village:
     scene bg_village_day with fade
     play music "mist_covered_mountains.mp3" if_changed
@@ -103,7 +104,7 @@ label place_village:
                     renpy.jump("place_village")
         "voir la map":
             $ quick_menu = False
-            call screen Map with fade
+            call screen Map(persistent.chap) with fade
 label tavern_village:
     play music "Tavern_song.mp3" if_changed
     scene tavern

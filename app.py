@@ -112,7 +112,40 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                         pass
                              
                     continue
-                
+                if "#Visiteurs" in ligne:
+                    chap = int(df["Chap"][0])
+                    if chap <= 1:
+                        fout.write("    def visit_If(self, node):\n")
+                        fout.write("        self.found['if'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+
+                        fout.write("    def visit_Match(self, node):\n")
+                        fout.write("        self.found['match'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+
+                    if chap <= 2:
+                        fout.write("    def visit_For(self, node):\n")
+                        fout.write("        self.found['for'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+
+                        fout.write("    def visit_While(self, node):\n")
+                        fout.write("        self.found['while'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+
+                    if chap <= 3:
+                        fout.write("    def visit_List(self, node):\n")
+                        fout.write("        self.found['list'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+
+                        fout.write("    def visit_Set(self, node):\n")
+                        fout.write("        self.found['set'] = True\n")
+                        fout.write("        self.generic_visit(node)\n\n")
+                    
+                    fout.write("    def visit_With(self, node):\n")
+                    fout.write("        self.found['with'] = True\n")
+                    fout.write("        self.generic_visit(node)\n\n")
+                    continue
+                    
                 fout.write(f"{ligne}\n")
 
     #Ecriture HTML
@@ -266,13 +299,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     return df['Nom_Quete']
         
                 
-                
-
-
-
-            
-                    
-                
+          
 
 import atexit
 
@@ -384,5 +411,3 @@ def clear_quete():
 
 if __name__ == "__main__":
     app.run(debug=False)
-
-

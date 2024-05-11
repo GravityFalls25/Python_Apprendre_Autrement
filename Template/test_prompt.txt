@@ -5,11 +5,55 @@ import requests
 import sys
 import multiprocessing
 import time
+import ast
 
 first = True
 
 class InputExceededError(Exception):
     pass
+
+
+class CodeAnalyzer(ast.NodeVisitor):
+    def __init__(self):
+        self.found = {
+            'if': False,
+            'match' : False,
+            'for': False,
+            'while': False,
+            'list': False,
+            'set' : False,
+            'with': False,
+
+            
+        }
+    #Visiteurs
+    
+
+def check_code_restrictions(code):
+    tree = ast.parse(code)
+    analyzer = CodeAnalyzer()
+    analyzer.visit(tree)
+    return analyzer.found
+
+def check_len_code(code,max_lines = 1000):
+    lines = [line for line in code.split('\n') if line.strip() and not line.strip().startswith('#')]
+    line_count = len(lines)
+    if line_count > max_lines:
+        print(f"On ne peut pas executer ca, ton code est trop long ! Fais attention, le pont est fragile, tu n'as droit qu'a {max_lines} (sans compter les commentaires et les lignes vides)")
+        return False
+# Utilisation dans votre système de test
+def validate_student_code(code):
+    if not check_code_restrictions(code): 
+        return False
+
+    restrictions = check_code_restrictions(code)
+    # Ici, vous pouvez déterminer si certaines constructions sont utilisées et prendre des mesures en conséquence
+    if any(restrictions.values()):
+        print("Votre code utilise des constructions non autorisees.")
+        return False
+    return True
+
+
 
 def run_test(inputs):
     output = StringIO()
@@ -112,6 +156,15 @@ def main():
         #tests
 
     ]
+
+    with open("user.py", "r") as file:
+        user_code = file.read()
+
+    # Vérifier les restrictions
+    if not validate_student_code(user_code):
+        
+        return
+
     timeout = 2  # Temps limite en secondes pour chaque test
 
     for inputs, expected_output in tests:
@@ -140,3 +193,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -7,21 +7,80 @@ import multiprocessing
 import time
 
 first = True
+
+class InputExceededError(Exception):
+    pass
+
+def run_test(inputs):
+    output = StringIO()
+    sys.stdout = output
+    def side_effect(*args, **kwargs):
+        if side_effect.counter < len(inputs):
+            result = inputs[side_effect.counter]
+            side_effect.counter += 1
+            return result
+        raise InputExceededError("Plus d'inputs demandes que fournis")
+    side_effect.counter = 0
+
+    with mock.patch('builtins.input', side_effect=side_effect):
+        try:
+            import user  # Recharger le module utilisateur pour chaque test
+        except InputExceededError as e:
+            return str(e)
+        except Exception as e:
+            return f"Erreur non geree : {str(e)}"
+        finally:
+            sys.stdout = sys.__stdout__
+    actual_output = output.getvalue().strip()
+    return actual_output
+
 def run_test(inputs, expected_output):
     output = StringIO()
     sys.stdout = output
-    with mock.patch('builtins.input', side_effect=inputs):
-        importlib.reload(user)  # Recharger le module utilisateur pour chaque test
-        sys.stdout = sys.__stdout__
+    def side_effect(*args, **kwargs):
+        if side_effect.counter < len(inputs):
+            result = inputs[side_effect.counter]
+            side_effect.counter += 1
+            return result
+        raise InputExceededError("Plus d'inputs demandes que fournis")
+    side_effect.counter = 0
+
+    with mock.patch('builtins.input', side_effect=side_effect):
+        try:
+            importlib.reload(user)  # Recharger le module utilisateur pour chaque test
+        except InputExceededError as e:
+            return str(e)
+        except Exception as e:
+            return "autre"
+        finally:
+            sys.stdout = sys.__stdout__
+
+          # Recharger le module utilisateur pour chaque test
     actual_output = output.getvalue().strip()
     return actual_output == expected_output
 
 def run_test_1(inputs, expected_output):
     output = StringIO()
     sys.stdout = output
-    with mock.patch('builtins.input', side_effect=inputs):
-        import user  # Recharger le module utilisateur pour chaque test
-        sys.stdout = sys.__stdout__
+    def side_effect(*args, **kwargs):
+        if side_effect.counter < len(inputs):
+            result = inputs[side_effect.counter]
+            side_effect.counter += 1
+            return result
+        raise InputExceededError("Plus d'inputs demandes que fournis")
+    side_effect.counter = 0
+
+    with mock.patch('builtins.input', side_effect=side_effect):
+        try:
+            import user  # Recharger le module utilisateur pour chaque test
+        except InputExceededError as e:
+            return str(e)
+        except Exception as e:
+            return "autre"
+        finally:
+            sys.stdout = sys.__stdout__
+
+          # Recharger le module utilisateur pour chaque test
     actual_output = output.getvalue().strip()
     return actual_output == expected_output
 
@@ -62,6 +121,14 @@ def main():
             ok = False
         elif result == "Timeout":
             print("Il y a surement une boucle infinie, verfie ton code")
+            ok = False
+            break
+        elif result == "Plus d'inputs demandes que fournis":
+            print(result)
+            ok = False
+            break
+        elif result == "autre":
+            print(result)
             ok = False
             break
         else:

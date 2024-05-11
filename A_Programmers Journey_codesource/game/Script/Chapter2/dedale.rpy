@@ -136,7 +136,7 @@ label test2:
     mino "Encore desolé du derangement"
 
     m "Parfait ça nous convient"
-
+    $ persistent.chap=2
 label place_dedale:
     scene centre_labyrinthe with fade
     play music "Minotaur_song.mp3" if_changed
@@ -154,7 +154,7 @@ label place_dedale:
                     renpy.jump("place_dedale")
         "voir la map":
             $ quick_menu = False
-            call screen Map with fade
+            call screen Map(persistent.chap) with fade
 
 label tavern_dedale:
     play music "Minotaur_song.mp3" if_changed

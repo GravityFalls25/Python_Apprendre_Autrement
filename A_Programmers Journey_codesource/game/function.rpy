@@ -103,6 +103,8 @@ init python:
                 persistent.point_de_valeur = persistent.point_de_valeur + int(gold_gagne)
             elif chap == 3:
                 persistent.argent = persistent.argent + int(gold_gagne)
+            elif chap == 4:
+                persistent.point_intelligence = persistent.point_intelligence + int(gold_gagne)
             persistent.score = persistent.score + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:

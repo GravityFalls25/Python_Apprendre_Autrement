@@ -12,5 +12,7 @@ if not persistent.point_de_valeur:
         default persistent.point_de_valeur = 0
 if not persistent.argent:
         default persistent.argent = 0
+if not persistent.point_intelligence:
+        default persistent.point_intelligence = 0
 if not persistent.chap:
         default persistent.chap = 0

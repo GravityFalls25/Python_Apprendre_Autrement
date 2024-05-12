@@ -25,7 +25,7 @@ import os
 import pandas as pd
 
 #En fonction de la zone, retourne deux sets tout deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
-def lecture_txt(Tavern = 0):
+def get_mission_tavern_lecture(Tavern = 0):
     tavern = str(Tavern)
     if tavern == '0':
         fichier = 'Quete/Aventure.xlsx'
@@ -312,7 +312,7 @@ def on_exit():
 
 # Enregistrer la fonction on_exit pour qu'elle soit appelée lorsque le programme se termine
 atexit.register(on_exit)
-df_complet = lecture_txt()
+
 
 #Crée la page quete
 @app.route('/', methods=["POST"])
@@ -378,7 +378,7 @@ def get_mission_tavern():
     id_tavern = data.get('tavern')
     # Convertir la liste de tuples en un ensemble
     Quete_faite = set(pairs_list)
-    Quete_tavern_complet,Quete_tavern_complet_0diff = lecture_txt(int(id_tavern))
+    Quete_tavern_complet,Quete_tavern_complet_0diff = get_mission_tavern_lecture(int(id_tavern))
 
     Quete_a_faire_0diff = Quete_tavern_complet_0diff.difference(Quete_faite)
     Quete_a_faire = {(id_quete, nom_quete, difficulte) for id_quete, nom_quete, difficulte in Quete_tavern_complet if (id_quete, nom_quete) in Quete_a_faire_0diff}

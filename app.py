@@ -296,7 +296,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     continue
             
                 fout.write(f"{ligne}\n")
-    return df['Nom_Quete']
+    return df['Nom_Quete'][0]
         
                 
           

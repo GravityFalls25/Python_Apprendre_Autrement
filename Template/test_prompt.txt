@@ -55,28 +55,6 @@ def validate_student_code(code):
 
 
 
-def run_test(inputs):
-    output = StringIO()
-    sys.stdout = output
-    def side_effect(*args, **kwargs):
-        if side_effect.counter < len(inputs):
-            result = inputs[side_effect.counter]
-            side_effect.counter += 1
-            return result
-        raise InputExceededError("Plus d'inputs demandes que fournis")
-    side_effect.counter = 0
-
-    with mock.patch('builtins.input', side_effect=side_effect):
-        try:
-            import user  # Recharger le module utilisateur pour chaque test
-        except InputExceededError as e:
-            return str(e)
-        except Exception as e:
-            return f"Erreur non geree : {str(e)}"
-        finally:
-            sys.stdout = sys.__stdout__
-    actual_output = output.getvalue().strip()
-    return actual_output
 
 def run_test(inputs, expected_output):
     output = StringIO()

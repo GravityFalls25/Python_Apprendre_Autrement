@@ -1,6 +1,10 @@
 label Bibli_monde:
     scene bibli_int
-    show Bibliothecaire
+    show bibliothecaire:
+        ypos 0.2
+        xpos 0.25
+        xzoom 1.75
+        yzoom 1.75
     play music "Tavern_song.mp3" if_changed
     bibli "Bienvenue. Que puis faire pour vous ?"
     $ renpy.save_persistent()
@@ -8,9 +12,8 @@ label Bibli_monde:
     menu: 
         "Voir les livres de quetes disponibles":
             $ quests = load_quests(4)
-            call screen quest_menu(4,quests,"dialogue_bibli","auberge")
+            call screen quest_menu(4,quests,"dialogue_bibli","Bibli_monde")
         "Repartir":
-            $ heure += 0.25
             jump chemin
 
 label dialogue_bibli(quest_id,quest_nom, url):

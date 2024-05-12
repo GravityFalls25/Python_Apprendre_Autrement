@@ -8,7 +8,7 @@ define jm= Character(_("[name]&Navi"),color="#0bbcd4")
 #Temporium
 define garde= Character(_("Garde"),color="#d49711")
 define fermier= Character(_("Fermier"),color="#13ad0d")
-define vendeur= Character(_("Vendeur"),color="#ffd700")
+define vendeuse= Character(_("Vendeuse"),color="#ffd700")
 define A= Character(_("Aubergiste"),color="#446d14")
 define forgeron= Character(_("Forgeron"),color="#FFA635")
 define mechant1= Character(_("Le Pyromane"),color= "#e41313")

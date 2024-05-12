@@ -270,22 +270,28 @@ label chemin:
     if heure <= 8.25:
         show fermier
         menu:
-            "Il semblerait que je sois arriver juste avant que le jeune homme se fasse bousculer"
+            "Il semblerait que je sois arrivé juste avant que le jeune homme se fasse bousculer"
             "L'aider":
                 show fermier with vpunch
                 fermier "Blep"
                 m "Attention !"
                 "Il est trop tard pour le rattraper avant qu'il tombe mais je peux encore sauver ses pommes"
                 if quete_pomme:
-                    "Heureusement je rappelle encore de comment faire pour sauver ses pommes"
+                    j "Vite ! Vas y, Je pense savoir à l'avance où elles vont tomber"
+                    m "Compris !"
                 else:
                     label quete_pommes:
-                        #quete
+                        python:
+                            nom_quete = create_html(5,id,j,"Tu es pret ?")
+                            reussi = False
+                            reussi,gold_gagne = verif_quete(id,3)
+
                         if reussi != True:
                             jump quete_pommes
                         python:
                             remove_html(id)
                             quete_pomme =True
+                call screen ecran_victoire(nom_quete,gold_gagne,3)
                 fermier "Merci d'avoir rattrapé ma marchandise"
                 fermier "Vous voyez je suis un paysan qui etait venu vendre ma marchandise au marché et si il etait arrivé quelque chose à mes pommes j'aurai été forcé de vendre ma ferme"
                 fermier "C'est pour ca que je voudrai vous remercier, suivez moi je vais vous amener dans ma ferme pour vous donner votre recompense"
@@ -457,13 +463,19 @@ label forgeron:
         forgeron "Marché conclu"
 
         label quete_forge:
-            #quete
+            python:
+                nom_quete = create_html(6,id,forgeron,"Alors commençons")
+                reussi = False
+                reussi,gold_gagne = verif_quete(id,3)
+
             if reussi != True:
                 jump quete_forge
             python:
                 remove_html(id)
+
                 quete_forge =True
                 heure += 5.5
+            call screen ecran_victoire(quest_nom,gold_gagne,3)
         
         forgeron "Mine de rien, tu es doué et tu m'as été d'une grande aide. Tu es sur de ne pas vouloir devenir mon assistant a temps plein"
         

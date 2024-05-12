@@ -2,7 +2,7 @@ label Temporium:
     scene black with fade
     "Nous sommes enfin arrivé aux portes de Temporium apres un voyage qui m'a semblé interminable"
 
-    scene ville_temporium with fade
+    scene entree_village with fade
     show garde
 
     garde "Halte la, declinez votre identité"
@@ -19,7 +19,7 @@ label Temporium:
     #boucle 1
     garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
 
-    scene chemin_ville with fade
+    scene ville_et_vendeuse with fade
     "{i}Nous avancons alors sur le chemin indiqué par le garde{/i}"
 
     show fermier with vpunch
@@ -30,11 +30,10 @@ label Temporium:
     fermier "Oh non mes pommes"
 
     "En voila un qui n'a pas de chance. Heureusement, il n'a pas l'air d'etre blessé mais ses pommes sont irrecuperables, il n'y a rien que je puisse faire"
-
+    hide fermier
     "Continuons d'avancer"
 
-    show vendeur
-    vendeur "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
+    vendeuse "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
 
     m "Oh ce stand à l'air interressant, il vend plein de produits que je n'ai jamais vu"
 
@@ -45,7 +44,7 @@ label Temporium:
     scene black with fade
     "Nos arrivames enfin en face de l'immense bibliotheque-monde"
 
-    scene bibliotheque with fade
+    scene bibli with fade
     m "Wow, cette bibliotheque est vraiment immense !"
     m "Mais c'est quoi ce papier sur la porte ?"
 
@@ -59,8 +58,18 @@ label Temporium:
 
     scene black with fade
 
-    "Nous nous dirigeames vers l'auberge la plus proche et louons directement deux chambres pour passer la nuit"
+    "Nous nous dirigeames vers l'auberge la plus proche"
 
+    scene auberge with fade
+
+    m "Bonjour, nous voudrions louer deux chambres pour passer la nuit"
+
+    show female_tarvenier
+    A "Bien sur, les chambres sont à l'étage voici les clés"
+
+    A "Reposez vous bien!"
+
+    scene black with fade
     m "Je suis vraiment extenué, j'ai l'impression que je pourrais m'écrouler à tout moment"
 
     m "D'un autre coté, ça fait longtemps que je me suis pas autant amusé"
@@ -69,7 +78,7 @@ label Temporium:
 
     "C'est sur cette pensée que je fini par m'assoupir"
 
-    scene black with fade
+    scene chambre_auberge
     #play sound "crash.mp3"
     show Navi inquiet with moveinright
     j "Vite reveille-toi un truc horrible est en train de se passer !"
@@ -78,7 +87,7 @@ label Temporium:
 
     j "La bibliotheque-monde est en feu !"
 
-    scene bibliotheque_feu with hpunch
+    scene bibli_feu_soir with hpunch
     show Navi inquiet at right
 
     j "Allons vite voir de plus pres"
@@ -86,8 +95,7 @@ label Temporium:
     "Nous nous precipitames sans meme prendre le temps de nous preparer mais le temps d'arriver à la bibliotheque, elle etait deja reduite en cendre"
 
     "On essaye quand meme de fouiller dans les debris pour voir si un livre a survecu mais rien a y faire, tout est irrecuperable"
-    # Tu crois qu'il reste encore quelques livres
-    # Non, il ne reste plus rien, tout est irrecuperable
+
     j "Oh non comment vas-t'on faire maintenant. C'etait le seul moyen de savoir où se trouvait Ouroboros et comment le vaincre"
 
     m "Retournons nous coucher, on trouvera une solution demain, à tete reposée"
@@ -97,7 +105,7 @@ label Temporium:
 
     #2eme boucle
     #play sound "call of the witch.mp3"
-    scene ville_temporium
+    scene entree_ville
 
     m "Hein quoi où suis-je, comment je suis arrivé la ?"
 
@@ -105,39 +113,40 @@ label Temporium:
 
     "J'ai comme une impression de deja-vu"
 
-    scene chemin_ville with fade
+    scene ville_et_vendeuse with fade
     "Nous avancons tout de meme sur le chemin indiqué par le garde"
 
-    show Navi with fade
+    show Navi 
     j "Hey, tu sais comment on est retourné à l'entrée de la ville ?"
 
     m "Non je n'ai aucune idée et en plus, regarde au bout de ce chemin, ce n'est pas la bibliotheque que l'on a vu bruler hier soir ?"
 
     j "Peut-etre qu'on en saura plus si on se rapproche de la bibliotheque"
-    # "ça ne peux pas être possible, allons voir de plus pres"
+    hide Navi
     show fermier with vpunch
     fermier "Blep"
     "C'est le meme jeune homme qu'hier qui est encore etalé au sol, couvert de boue"
     fermier "Vous pourriez quand meme faire attention"
     "Et encore une fois, une charette ecrasa ses pommes"
     fermier "Oh non mes pommes"
-
+    hide fermier
     "On continue d'avancer"
 
-    show vendeur
-    vendeur "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
+    show vendeuse at right
+    vendeuse "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
 
-    "Le vendeur est lui aussi encore la"
+    "Le vendeuse est lui aussi encore la"
 
     scene black with fade
     "On arriva enfin en face de l'immense bibliotheque-monde"
 
-    scene bibliotheque with fade
+    scene bibli with fade
     m "Le papier est toujours la"
     show paper
 
     m "Voila qui confirme mes soupcons, le jour n'a pas changé, d'une facon ou d'une autre nous avons remonté le temps"
-
+    hide paper
+    show Navi
     m "Tu sais ce qui a pu causer ca Navi ?"
 
     j "Je pense que c'est du à la capacité d'une des fonctions divines"
@@ -146,7 +155,7 @@ label Temporium:
 
     m "Et quels sont les effets d'une boucle ?"
 
-    j "Si l'outil utilisé est le for alors on risque de repeter la boucle un nombre bien precis de fois mais dans le cas ou c'est un while..."
+    j "Si l'outil utilisé est le for alors on risque de repeter une boucle temporelle un nombre bien precis de fois mais dans le cas ou c'est un while..."
 
     j "Alors nous vivrons la meme journée jusqu'à la fin des temps"
 
@@ -180,7 +189,7 @@ label Temporium:
 
     "Quelques heures plus tard"
 
-    scene bibliotheque
+    scene bibli
     m "Ca nous aura prit tout le reste de la journée mais on a enfin reussi à copier les effets des boucles"
 
     call screen debloquer(3)
@@ -193,10 +202,10 @@ label Temporium:
 
     #play sound "start_fire.mp3"
 
-    j "Il semblerait que ca a deja commencé"
+    j "Il semblerait qu'on s'y prend trop tard"
 
     m "Vite fait le tour du batiment par la gauche et essaie de voir si il y a quelque chose de suspect, moi je ferai le tour par la droite"
-
+    scene derriere_bibli
     "{i}Au moment où j'arrive derriere le batiment, une figure encapuchonnée sort à toute vitesse de la bibliotheque {/i}"
 
     m "Hey vous, arretez-vous !"
@@ -218,7 +227,7 @@ label Temporium:
     $ quete_pomme=False
 label debut_boucle:
     #play sound "call of the witch.mp3"
-    scene ville_temporium
+    scene entree_ville
     $ parler_garde=False
     $ quete_auberge=False
     $ filet=False
@@ -229,7 +238,7 @@ label debut_boucle:
     $ heure=8
     show garde at right
     garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
-
+    hide garde
     "C'est reparti pour une nouvelle iteration"
 label entree_temporium:
     menu:
@@ -237,7 +246,7 @@ label entree_temporium:
         "Parler au soldat":
             $ parler_garde=True
             $ parler_garde_global=True
-
+            show garde at right
             m "Comment ca se fait que vous ayez un pelle en main ?"
             garde "Ma lance c'est brisé et je n'ai pas le temps de passer chez le forgeron pour me faire forger une nouvelle lance"
             m "Tu veux que j'y aille pour toi ?"
@@ -252,7 +261,9 @@ label entree_temporium:
             $ heure += 0.8 
             jump forgeron
         "Donner la lance au garde" if parler_garde and lance:
+            show garde
             m "Voici votre nouvelle lance flabante neuve"
+            show garde lance
             garde "Oh merci, je n'aurai plus l'air ridicule avec cette pelle, d'ailleurs tenez je n'en ai plus besoin"
             garde "On dirait pas mais c'est une pelle de tres bonne qualité, vous pouvez la vendre ou la garder. Elle est à vous maintenant"
             $ pelle = True
@@ -266,7 +277,7 @@ label entree_temporium:
         "Passer la journée":
             jump debut_boucle
 label chemin:
-    scene town with fade
+    scene ville_et_vendeuse with fade
     if heure <= 8.25:
         show fermier
         menu:
@@ -322,16 +333,16 @@ label chemin:
         "Aller a l'entree de la ville":
             $ heure += 0.2
             jump entree_temporium
-        "Parler au vendeur":
+        "Parler a la vendeuse":
             label magasin:
-                show vendeur at right
+                show vendeuse at right
                 menu:
                     "J'ai [argent_actuel] piece d'argent"
                     "Acheter un filet - x piece d'argent":
                         if argent_actuel >=0:
                             $ argent_actuel -= 0
                             $ filet = True
-                            vendeur "Merci pour votre achat, j'espere vous revoir bientot"
+                            vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Voila qui pourrait m'etre utile"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
@@ -339,7 +350,7 @@ label chemin:
                     "Acheter un parfums - x piece d'argent":
                         if argent_actuel >=x:
                             $ argent_actuel -= x
-                            vendeur "Merci pour votre achat, j'espere vous revoir bientot"
+                            vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
@@ -347,7 +358,7 @@ label chemin:
                     "Acheter de l'huile - x piece d'argent":
                         if argent_actuel >=x:
                             $ argent_actuel -= x
-                            vendeur "Merci pour votre achat, j'espere vous revoir bientot"
+                            vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
@@ -355,26 +366,26 @@ label chemin:
                     "Acheter du savon - x piece d'argent":
                         if argent_actuel >=x:
                             $ argent_actuel -= x
-                            vendeur "Merci pour votre achat, j'espere vous revoir bientot"
+                            vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
                         jump magasin
                     "Partir":
-                        vendeur "Passez une bonne journée !"
+                        vendeuse "Passez une bonne journée !"
                         jump chemin
         "Passer la journée":
             jump debut_boucle
 label auberge:
     play music "Tavern_song.mp3" if_changed
-    scene tavern
-    show tavernier
+    scene auberge
+    show female_tavernier
     $ renpy.save_persistent()
-    T "Bienvenue dans mon auberge, comment puis-je vous aider ?"
+    A "Bienvenue dans mon auberge, comment puis-je vous aider ?"
     if quete_auberge_global and not quete_auberge:
         "Refaisons rapidement les quetes que j'ai deja fait dans les iterations precedentes"
-        scene tavern with fade
-        show tavernier
+        scene auberge with fade
+        show female_tavernier
         A "Vous avez gagné un total de [persistent.argent] piece d'argent"
         $ argent_actuel = persistent.argent
         "Voila qui est fait"
@@ -388,17 +399,17 @@ label auberge:
             jump chemin
 
 label dialogue_aubergiste_Temporium(quest_id,quest_nom, url):
-    T "Bonjour, bon courage pour la quête!"
+    A "Bonjour, bon courage pour la quête!"
     menu:
         "Commencer la quête":
-            T "Parfait, voici les détails..."
+            A "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
             call quete_aubergiste_temporium(quest_id,quest_nom, url)
         "Annuler":
-            T "C'est dommage, peut-être une autre fois."
+            A "C'est dommage, peut-être une autre fois."
             jump auberge
 label quete_aubergiste_temporium(quest_id,quest_nom, url):
-    T "Alors, tu avances bien dans ta quete ?"
+    A "Alors, tu avances bien dans ta quete ?"
     menu:
         "Valider la quête":
 
@@ -416,7 +427,7 @@ label quete_aubergiste_temporium(quest_id,quest_nom, url):
 
             jump auberge
         "Abandonner":
-            T "C'est dommage, peut-être une autre fois."
+            A "C'est dommage, peut-être une autre fois."
             jump auberge
 
 label forgeron:

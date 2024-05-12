@@ -10,12 +10,13 @@ label Temporium:
     j "Nous sommes des voyageurs à la recherche de la bibliotheque-monde, Je m'appelle Navi et suis accompagné de [name]"
 
     garde "Tres bien, vous pouvez rentrer"
-
+    scene black with fade
     "Nous passons l'entrée de la ville"
     #play sound "call_of_the_witch.mp3"
-
+    scene entree_ville with fade
     m "Tiens, tu as entendu ca ?"
     j "Entendu quoi ?"
+    show garde at left
     #boucle 1
     garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
 
@@ -32,7 +33,7 @@ label Temporium:
     "En voila un qui n'a pas de chance. Heureusement, il n'a pas l'air d'etre blessé mais ses pommes sont irrecuperables, il n'y a rien que je puisse faire"
     hide fermier
     "Continuons d'avancer"
-
+    show vendeuse at right
     vendeuse "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
 
     m "Oh ce stand à l'air interressant, il vend plein de produits que je n'ai jamais vu"
@@ -64,7 +65,7 @@ label Temporium:
 
     m "Bonjour, nous voudrions louer deux chambres pour passer la nuit"
 
-    show female_tarvenier
+    show female_tavernier
     A "Bien sur, les chambres sont à l'étage voici les clés"
 
     A "Reposez vous bien!"
@@ -106,7 +107,7 @@ label Temporium:
     #2eme boucle
     #play sound "call of the witch.mp3"
     scene entree_ville
-
+    show garde at left
     m "Hein quoi où suis-je, comment je suis arrivé la ?"
 
     garde "Ca faisait longtemps que nous avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
@@ -189,7 +190,7 @@ label Temporium:
 
     "Quelques heures plus tard"
 
-    scene bibli
+    scene bibli_soir with fade
     m "Ca nous aura prit tout le reste de la journée mais on a enfin reussi à copier les effets des boucles"
 
     call screen debloquer(3)
@@ -201,12 +202,12 @@ label Temporium:
     m "Mais avant que cette itération ne se finisse, il faut decouvrir pourquoi la bibliotheque a prit feu"
 
     #play sound "start_fire.mp3"
-
+    scene bibli_feu_soir with fade
     j "Il semblerait qu'on s'y prend trop tard"
 
     m "Vite fait le tour du batiment par la gauche et essaie de voir si il y a quelque chose de suspect, moi je ferai le tour par la droite"
-    scene derriere_bibli
-    "{i}Au moment où j'arrive derriere le batiment, une figure encapuchonnée sort à toute vitesse de la bibliotheque {/i}"
+
+    "{i}Au moment où j'arrive devant le batiment, une figure encapuchonnée sort à toute vitesse de la bibliotheque {/i}"
 
     m "Hey vous, arretez-vous !"
 
@@ -236,7 +237,7 @@ label debut_boucle:
     $ lance= False
     $ argent_actuel=0
     $ heure=8
-    show garde at right
+    show garde at left
     garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
     hide garde
     "C'est reparti pour une nouvelle iteration"
@@ -246,7 +247,7 @@ label entree_temporium:
         "Parler au soldat":
             $ parler_garde=True
             $ parler_garde_global=True
-            show garde at right
+            show garde at left
             m "Comment ca se fait que vous ayez un pelle en main ?"
             garde "Ma lance c'est brisé et je n'ai pas le temps de passer chez le forgeron pour me faire forger une nouvelle lance"
             m "Tu veux que j'y aille pour toi ?"
@@ -507,7 +508,7 @@ label pose_piege:
     j "Vite cachons nous avant qu'il n'arrive"
     hide Navi with moveoutright
     #play sound "buisson.mp3"
-    scene bibli with fade
+    scene bibli_soir with fade
 
     j "Normalement il ne va pas tarder"
 
@@ -516,7 +517,9 @@ label pose_piege:
 
     m "C'est bon on l'a eu, approchons nous"
     show Navi at right with moveinright
-    show mechant1 at left
+    show mechant1 at left:
+        ypos 1.1
+        xzoom -1.0
     mechant1 "Qui ose m'attraper de la sorte"
 
     m "Qui est tu et pourquoi voulais tu mettre feu à la bibliotheque-monde"
@@ -531,9 +534,9 @@ label pose_piege:
 
     m "Parle maintenant"
 
-    mechant1 "Je suis un soldat sous les ordres du Serpent du Temps et j'etais venu pour bruler la bibliotheque-monde car elle contient des ecrits blasmatoire contre mon maitre"
+    mechant1 "Je suis un soldat sous les ordres du Serpent du Temps et j'etais venu pour bruler la bibliotheque-monde car elle contient des ecrits blasphématoire contre mon maitre"
 
-    m "Des ecrits blasmatoire ?"
+    m "Des ecrits blasphématoire ?"
 
     j "Je pense qu'il parle des livres qui parlent des faiblesses de Ouroboros"
 
@@ -546,13 +549,15 @@ label pose_piege:
     
     mechant1 "On est coincé dans une boucle temporelle ?"
 
-    mechant1 "Ca ne peut signifier qu'une seule chose, l'autre vielliard nous a trahi"
+    mechant1 "Ca ne peut signifier qu'une seule chose, l'autre vieillard nous a trahi"
 
     show mechant2 at myfade(1.0)
+
     mechant2 "Alors comme ca on parle de moi dans mon dos ?"
 
-    $ mechant2_name = "_mec_"
-    mechant1 "Explique toi, _mec_ tu as osé trahir le maitre ?"
+    mechant1 "Explique toi, Rhotszix tu as osé trahir le maitre ?"
+    
+    $ mechant2_name = "Rhotszix"
 
     mechant2 "Je n'ai rien à dire à une vermine comme toi, hors de ma vue"
 

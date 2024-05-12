@@ -12,7 +12,7 @@ define vendeuse= Character(_("Vendeuse"),color="#ffd700")
 define A= Character(_("Aubergiste"),color="#446d14")
 define forgeron= Character(_("Forgeron"),color="#FFA635")
 define mechant1= Character(_("Le Pyromane"),color= "#e41313")
-define mechant2= Character(_("mechant2_name"),color= "#e41313")
+define mechant2= DynamicCharacter(("mechant2_name"),color= "#e41313")
 
 #Bibli
 define bibli= Character(_("Bibliothecaire"),color= "#b70f93")

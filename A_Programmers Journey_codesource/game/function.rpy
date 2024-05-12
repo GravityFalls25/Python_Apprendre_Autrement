@@ -125,5 +125,7 @@ transform mymoveout(timing):
     linear timing xpos 2.0
 
 transform myfade(timing):
+    xpos 0.25
+    ypos 0.1
     alpha 0.00
     linear timing alpha 1.00

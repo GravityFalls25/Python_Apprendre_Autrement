@@ -205,7 +205,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write(f"        var id = '{id}'\n")
                     continue
                 if "var gold_total = 0;" in ligne:
-                    fout.write(f"        var gold_total = {int(df['Difficulté'][0])}*100;\n")
+                    fout.write(f"        var gold_total = {float(df['Difficulté'][0])}*100;\n")
                     continue
                 fout.write(f"{ligne}\n")
                 
@@ -316,13 +316,13 @@ df_complet = lecture_txt()
 
 #Crée la page quete
 @app.route('/', methods=["POST"])
-def traiter_requete():
+def create_html():
     data = request.json
     valeur = data.get('valeur')
-    id = data.get('id')
+    id_joueur = data.get('id')
     tavern = data.get('tavern')
     print(tavern)
-    name = html(int(valeur), id,tavern)
+    name = html(int(valeur), id_joueur,tavern)
      
     return jsonify({"message": "Commande PHP exécutée avec succès","name": name})
 

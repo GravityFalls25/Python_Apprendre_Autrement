@@ -125,7 +125,38 @@ transform mymoveout(timing):
     linear timing xpos 2.0
 
 transform myfade(timing):
-    xpos 0.25
-    ypos 0.1
     alpha 0.00
     linear timing alpha 1.00
+transform tremble:
+        alpha 1.0 xoffset 0
+        choice:
+            block:
+                linear 0.05 xoffset 10
+                linear 0.05 xoffset -10
+                repeat 2
+            block:    
+                choice:
+                    linear 0.05 xoffset 10
+                    linear 0.05 xoffset -10
+                    repeat 2
+                choice:
+                    linear 0.05 xoffset 10
+                    linear 0.05 xoffset -10
+                    linear 0.05 xoffset 10                    
+                    repeat 2
+        choice:
+            block:
+                linear 0.05 xoffset -10
+                linear 0.05 xoffset 10
+                repeat 2
+            block:
+                choice:
+                    linear 0.05 xoffset -10
+                    linear 0.05 xoffset 10
+                    repeat 2        
+                choice:
+                    linear 0.05 xoffset -10                    
+                    linear 0.05 xoffset 10
+                    linear 0.05 xoffset -10
+                    repeat 2
+        linear 0.07 xoffset 0

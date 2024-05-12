@@ -23,9 +23,9 @@ label Temporium:
     scene ville_et_vendeuse with fade
     "{i}Nous avancons alors sur le chemin indiqué par le garde{/i}"
 
-    show fermier with vpunch
+    show fermier at tremble,center
     fermier "Blep"
-    "Je vois un jeune homme étalé sur le sol couvert de boue"
+    "Je vois un jeune homme de l'autre coté de la route étalé sur le sol couvert de boue"
     fermier "Vous pourriez quand meme faire attention"
     "Au moment où il dit ca une charette passant à vive allure écrasa ses pommes"
     fermier "Oh non mes pommes"
@@ -124,7 +124,7 @@ label Temporium:
 
     j "Peut-etre qu'on en saura plus si on se rapproche de la bibliotheque"
     hide Navi
-    show fermier with vpunch
+    show fermier at tremble,center
     fermier "Blep"
     "C'est le meme jeune homme qu'hier qui est encore etalé au sol, couvert de boue"
     fermier "Vous pourriez quand meme faire attention"
@@ -284,15 +284,16 @@ label chemin:
         menu:
             "Il semblerait que je sois arrivé juste avant que le jeune homme se fasse bousculer"
             "L'aider":
-                show fermier with vpunch
+                show fermier at tremble,center
                 fermier "Blep"
                 m "Attention !"
                 "Il est trop tard pour le rattraper avant qu'il tombe mais je peux encore sauver ses pommes"
                 if quete_pomme:
-                    j "Vite ! Vas y, Je pense savoir à l'avance où elles vont tomber"
-                    m "Compris !"
+                    "Heureusement je rappelle encore de comment faire pour sauver ses pommes"
                 else:
                     label quete_pommes:
+                        j "Vite ! Vas y, Je pense savoir à l'avance où elles vont tomber"
+                        m "Compris !"
                         python:
                             nom_quete = create_html(5,id,j,"Tu es pret ?")
                             reussi = False
@@ -323,9 +324,9 @@ label chemin:
                 $ heure += 0.5
                 jump chemin
             "L'ignorer":
-                show fermier with vpunch
+                show fermier at tremble,center
                 fermier "Blep"
-                "Comme d'habitude je vois un jeune homme étalé sur le sol couvert de boue"
+                "Comme d'habitude je vois un jeune homme de l'autre coté de la route étalé sur le sol couvert de boue"
                 fermier "Vous pourriez quand meme faire attention"
                 "Au moment où il dit ca une charette passant à vive allure écrasa ses pommes"
                 fermier "Oh non mes pommes"
@@ -473,21 +474,23 @@ label forgeron:
         m "Peut-etre pourrais-je remplacer votre assistant le temps de forger ma lance et echange vous finirez ma commande aujourd'hui"
 
         forgeron "Marché conclu"
+        if not quete_forgeron:
+            label quete_forge:
+                python:
+                    nom_quete = create_html(6,id,forgeron,"Alors commençons")
+                    reussi = False
+                    reussi,gold_gagne = verif_quete(id,3)
 
-        label quete_forge:
-            python:
-                nom_quete = create_html(6,id,forgeron,"Alors commençons")
-                reussi = False
-                reussi,gold_gagne = verif_quete(id,3)
+                if reussi != True:
+                    jump quete_forge
+                python:
+                    remove_html(id)
 
-            if reussi != True:
-                jump quete_forge
-            python:
-                remove_html(id)
-
-                quete_forge =True
-                heure += 5.5
-            call screen ecran_victoire(quest_nom,gold_gagne,3)
+                    quete_forge =True
+                    heure += 5.5
+                call screen ecran_victoire(quest_nom,gold_gagne,3)
+        else:
+            "Faisons ca rapidement vu que je me rappelle de comment faire"
         
         forgeron "Mine de rien, tu es doué et tu m'as été d'une grande aide. Tu es sur de ne pas vouloir devenir mon assistant a temps plein"
         
@@ -551,7 +554,7 @@ label pose_piege:
 
     mechant1 "Ca ne peut signifier qu'une seule chose, l'autre vieillard nous a trahi"
 
-    show mechant2 at myfade(1.0)
+    show mechant2 at myfade(1.0), center
 
     mechant2 "Alors comme ca on parle de moi dans mon dos ?"
 

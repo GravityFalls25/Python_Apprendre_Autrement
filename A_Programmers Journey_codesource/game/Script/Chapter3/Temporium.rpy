@@ -409,7 +409,7 @@ label auberge:
             jump chemin
 
 label dialogue_aubergiste_Temporium(quest_id,quest_nom, url):
-    A "Bonjour, bon courage pour la quête!"
+    A "Bon courage pour la quête!"
     menu:
         "Commencer la quête":
             A "Parfait, voici les détails..."
@@ -449,16 +449,16 @@ label forgeron:
 
     forgeron "Qu'est-ce qu'une crevette comme toi ferai d'une lance ?"
 
-    m "Ce n'est pas pour moi mais c'est pour le garde a l'entree du village qui a cassé sa lance"
+    m "Ce n'est pas pour moi mais c'est pour le garde à l'entree du village qui a cassé la sienne"
 
-    forgeron "Tres bien, je trouvais aussi que c'etait bizarre qu'un garde se ballade avec une pelle au lieu de sa lance habituelle"
+    forgeron "Très bien, je trouvais aussi étrange qu'un garde se ballade avec une pelle au lieu d'une lance"
 
     if heure > 10:
-        forgeron "Par contre faudra repasser demain, un lance ca se forge dans la fraicheur d'un bon matin"
+        forgeron "Par contre faudra repasser demain, une lance ça se forge dans la fraicheur d'un bon matin"
         
         forgeron "Tu es arrivé trop tard et la journée a eu le temps de se rechauffer et tout ca n'est pas bon pour le metal"
 
-        forgeron "Si tu etait arrivé avant 10 heure, je te l'aurai fait sans probleme"
+        forgeron "Si tu etais arrivé avant 10 heure, je te l'aurai fait sans probleme"
 
         forgeron "Aller maintenant part et laisse moi me reconcentrer sur mon travail"
 
@@ -492,9 +492,9 @@ label forgeron:
                     heure += 5.5
                 call screen ecran_victoire(quest_nom,gold_gagne,3)
         else:
-            "Faisons ca rapidement vu que je me rappelle de comment faire"
+            "Faisons ça rapidement vu que je me rappelle de comment faire"
         
-        forgeron "Mine de rien, tu es doué et tu m'as été d'une grande aide. Tu es sur de ne pas vouloir devenir mon assistant a temps plein"
+        forgeron "Mine de rien, tu es doué et tu m'as été d'une grande aide. Tu es sur de ne pas vouloir devenir mon assistant à temps plein"
         
         forgeron "Enfin bref, une promesse est une promesse voici ta lance"
         $ lance=True
@@ -527,7 +527,7 @@ label pose_piege:
         xzoom -1.0
     mechant1 "Qui ose m'attraper de la sorte"
 
-    m "Qui est tu et pourquoi voulais tu mettre feu à la bibliotheque-monde"
+    m "Qui es tu et pourquoi voulais tu mettre feu à la bibliotheque-monde"
 
     mechant1 "Je n'ai rien à dire à un sale humain"
 
@@ -541,13 +541,13 @@ label pose_piege:
 
     mechant1 "Je suis un soldat sous les ordres du Serpent du Temps et j'etais venu pour bruler la bibliotheque-monde car elle contient des ecrits blasphématoire contre mon maitre"
 
-    m "Des ecrits blasphématoire ?"
+    m "Des écrits blasphématoire ?"
 
     j "Je pense qu'il parle des livres qui parlent des faiblesses de Ouroboros"
 
     m "Je vois"
 
-    m "Deuxieme question, pourquoi tu nous as enfermé dans une boucle et comment peut-on la sortir de celle-ci ?"
+    m "Deuxieme question, pourquoi tu nous as enfermé dans une boucle et comment peut-on en sortir la ?"
 
     with hpunch
     mechant1 "QUOI ?"

@@ -6,7 +6,7 @@ label Bibli_monde:
         xzoom 1.75
         yzoom 1.75
     play music "Tavern_song.mp3" if_changed
-    bibli "Bienvenue. Que puis faire pour vous ?"
+    bibli "Bienvenue. Que puis je faire pour vous ?"
     $ renpy.save_persistent()
     
     menu: 

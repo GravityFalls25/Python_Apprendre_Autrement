@@ -384,6 +384,8 @@ label chemin:
                         jump chemin
         "Passer la journée":
             jump debut_boucle
+
+
 label auberge:
     play music "Tavern_song.mp3" if_changed
     scene auberge
@@ -425,7 +427,7 @@ label quete_aubergiste_temporium(quest_id,quest_nom, url):
                 
                 reussi = False
                 reussi,gold_gagne = verif_quete(id,3)
-                argent_actuel +=gold_gagne
+                argent_actuel +=int(gold_gagne)
             if reussi != True:
                 jump auberge
             python:
@@ -567,4 +569,14 @@ label pose_piege:
     show mechant1 at mymoveout(0.2)
     "Le pyromane est alors ejecté à une vitesse incroyable en direction d'un mur adjacent"
     #play sound "impact.mp3"
-    "Il s'evanouissa instantanement"
+    "Il s'évanouit instantanement"
+
+label presentation:
+    $ quete_auberge_global = True
+    $ quete_auberge = True
+    $ heure = 0
+    $ name = "Bricoleur"
+    $ Navi_name="Navi"
+    $ argent_actuel=0
+    $ persistent.chap = 4
+    jump auberge

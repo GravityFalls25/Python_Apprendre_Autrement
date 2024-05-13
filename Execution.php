@@ -2,20 +2,19 @@
 // Récupère le code Python envoyé par la requête AJAX
 $code = $_POST['code'];
 $contenu = $_POST['contenu'];
+$contenu = trim($contenu);
 
-
-// Diviser la chaîne en fonction des balises <br>
-$contenu = preg_split('/<br\s*\/?>/i', $contenu);
+// Diviser la chaîne en fonction des balises <p>
+preg_match_all('/<p[^>]*>(.*?)<\/p>/i', $contenu, $matches);
+$contenu = $matches[1];
 
 
 // Nettoyer chaque élément
 foreach ($contenu as &$element) {
     $element = trim(strip_tags($element));
 }
-
 // Rejoindre les éléments en une seule chaîne, séparée par des virgules
 $contenu = implode(',', $contenu);
-
 // Crée un fichier temporaire pour stocker le code Python
 $filename = 'execution.py';
 $filename2 = 'user.py';

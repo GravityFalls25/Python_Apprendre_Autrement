@@ -85,11 +85,11 @@ screen Map(ch):
             action Jump("place_dedale")
     if ch >=3:
         imagebutton :
-            xpos 74
+            xpos 744
             ypos 473
             hover "temporium_hover.png"
             idle "temporium_idle.png"
-            action Jump("place_temporium")
+            action Jump("auberge")
 
 define get_fct=[
     ["Vous avez compris comment utiliser le print()\n","Le print sert à afficher ce qui est marqué dans ces parentheses","nbr=4\nprint(nbr)\nprint(\"test\")","4\ntest"],

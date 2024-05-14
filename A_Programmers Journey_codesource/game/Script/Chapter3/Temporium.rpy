@@ -239,9 +239,9 @@ label debut_boucle:
     $ heure=8
     show garde at left
     garde "Ca faisait longtemps que nous n'avions plus de visiteur, la bibliotheque se trouve au bout de ce chemin, passez un agreable sejour"
-    hide garde
     "C'est reparti pour une nouvelle iteration"
 label entree_temporium:
+    scene entree_ville with fade
     menu:
         "Que devrais-je faire maintenant"
         "Parler au soldat":
@@ -290,6 +290,7 @@ label chemin:
                 "Il est trop tard pour le rattraper avant qu'il tombe mais je peux encore sauver ses pommes"
                 if quete_pomme:
                     "Heureusement je rappelle encore de comment faire pour sauver ses pommes"
+
                 else:
                     label quete_pommes:
                         j "Vite ! Vas y, Je pense savoir à l'avance où elles vont tomber"
@@ -304,7 +305,7 @@ label chemin:
                         python:
                             remove_html(id)
                             quete_pomme =True
-                call screen ecran_victoire(nom_quete,gold_gagne,3)
+                        call screen ecran_victoire(nom_quete,gold_gagne,3)
                 fermier "Merci d'avoir rattrapé ma marchandise"
                 fermier "Vous voyez je suis un paysan qui etait venu vendre ma marchandise au marché et si il etait arrivé quelque chose à mes pommes j'aurai été forcé de vendre ma ferme"
                 fermier "C'est pour ca que je voudrai vous remercier, suivez moi je vais vous amener dans ma ferme pour vous donner votre recompense"

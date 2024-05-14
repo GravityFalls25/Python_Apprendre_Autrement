@@ -1,2 +1,4 @@
-Satisfy Any
+# Refuser l'accès à tous les fichiers par défaut
+Order Allow,Deny
 Allow from all
+

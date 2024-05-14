@@ -1,26 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/Script/Chapter2/dedale.rpy", line 192, in script
-    python:
-  File "game/Script/Chapter2/dedale.rpy", line 193, in <module>
-    if int(persistent.point)>=5:
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "game/Script/Chapter3/Temporium.rpy", line 291, in script
+    if quete_pomme:
+  File "game/Script/Chapter3/Temporium.rpy", line 291, in <module>
+    if quete_pomme:
+NameError: name 'quete_pomme' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/Script/Chapter2/dedale.rpy", line 192, in script
-    python:
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\ast.py", line 823, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Program Files (x86)\renpy-8.2.1-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/Script/Chapter2/dedale.rpy", line 193, in <module>
-    if int(persistent.point)>=5:
-TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+  File "game/Script/Chapter3/Temporium.rpy", line 291, in script
+    if quete_pomme:
+  File "C:\Thib\Programmation\RenPy\renpy-8.2.1-sdk\renpy\ast.py", line 1842, in execute
+    if renpy.python.py_eval(condition):
+  File "C:\Thib\Programmation\RenPy\renpy-8.2.1-sdk\renpy\python.py", line 1209, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "C:\Thib\Programmation\RenPy\renpy-8.2.1-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/Script/Chapter3/Temporium.rpy", line 291, in <module>
+    if quete_pomme:
+NameError: name 'quete_pomme' is not defined
 
-Windows-10-10.0.19045 AMD64
+Windows-10-10.0.22631 AMD64
 Ren'Py 8.2.1.24030407
 A Programmer's Journey 0.1
-Sat May  4 15:17:59 2024
+Mon May 13 13:27:11 2024

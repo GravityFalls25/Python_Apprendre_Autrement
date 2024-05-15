@@ -138,6 +138,9 @@ label premiere:
     "{i}Quelques dizaines de minutes plus tard{/i}"
 
     j "J'ai cueilli quelques champignons en plus mais je sais pas si ça sera assez car je suis pas très bonne pour calculer"
+
+    call screen debloquer(1)
+
 label deuxieme:
     python:
         nom_quete = create_html(1,id,j,"Peux tu les compter pour moi ?")

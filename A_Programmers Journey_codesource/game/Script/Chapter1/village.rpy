@@ -7,7 +7,7 @@ label village_en_feu:
 
 label troisieme:
     python:
-        nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, va vite chercher de l'eau")
+        nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, va vite chercher de l'eau")#pas la quete la plus claire
         if nom_quete is None:
             renpy.jump("troisieme")
         reussi = False
@@ -19,6 +19,7 @@ label troisieme:
         remove_html(id)
 
     call screen ecran_victoire("Incendie au village",gold_gagne,1)
+label test3:
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")
@@ -78,7 +79,7 @@ label troisieme:
 
     j "Oui, comme dans tous les cas il faudra voyager on aura besoin d'un peu d'argent pour la nourriture et les autres frais du voyage"
 
-    j "500 piece d'or devrait etre suffisant"
+    j "300 piece d'or devrait etre suffisant"
 
     j "Tu peux gagner un peu d'argent en acceptant des quetes dans la taverne"
 
@@ -99,7 +100,7 @@ label place_village:
             jump tavern_village
         "Aller à l'entrée du village":
             python:
-                if int(persistent.gold)>=500:
+                if int(persistent.gold)>=300:
                     renpy.jump("fin_chap1")
                 else:
                     renpy.say(None,"j'ai pas encore assez d'or")
@@ -128,9 +129,11 @@ label dialogue_aubergiste(quest_id,quest_nom, url):
         "Commencer la quête":
             T "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste(quest_id,quest_nom, url)
+            call quete_aubergiste(quest_id,quest_nom, url) from _call_quete_aubergiste
         "Annuler":
             T "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump tavern_village
 label quete_aubergiste(quest_id,quest_nom, url):
     T "Alors, tu avances bien dans ta quete ?"
@@ -143,7 +146,7 @@ label quete_aubergiste(quest_id,quest_nom, url):
                 reussi,gold_gagne = verif_quete(id,1)
 
             if reussi != True:
-                jump tavern_village
+                call quete_aubergiste(quest_id,quest_nom, url)
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
@@ -152,10 +155,12 @@ label quete_aubergiste(quest_id,quest_nom, url):
             jump tavern_village
         "Abandonner":
             T "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump tavern_village
     
 label fin_chap1:
-    scene entree_village
+    scene entree_village with fade
     show children
     j "Voila je pense qu'on a reuni assez d'argent"
     
@@ -167,7 +172,7 @@ label fin_chap1:
 
     j "C'est pourquoi nous commencerons par nous rendre la-bas, une fois récupérée, nous nous rendrons à Temporium, la ville où se trouve la Bibliotheque-monde"
 
-    j "Nous irons la-bas pour trouver toutes les informations qui puissent nous être pour vaincre le Serpent du temps"
+    j "Nous irons la-bas pour trouver toutes les informations qui puissent nous être utile pour vaincre le Serpent du temps"
 
     "Est-ce qu'elle vient juste de dire qu'on irait dans un labyrinthe ?"
 

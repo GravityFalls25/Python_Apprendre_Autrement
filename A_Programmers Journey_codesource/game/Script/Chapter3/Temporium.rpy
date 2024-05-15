@@ -2,7 +2,7 @@ label Temporium:
     scene black with fade
     "Nous sommes enfin arrivé aux portes de Temporium apres un voyage qui m'a semblé interminable"
 
-    scene entree_village with fade
+    scene entree_ville with fade
     show garde
 
     garde "Halte la, declinez votre identité"
@@ -417,9 +417,11 @@ label dialogue_aubergiste_Temporium(quest_id,quest_nom, url):
         "Commencer la quête":
             A "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste_temporium(quest_id,quest_nom, url)
+            call quete_aubergiste_temporium(quest_id,quest_nom, url) from _call_quete_aubergiste_temporium
         "Annuler":
             A "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump auberge
 label quete_aubergiste_temporium(quest_id,quest_nom, url):
     A "Alors, tu avances bien dans ta quete ?"
@@ -432,7 +434,7 @@ label quete_aubergiste_temporium(quest_id,quest_nom, url):
                 reussi,gold_gagne = verif_quete(id,3)
                 argent_actuel +=int(gold_gagne)
             if reussi != True:
-                jump auberge
+                call quete_aubergiste_temporium(quest_id,quest_nom, url)
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
@@ -441,6 +443,8 @@ label quete_aubergiste_temporium(quest_id,quest_nom, url):
             jump auberge
         "Abandonner":
             A "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump auberge
 
 label forgeron:
@@ -575,13 +579,4 @@ label pose_piege:
     "Le pyromane est alors ejecté à une vitesse incroyable en direction d'un mur adjacent"
     #play sound "impact.mp3"
     "Il s'évanouit instantanement"
-
-label presentation:
-    $ quete_auberge_global = True
-    $ quete_auberge = True
-    $ heure = 0
-    $ name = "Bricoleur"
-    $ Navi_name="Navi"
-    $ argent_actuel=0
-    $ persistent.chap = 4
-    jump auberge
+    jump endgame

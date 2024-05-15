@@ -31,12 +31,14 @@ label chap2:
     "Au bout de ce dédale, tu découvriras que la vraie récompense réside dans la liberté de décider de ton destin. Alors avance avec courage, et que chaque décision te rapproche de cette précieuse récompense : le pouvoir de faire tes propres choix."
 
     j "\"Le dédale te donnera la capacité de choisir\" Je me demande ce que ca veut dire"
-    #pop-up ou on explique comment if-else fct
+    call screen debloquer(2)
+    call screen debloquer(3)
+    call screen debloquer(4)
     m "Il semblerait qu'on puisse utiliser les pouvoirs de la fonction divine tant qu'on est dans le labyrinthe"
 
     j "Parfait alors enfonçons nous dans la labyrinthe !"
 
-    scene portes
+    scene labyrinthe_porte
     show children at right
 
     m "Il semblerait que ce soit le premier choix qu'il faille faire, quelle porte on choisit ?"
@@ -45,7 +47,7 @@ label chap2:
 
 label quatrieme:
     python:
-        nom_quete = create_html(3,id,j,"Resolvez cette enigme et le meilleur choix s'offrera a vous")
+        nom_quete = create_html(3,id,j,"Resolvez cette enigme et le meilleur choix s'offrera a vous") #rajouter quete
         if nom_quete is None:
             renpy.jump("quatrieme")
         reussi = False
@@ -151,10 +153,10 @@ label place_dedale:
             jump tavern_dedale
         "Recuperer l'artefact":
             python:
-                if int(persistent.point_de_valeur)>=5:
+                if int(persistent.point_de_valeur)>=200:
                     renpy.jump("fin_chap2")
                 else:
-                    renpy.say(None,"je n'ai pas encore assez de points de valeur")
+                    renpy.say(None,"je n'ai pas encore assez de points de valeur, il me faut au moins 200 points")
                     renpy.jump("place_dedale")
         "voir la map":
             $ quick_menu = False
@@ -180,9 +182,11 @@ label dialogue_aubergiste_minotaur(quest_id,quest_nom, url):
         "Commencer l'enigme":
             mino "Parfait, alors l'enigme est..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste_minotaur(quest_id,quest_nom, url)
+            call quete_aubergiste_minotaur(quest_id,quest_nom, url) from _call_quete_aubergiste_minotaur
         "Annuler":
             mino "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump tavern_dedale
 label quete_aubergiste_minotaur(quest_id,quest_nom, url):
     mino "Alors, tu penses avoir resolu mon enigme ?"
@@ -195,7 +199,7 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
                 reussi,gold_gagne = verif_quete(id,2)
 
             if reussi != True:
-                jump tavern_dedale
+                call quete_aubergiste_minotaur(quest_id,quest_nom, url)
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
@@ -204,6 +208,8 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
             jump tavern_dedale
         "Abandonner":
             mino "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump tavern_dedale
 
 label fin_chap2:

@@ -26,7 +26,7 @@ define gui.show_name = True
 
 ## La version du jeu.
 
-define config.version = "0.1"
+define config.version = "1.0"
 
 
 ## Texte placé sur l'écran "À propos" du jeu. Placez le texte entre triples
@@ -221,3 +221,6 @@ init python:
 ## slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+#option personnel
+define config.rollback_enabled = False

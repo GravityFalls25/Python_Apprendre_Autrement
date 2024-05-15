@@ -174,3 +174,9 @@ transform tremble:
                     linear 0.05 xoffset -10
                     repeat 2
         linear 0.07 xoffset 0
+
+define dissolve_scene_full = MultipleTransition([
+    False, Dissolve(1.0),
+    Solid("#000"), Pause(1.0),
+    Solid("#000"), Dissolve(1.0),
+    True])

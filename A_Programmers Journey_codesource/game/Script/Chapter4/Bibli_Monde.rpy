@@ -22,9 +22,11 @@ label dialogue_bibli(quest_id,quest_nom, url):
         "Commencer le livre":
             m "Alors..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_bibli(quest_id,quest_nom, url)
+            call quete_bibli(quest_id,quest_nom, url) from _call_quete_bibli
         "Annuler":
             m "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump Bibli_monde
 label quete_bibli(quest_id,quest_nom, url):
     j "C'est bon ? Tu as fini de la solution du livre ?"
@@ -36,7 +38,7 @@ label quete_bibli(quest_id,quest_nom, url):
                 reussi = False
                 reussi,gold_gagne = verif_quete(id,4)
             if reussi != True:
-                jump Bibli_monde
+                call quete_bibli(quest_id,quest_nom, url)
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, quest_nom))
@@ -45,4 +47,6 @@ label quete_bibli(quest_id,quest_nom, url):
             jump Bibli_monde
         "Abandonner":
             j "C'est dommage, peut-être une autre fois."
+            python:
+                remove_html(id)
             jump Bibli_monde

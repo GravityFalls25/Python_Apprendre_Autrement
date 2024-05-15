@@ -48,6 +48,8 @@ init python:
 
     #Defini la taille de fenetre pour la taverne
     def calculate_rows(quests, cols):
+            if quests == None:
+                return (0 + cols - 1) // cols
             return (len(quests) + cols - 1) // cols
     
     # Envoie les données de la quête
@@ -60,10 +62,15 @@ init python:
     def load_quests(tavern):
         postData = {"quete":persistent.Quete_faite,"tavern":tavern}
         url = 'http://127.0.0.1:5000/get_mission_tavern'
-        response = renpy.fetch(url, json=postData)
-        decoded_response = response.decode('utf-8')
-        json_data = json.loads(decoded_response)
-        cached_quests = [(item[0], item[1], item[2]) for item in json_data]
+        try:
+            response = renpy.fetch(url, json=postData)
+            decoded_response = response.decode('utf-8')
+            json_data = json.loads(decoded_response)
+            cached_quests = [(item[0], item[1], item[2]) for item in json_data]
+        except Exception as erreur:
+            # Gère les erreurs potentielles lors de la requête
+            renpy.say(None, "Le serveur est éteint, reviens plus tard")
+            return None
         return set(cached_quests)
 
     #Crée un id aleatoire pour le joueur
@@ -78,12 +85,17 @@ init python:
         postData = {"valeur": id_quest, "id": id, "tavern" : tavern }
         url = 'http://127.0.0.1:5000'
         #Envoie de requete
-        val = renpy.fetch(url, json = postData, result = "json")
-        url = site
-        lien = "{a="+url+"}"+message+"{/a}"
-        if tavern == 0:
-            #Affiche un message dans le jeu: (Qui parle, message)
-            renpy.say(who,lien)
+        try:
+            val = renpy.fetch(url, json = postData, result = "json")
+            url = site
+            lien = "{a="+url+"}"+message+"{/a}"
+            if tavern == 0:
+                #Affiche un message dans le jeu: (Qui parle, message)
+                renpy.say(who,lien)
+        except Exception as erreur:
+            # Gère les erreurs potentielles lors de la requête
+            renpy.say(None, "Le serveur est éteint, reviens plus tard")
+            return None
         return val['name']
     
     #Verifier que la quete est réussie

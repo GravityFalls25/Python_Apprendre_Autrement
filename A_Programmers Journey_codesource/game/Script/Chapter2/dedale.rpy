@@ -46,6 +46,8 @@ label chap2:
 label quatrieme:
     python:
         nom_quete = create_html(3,id,j,"Resolvez cette enigme et le meilleur choix s'offrera a vous")
+        if nom_quete is None:
+            renpy.jump("quatrieme")
         reussi = False
         reussi,gold_gagne = verif_quete(id,2)
 
@@ -78,6 +80,8 @@ label test1:
 label cinquieme:
     python:
         nom_quete = create_html(4,id,m,"Bien vu, ca sera suffisant pour que je decode ca")
+        if nom_quete is None:
+            renpy.jump("cinquieme")
         reussi = False
         reussi,gold_gagne = verif_quete(id,2)
 

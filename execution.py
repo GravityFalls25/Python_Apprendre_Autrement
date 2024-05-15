@@ -48,9 +48,12 @@ def perform_test(inputs, timeout):
         return queue.get()
 
 def main():
-    inputs = sys.argv[1]
-    if inputs:
-        inputs = inputs.split(',')
+    if len(sys.argv) == 1:
+        inputs = ""
+    else:
+        inputs = sys.argv[1]
+        if inputs:
+            inputs = inputs.split(',')
     timeout = 2  # Temps limite en secondes pour chaque test
     result = perform_test(inputs, timeout)
     print(result)

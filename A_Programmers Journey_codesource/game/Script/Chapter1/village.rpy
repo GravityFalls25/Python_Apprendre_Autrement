@@ -8,6 +8,8 @@ label village_en_feu:
 label troisieme:
     python:
         nom_quete = create_html(2,id,m,"Vite il y a un puit la bas, va vite chercher de l'eau")
+        if nom_quete is None:
+            renpy.jump("troisieme")
         reussi = False
         reussi,gold_gagne = verif_quete(id,1)
 

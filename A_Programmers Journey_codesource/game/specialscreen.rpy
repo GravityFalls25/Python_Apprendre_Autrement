@@ -23,7 +23,10 @@ screen quest_menu(id_tavern,quests,label,label_retour):
                         spacing 10
                         python:
                             #liste_quete = sorted(list(quests), key=lambda x: float(x[1]))
-                            liste_quete = sorted(list(quests))
+                            if quests is not None:
+                                liste_quete = sorted(list(quests))
+                            else:
+                                liste_quete= []
                         for quest in liste_quete:
                             frame:
                                 style "quest_frame"

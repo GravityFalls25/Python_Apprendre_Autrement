@@ -297,6 +297,8 @@ label chemin:
                         m "Compris !"
                         python:
                             nom_quete = create_html(5,id,j,"Tu es pret ?")
+                            if nom_quete is None:
+                                renpy.jump("quete_pommes")
                             reussi = False
                             reussi,gold_gagne = verif_quete(id,3)
 
@@ -481,6 +483,8 @@ label forgeron:
             label quete_forge:
                 python:
                     nom_quete = create_html(6,id,forgeron,"Alors commençons")
+                    if nom_quete is None:
+                        renpy.jump("quete_forge")
                     reussi = False
                     reussi,gold_gagne = verif_quete(id,3)
 

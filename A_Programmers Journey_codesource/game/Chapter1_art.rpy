@@ -1,4 +1,5 @@
 
+#Definition des images personnages utilisé
 image client = "images/client.png"
 image client content  = "images/client_heureux.png"
 image Navi = "images/children.png"

@@ -5,7 +5,8 @@ define j= DynamicCharacter("Navi_name", color="#92eb2c")
 define T= Character(_("Tavernier"), color="#446d14")
 define mino= Character(_("Minotaure"),color="#915404")
 define jm= Character(_("[name]&Navi"),color="#0bbcd4")
-#Temporium
+
+#Temporium chap3
 define garde= Character(_("Garde"),color="#d49711")
 define fermier= Character(_("Fermier"),color="#13ad0d")
 define vendeuse= Character(_("Vendeuse"),color="#ffd700")
@@ -14,5 +15,5 @@ define forgeron= Character(_("Forgeron"),color="#FFA635")
 define mechant1= Character(_("Le Pyromane"),color= "#e41313")
 define mechant2= DynamicCharacter(("mechant2_name"),color= "#e41313")
 
-#Bibli
+#Bibli chap4
 define bibli= Character(_("Bibliothecaire"),color= "#b70f93")

@@ -18,6 +18,7 @@ def run_test(inputs):
         raise InputExceededError("Plus d'inputs demandes que fournis")
     side_effect.counter = 0
 
+    #Systeme de buffer pour les inputs
     with mock.patch('builtins.input', side_effect=side_effect):
         try:
             import user  # Recharger le module utilisateur pour chaque test
@@ -38,6 +39,7 @@ def perform_test(inputs, timeout):
     queue = multiprocessing.Queue()
     process = multiprocessing.Process(target=run_in_process, args=(queue, inputs))
     process.start()
+    #Pour stopper si le programme dure trop longtemps, (risque de boucle infinie)
     process.join(timeout)
     if process.is_alive():
         process.terminate()
@@ -46,7 +48,9 @@ def perform_test(inputs, timeout):
         return queue.get()
 
 def main():
-    inputs = sys.argv[1].split(',')
+    inputs = sys.argv[1]
+    if inputs:
+        inputs = inputs.split(',')
     timeout = 2  # Temps limite en secondes pour chaque test
     result = perform_test(inputs, timeout)
     print(result)

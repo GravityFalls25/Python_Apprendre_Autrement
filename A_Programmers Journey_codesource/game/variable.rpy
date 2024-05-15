@@ -1,7 +1,9 @@
+#Definition de variable
 default Navi_name ="????"
 default name="Bricoleur"
 default mechant2_name="????"
 
+#Variable qui reste lorsque l'on recharge le jeu
 if not persistent.score:
         default persistent.score = 0
 if not persistent.Quete_faite:

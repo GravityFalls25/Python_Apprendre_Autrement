@@ -1,22 +1,3 @@
-# from flask import Flask, request, jsonify
-
-# app = Flask(__name__)
-
-# @app.route('/', methods=["POST"])
-# def traiter_requete():
-#     data = request.json  # Récupère les données JSON de la requête
-#     valeur = data.get('valeur')  # Accède à la valeur 'valeur' dans les données JSON
-#     print(valeur)
-#     if valeur == '1':
-#         # Exécutez votre commande PHP ici
-        
-#         # subprocess.run(['php', 'chemin_vers_votre_script.php'])
-#         return jsonify({"message": "Commande PHP exécutée avec succès"})
-#     else:
-#         return jsonify({"message": "Valeur incorrecte"})
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -24,7 +5,7 @@ import json
 import os
 import pandas as pd
 
-#En fonction de la zone, retourne deux sets tout deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
+#En fonction de la zone, retourne deux sets tous deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
 def get_mission_tavern_lecture(Tavern = 0):
     tavern = str(Tavern)
     if tavern == '0':
@@ -42,7 +23,7 @@ def get_mission_tavern_lecture(Tavern = 0):
     return Quete_tavern_complet,Quete_tavern_complet_0diff
 
 
-#Créations des fichiers correspondant a la partie web/exercice
+#Créations des fichiers correspondant à la partie web/exercice
 def html(Quest = 0,Id = 0, Tavern = 0):
 
     quete = Quest
@@ -52,7 +33,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
         fichier = 'Quete/Aventure.xlsx'
     else:
         fichier = "Quete/Taverne" + tavern + ".xlsx"
-    
+    #Lecture du excel contenant les quetes
     df = pd.read_excel(fichier,dtype=str)
     df.fillna("", inplace=True)
     
@@ -61,20 +42,20 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     df.fillna("", inplace=True)
     df = df.to_dict(orient='records')
     df = df[0]
-    
+    #Decomposition de chaque case en liste pour s'adapter aux differents langage qui seront utilisés
     df = {key: value.split('\n') for key, value in df.items()}
     
-    n1 = "\n"         
+    n1 = "\n"   
+    #Création de la case Tests contenant la totalité des tests cases de la quete      
     for j in range(len(df)):
         # Créer une liste de tuples pour stocker les résultats des tests
         tests = []
         
-        # Parcourir les colonnes input_test_1 à input_test_3 et output_test_1 à output_test_3
         var = df['n_test']
         for i in range(1, int(df['n_test'][0])+1):
             # Récupérer les valeurs des entrées et des sorties des tests
             var = df[f'input_test_{i}']
-            side_effects = df[f'input_test_{i}']  # Convertir en liste et supprimer les valeurs NaN
+            side_effects = df[f'input_test_{i}']
             expected_output = ""
             for idx, line_output in enumerate(df[f'output_test_{i}']):
                 # Vérifier si c'est le dernier élément
@@ -84,11 +65,6 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                 else:
                     # Pour les autres éléments, ajouter le n1
                     expected_output += line_output + n1
-            # for line_output in df[f'output_test_{i}']:
-                
-            #     expected_output = expected_output + line_output + n1 # Prendre la première valeur non-NaN
-            #side_effects_str = ', '.join([f'{item}' for item in side_effects])
-            # Ajouter le tuple (entrées, sortie attendue) à la liste des tests
             
             expected_output = '"'+expected_output +'"'
             tests.append((side_effects, expected_output))
@@ -103,6 +79,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
     with open(ref_r,'r',encoding='utf-8') as fin:
         with open(ref_w, 'w',encoding='utf-8') as fout:
             texte = fin.read().split("\n")
+            #Creation des tests
             for ligne in texte:
                 if "#tests" in ligne:
                     for side_effects, expected_output in df["Tests"]:
@@ -112,6 +89,7 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                         pass
                              
                     continue
+                #Les fonctions qui seront interdite pour l'utilisateur
                 if "#Visiteurs" in ligne:
                     chap = int(df["Chap"][0])
                     if chap <= 1:
@@ -318,11 +296,11 @@ atexit.register(on_exit)
 @app.route('/', methods=["POST"])
 def create_html():
     data = request.json
-    valeur = data.get('valeur')
+    id_quest = data.get('valeur') 
     id_joueur = data.get('id')
     tavern = data.get('tavern')
     print(tavern)
-    name = html(int(valeur), id_joueur,tavern)
+    name = html(int(id_quest), id_joueur,tavern)
      
     return jsonify({"message": "Commande PHP exécutée avec succès","name": name})
 
@@ -379,11 +357,12 @@ def get_mission_tavern():
     # Convertir la liste de tuples en un ensemble
     Quete_faite = set(pairs_list)
     Quete_tavern_complet,Quete_tavern_complet_0diff = get_mission_tavern_lecture(int(id_tavern))
-
+    
+    #En cas de changement de difficulté, il faut considerer qu'il sagit de la meme quete
     Quete_a_faire_0diff = Quete_tavern_complet_0diff.difference(Quete_faite)
     Quete_a_faire = {(id_quete, nom_quete, difficulte) for id_quete, nom_quete, difficulte in Quete_tavern_complet if (id_quete, nom_quete) in Quete_a_faire_0diff}
     Quete_a_faire = json.dumps(list(Quete_a_faire), indent = 1)
-
+    
     del(Quete_tavern_complet,Quete_tavern_complet_0diff,Quete_a_faire_0diff,Quete_faite)
     
     

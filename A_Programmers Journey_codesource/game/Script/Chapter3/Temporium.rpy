@@ -12,7 +12,7 @@ label Temporium:
     garde "Tres bien, vous pouvez rentrer"
     scene black with fade
     "Nous passons l'entrée de la ville"
-    #play sound "call_of_the_witch.mp3"
+    play sound "rezero-respawn.mp3"
     scene entree_ville with fade
     m "Tiens, tu as entendu ca ?"
     j "Entendu quoi ?"
@@ -49,7 +49,7 @@ label Temporium:
     m "Wow, cette bibliotheque est vraiment immense !"
     m "Mais c'est quoi ce papier sur la porte ?"
 
-    show papier
+    show papier at myfade(1.0), center
 
     m "Il semblerait qu'elle soit fermée pour aujourd'hui"
 
@@ -80,7 +80,8 @@ label Temporium:
     "C'est sur cette pensée que je fini par m'assoupir"
 
     scene chambre_auberge
-    #play sound "crash.mp3"
+    play sound "crash_door.mp3" volume 0.9
+    pause 2.0
     show Navi inquiet with moveinright
     j "Vite reveille-toi un truc horrible est en train de se passer !"
 
@@ -105,7 +106,7 @@ label Temporium:
     "On retourna dans nos chambres respectives mais comment trouver le sommeil apres ce qui vient de se passer ?"
 
     #2eme boucle
-    #play sound "call of the witch.mp3"
+    play sound "rezero-respawn.mp3"
     scene entree_ville
     show garde at left
     m "Hein quoi où suis-je, comment je suis arrivé la ?"
@@ -136,17 +137,17 @@ label Temporium:
     show vendeuse at right
     vendeuse "Approchez, approchez, venez voir mes produits venant des quatres coins du monde"
 
-    "Le vendeuse est lui aussi encore la"
+    "Le vendeuse est elle aussi encore la"
 
     scene black with fade
     "On arriva enfin en face de l'immense bibliotheque-monde"
 
     scene bibli with fade
     m "Le papier est toujours la"
-    show paper
+    show papier at myfade(1.0), center
 
     m "Voila qui confirme mes soupcons, le jour n'a pas changé, d'une facon ou d'une autre nous avons remonté le temps"
-    hide paper
+    hide papier
     show Navi
     m "Tu sais ce qui a pu causer ca Navi ?"
 
@@ -202,8 +203,8 @@ label Temporium:
     m "Mais avant que cette itération ne se finisse, il faut decouvrir pourquoi la bibliotheque a prit feu"
 
     #play sound "start_fire.mp3"
-    scene bibli_feu_soir with fade
-    j "Il semblerait qu'on s'y prend trop tard"
+    scene bibli_feu_soir with hpunch
+    j "Il semblerait qu'on s'y prenne trop tard"
 
     m "Vite fait le tour du batiment par la gauche et essaie de voir si il y a quelque chose de suspect, moi je ferai le tour par la droite"
 
@@ -220,14 +221,14 @@ label Temporium:
     m "Et pour finir, je sais par où il est passé donc je pourrais lui tendre un piege lors de la prochaine iteration mais il me faudra des outils et du materiel"
 
     scene black with fade
-    m "Je pense qu'on est pret pour la prochiane iteration"
+    m "Je pense qu'on est pret pour la prochaine iteration"
 
     $ parler_garde_global=False
     $ quete_forgeron=False
     $ quete_auberge_global=False
     $ quete_pomme=False
 label debut_boucle:
-    #play sound "call of the witch.mp3"
+    play sound "rezero-respawn.mp3"
     scene entree_ville
     $ parler_garde=False
     $ quete_auberge=False
@@ -248,7 +249,7 @@ label entree_temporium:
             $ parler_garde=True
             $ parler_garde_global=True
             show garde at left
-            m "Comment ca se fait que vous ayez un pelle en main ?"
+            m "Comment ca se fait que vous ayez une pelle en main ?"
             garde "Ma lance c'est brisé et je n'ai pas le temps de passer chez le forgeron pour me faire forger une nouvelle lance"
             m "Tu veux que j'y aille pour toi ?"
             garde "Tu ferais vraiment ca pour une personne que tu viens de rencontrer ?"
@@ -577,6 +578,6 @@ label pose_piege:
 
     show mechant1 at mymoveout(0.2)
     "Le pyromane est alors ejecté à une vitesse incroyable en direction d'un mur adjacent"
-    #play sound "impact.mp3"
+    play sound "wall-smash.mp3"
     "Il s'évanouit instantanement"
     jump endgame

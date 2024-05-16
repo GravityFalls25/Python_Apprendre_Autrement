@@ -119,12 +119,12 @@ init python:
                 persistent.score = persistent.score + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:
-                renpy.say(None, "Essaye encore de cliquer sur le texte")
+                renpy.say(None, "Essaye encore de resoudre la quete")
                 reussi = False
 
         except Exception as erreur:
             # Gère les erreurs potentielles lors de la requête
-            renpy.say(None, "Je pense qu'il y a eu un probleme")
+            renpy.say(None, "Je pense qu'il y a eu un probleme, reessaye d'ouvrir la quete")
         
         return reussi,gold_gagne
 

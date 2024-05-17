@@ -2,7 +2,18 @@ init python:
     import uuid
     import webbrowser
     import json
+    import os
+
+    print(renpy.list_files(common = True))
+    try:
+        
+        texte = renpy.open_file("config.txt", encoding=None, directory=None)
+        print(texte)
+    except Exception as erreur:
+            print(erreur)
+    #del(config_ip)
     
+
     cached_quests = None
     #Definitions des caractéristiques des écrans
     #Cases quetes

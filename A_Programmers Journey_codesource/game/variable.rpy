@@ -18,3 +18,9 @@ if not persistent.point_intelligence:
         default persistent.point_intelligence = 0
 if not persistent.chap:
         default persistent.chap = 0
+
+
+init python:
+        #Recuperation de l'ip dans le fichier config.txt
+        import function
+        ipS=function.get_ip()

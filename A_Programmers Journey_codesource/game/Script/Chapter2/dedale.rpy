@@ -59,7 +59,7 @@ label quatrieme:
         remove_html(id)
 
     call screen ecran_victoire(nom_quete,gold_gagne,2)
-label test1:
+label test2:
     j "Parfait on peut continuer d'avancer maintenant"
 
     scene interieur_labyrinthe with fade
@@ -75,7 +75,7 @@ label test1:
 
     "Ontq sqntudq kd bdmsqd cd bd cdczkd hk rteehs cd chqd z gztsd unhw kz enqltkd rthuzmsd \"vhsg nodm(\"cnnq.nai\",'v')\" "
 
-    m "Par contre, comment allons nous dechiffrer ca ?"
+    m "Je veux bien mais comment allons nous dechiffrer ca ?"
     scene indice_mur
     j "Regarde il y a encore des choses écrites sur ce mur, peut-etre cela pourrait nous aider ?"
 
@@ -93,7 +93,7 @@ label cinquieme:
         remove_html(id)
 
     call screen ecran_victoire(nom_quete,gold_gagne,2)
-label test2:
+label test3:
     m "Pour trouver le centre de ce dédale il suffit de dire à haute voix la formule suivante \"with open(\"door.obj\",'w')\" "
     
     play sound "stone_door.mp3"
@@ -137,7 +137,7 @@ label test2:
     show minotaure
     mino "Malheureusement, je suis desolé mais mon maitre m'a interdit de le donner à un aventurier tant qu'il n'a pas prouvé sa valeur"
 
-    mino "Si cela vous convient, je vous propose de répondre à mes enigmes, si vous accumulez assez de points de valeur en répondant correctement, j'accepeterais de vous ceder l'artefact"
+    mino "Si cela vous convient, je vous propose de répondre à mes enigmes, si vous accumulez assez de points de valeur en répondant correctement, j'accepterais de vous ceder l'artefact"
 
     mino "Encore desolé du derangement"
 
@@ -153,10 +153,10 @@ label place_dedale:
             jump tavern_dedale
         "Recuperer l'artefact":
             python:
-                if int(persistent.point_de_valeur)>=200:
+                if int(persistent.point_de_valeur)>=300:
                     renpy.jump("fin_chap2")
                 else:
-                    renpy.say(None,"je n'ai pas encore assez de points de valeur, il me faut au moins 200 points")
+                    renpy.say(None,"je n'ai pas encore assez de points de valeur, il me faut au moins 300 points")
                     renpy.jump("place_dedale")
         "voir la map":
             $ quick_menu = False
@@ -213,8 +213,16 @@ label quete_aubergiste_minotaur(quest_id,quest_nom, url):
             jump tavern_dedale
 
 label fin_chap2:
+    show minotaure happy
     mino "Je pense que tu as suffisamment prouvé ta valeur. Tu es donc digne de recuperer cet artefact"
-    #mettre ecran de victoire "if permanent"
+
+    mino "Tu peux maintenant utiliser la fonction if-else ou tu veux, quand tu veux"
+
+    mino "N'est-ce pas une super nouvelle ?"
+    
+    hide minotaure
+    show Navi
+
     j "Felicitation [name], maintenant on peut continuer notre voyage"
 
     m "Quel est notre prochaine destination ?"

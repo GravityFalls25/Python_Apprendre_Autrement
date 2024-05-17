@@ -145,13 +145,14 @@ def main():
 
     timeout = 2  # Temps limite en secondes pour chaque test
 
-    for inputs, expected_output in tests:
-        result = perform_test(inputs, expected_output, timeout)
+    for i in range(len(tests)):
+        result = perform_test(tests[i][0], tests[i][1], timeout)
         if not result:
-            print('non')
+            print(f"Test case #{i+1} echoue")
             ok = False
+            break
         elif result == "Timeout":
-            print("Il y a surement une boucle infinie, verfie ton code")
+            print("Ton code est anormalement long, verifie-le")
             ok = False
             break
         elif result == "Plus d'inputs demandes que fournis":
@@ -163,8 +164,9 @@ def main():
             ok = False
             break
         else:
-            print('Correct')
-
+            print(f"Test case #{i+1} reussi")
+    if ok:
+        print("Quete reussite, tu peux retourner sur le jeu")
     url = 'http://127.0.0.1:5000/update_mission_state'
     myobj = {'player_id': id, 'state': ok, 'gold': gold}
     x = requests.post(url, json=myobj)

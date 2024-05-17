@@ -19,7 +19,7 @@ label troisieme:
         remove_html(id)
 
     call screen ecran_victoire("Incendie au village",gold_gagne,1)
-label test3:
+label test1:
     m "Ouf, je pense qu'on a reussi à controler l'incendie mais qu'est ce qui a bien pu causer ca ?"
 
     define v= Character(_("Villageois"), color="#446d14")

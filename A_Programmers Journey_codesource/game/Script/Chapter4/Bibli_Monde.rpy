@@ -6,18 +6,18 @@ label Bibli_monde:
         xzoom 1.75
         yzoom 1.75
     play music "Tavern_song.mp3" if_changed
-    bibli "Bienvenue. Que puis je faire pour vous ?"
+    bibli "Bienvenue. Que puis-je faire pour vous ?"
     $ renpy.save_persistent()
     
     menu: 
-        "Voir les livres de quetes disponibles":
+        "Voir les livres de quêtes disponibles":
             $ quests = load_quests(4)
             call screen quest_menu(4,quests,"dialogue_bibli","Bibli_monde")
         "Repartir":
             jump chemin
 
 label dialogue_bibli(quest_id,quest_nom, url):
-    j "Essayons celui la"
+    j "Essayons celui-là"
     menu:
         "Commencer le livre":
             m "Alors..."

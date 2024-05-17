@@ -16,7 +16,7 @@ label chap2:
     j "Ne perdons pas plus de temps et allons-y directement !"
 
     hide children with moveoutright
-    m "Hey attend moi !"
+    m "Hey, attends moi !"
 
     scene interieur_labyrinthe with flash
     m "C'est donc à ca que ressemble le dédale de l'interieur"

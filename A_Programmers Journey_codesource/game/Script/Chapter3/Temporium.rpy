@@ -412,19 +412,19 @@ label auberge:
             $ heure += 0.25
             jump chemin
 
-label dialogue_aubergiste_Temporium(quest_id,quest_nom, url):
+label dialogue_aubergiste_Temporium(quest_id,nom_quete, url):
     A "Bon courage pour la quête!"
     menu:
         "Commencer la quête":
             A "Parfait, voici les détails..."
             $ webbrowser.open(url)  # Redirige vers la page web si validé
-            call quete_aubergiste_temporium(quest_id,quest_nom, url) from _call_quete_aubergiste_temporium
+            call quete_aubergiste_temporium(quest_id,nom_quete, url) from _call_quete_aubergiste_temporium
         "Annuler":
             A "C'est dommage, peut-être une autre fois."
             python:
                 remove_html(id)
             jump auberge
-label quete_aubergiste_temporium(quest_id,quest_nom, url):
+label quete_aubergiste_temporium(quest_id,nom_quete, url):
     A "Alors, tu avances bien dans ta quete ?"
     menu:
         "Valider la quête":
@@ -435,11 +435,11 @@ label quete_aubergiste_temporium(quest_id,quest_nom, url):
                 reussi,gold_gagne = verif_quete(id,3)
                 argent_actuel +=int(gold_gagne)
             if reussi != True:
-                call quete_aubergiste_temporium(quest_id,quest_nom, url)
+                call quete_aubergiste_temporium(quest_id,nom_quete, url)
             python:
                 remove_html(id)
-                persistent.Quete_faite.append((quest_id, quest_nom))
-            call screen ecran_victoire(quest_nom,gold_gagne,3)
+                persistent.Quete_faite.append((quest_id, nom_quete))
+            call screen ecran_victoire(nom_quete,gold_gagne,3)
 
             jump auberge
         "Abandonner":
@@ -500,7 +500,7 @@ label forgeron:
 
                     quete_forge =True
                     heure += 5.5
-                call screen ecran_victoire(quest_nom,gold_gagne,3)
+                call screen ecran_victoire(nom_quete,gold_gagne,3)
         else:
             "Faisons ça rapidement vu que je me rappelle de comment faire"
         

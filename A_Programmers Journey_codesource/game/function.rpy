@@ -4,16 +4,6 @@ init python:
     import json
     import os
 
-    print(renpy.list_files(common = True))
-    try:
-        
-        texte = renpy.open_file("config.txt", encoding=None, directory=None)
-        print(texte)
-    except Exception as erreur:
-            print(erreur)
-    #del(config_ip)
-    
-
     cached_quests = None
     #Definitions des caractéristiques des écrans
     #Cases quetes
@@ -72,7 +62,7 @@ init python:
     #Recevoir quete tavern
     def load_quests(tavern):
         postData = {"quete":persistent.Quete_faite,"tavern":tavern}
-        url = 'http://127.0.0.1:5000/get_mission_tavern'
+        url = 'http://'+ipS+':5000/get_mission_tavern'
         try:
             response = renpy.fetch(url, json=postData)
             decoded_response = response.decode('utf-8')
@@ -94,7 +84,7 @@ init python:
     #Créer la page html
     def create_html(id_quest,id,who,message,tavern = 0):
         postData = {"valeur": id_quest, "id": id, "tavern" : tavern }
-        url = 'http://127.0.0.1:5000'
+        url = 'http://'+ipS+':5000'
         #Envoie de requete
         try:
             val = renpy.fetch(url, json = postData, result = "json")
@@ -111,7 +101,7 @@ init python:
     
     #Verifier que la quete est réussie
     def verif_quete(id,chap = 0):
-        url = 'http://127.0.0.1:5000/get_mission_state'
+        url = 'http://'+ipS+':5000/get_mission_state'
         reussi = None
         gold_gagne = None
         try:
@@ -141,7 +131,7 @@ init python:
 
     #Supprime la page Html
     def remove_html(id):
-        url = 'http://127.0.0.1:5000/clear_quete'
+        url = 'http://'+ipS+':5000/clear_quete'
         request= renpy.fetch(url, json = {"player_id":id}, result="json")
 
 #Animation graphique

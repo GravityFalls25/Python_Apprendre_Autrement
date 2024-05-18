@@ -167,7 +167,7 @@ def main():
             print(f"Test case #{i+1} reussi")
     if ok:
         print("Quete reussite, tu peux retourner sur le jeu")
-    url = 'http://127.0.0.1:5000/update_mission_state'
+    #URL
     myobj = {'player_id': id, 'state': ok, 'gold': gold}
     x = requests.post(url, json=myobj)
 

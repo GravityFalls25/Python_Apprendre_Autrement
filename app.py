@@ -5,6 +5,7 @@ import json
 import os
 import pandas as pd
 
+import configparser
 #En fonction de la zone, retourne deux sets tous deux composés des quetes existante, l'un avec la diffictulté, l'autre non (en cas de changement de difficulté)
 def get_mission_tavern_lecture(Tavern = 0):
     tavern = str(Tavern)
@@ -123,7 +124,9 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write("        self.found['with'] = True\n")
                     fout.write("        self.generic_visit(node)\n\n")
                     continue
-                    
+                if "#URL" in ligne:
+                    fout.write(f"    url = 'http://"+get_ip()+":5000/update_mission_state'\n")
+                    continue
                 fout.write(f"{ligne}\n")
 
     #Ecriture HTML
@@ -388,5 +391,11 @@ def clear_quete():
         os.remove(ref_py)
     return jsonify({'success': 1}), 200
 
+def get_ip():
+    config = configparser.ConfigParser()    
+    config.read("config.txt")
+    ipS=config.get('server','ip')
+    return ipS
+
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(host=get_ip(),debug=False)

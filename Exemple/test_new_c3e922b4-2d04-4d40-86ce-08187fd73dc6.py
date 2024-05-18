@@ -26,7 +26,18 @@ class CodeAnalyzer(ast.NodeVisitor):
 
             
         }
-    #Visiteurs
+    def visit_List(self, node):
+        self.found['list'] = True
+        self.generic_visit(node)
+
+    def visit_Set(self, node):
+        self.found['set'] = True
+        self.generic_visit(node)
+
+    def visit_With(self, node):
+        self.found['with'] = True
+        self.generic_visit(node)
+
     
 
 def check_code_restrictions(code):
@@ -64,7 +75,7 @@ def run_test(inputs, expected_output):
             result = inputs[side_effect.counter]
             side_effect.counter += 1
             return result
-        raise InputExceededError("Plus d'inputs demandes que fournis")
+        raise InputExceededError("Plus d'inputs demandes que fourni")
     side_effect.counter = 0
 
     with mock.patch('builtins.input', side_effect=side_effect):
@@ -131,7 +142,10 @@ def main():
     id = sys.argv[2]
     ok = True
     tests = [
-        #tests
+        (['a', '6'], '0\n1\n2\n3\n4\n5'),
+        (['b', '8'], '1\n4\n9\n16\n25\n36\n49\n64'),
+        (['d', '9'], '10\n9\n8\n7\n6\n5\n4\n3\n2'),
+        (['c', '5'], '2\n4\n6\n8\n10'),
 
     ]
 
@@ -155,7 +169,7 @@ def main():
             print("Ton code est anormalement long, verifie-le")
             ok = False
             break
-        elif result == "Plus d'inputs demandes que fourni":
+        elif result == "Plus d'inputs demandes que fournis":
             print(result)
             ok = False
             break

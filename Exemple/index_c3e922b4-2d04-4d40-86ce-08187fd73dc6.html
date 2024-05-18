@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Editeur de code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link href="index.css" rel="stylesheet">
+</head>
+<body>
+  
+  <div class="container">
+    <div class="text-center" id="InfoSup">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modaleOnglets">
+        Information supplementaire
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="text-container burn-effect" >
+          <h1>Liste des input</h1>
+          <div class="texte" contenteditable="true">
+                <p>a</p>
+                <p>6</p>
+          </div>
+        </div>
+        <button id="btn-reset" class="btn btn-primary btn-block mt-3">Réinitialiser</button>
+      </div>
+      
+
+      <div class="col-lg-8">
+        <div id="editor" style="height: 500px;border-radius: 10px;">
+</div>
+       </div>
+        <div class="btn-container">
+          <button id="btn-executer" class="btn btn-success">Executer</button>
+          <button id="btn-verifier" class="btn btn-primary">Verifier</button>
+        </div>
+        <div id="resultat" class="mt-3"></div>
+      </div>
+    </div>
+    <div class="modal fade" id="modaleOnglets" tabindex="-1" aria-labelledby="modaleOngletsLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaleOngletsLabel">Fenêtre d'information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Onglets -->
+            <ul class="nav nav-tabs" id="onglet" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="rappel-tab" data-bs-toggle="tab" data-bs-target="#rappelContent" type="button" role="tab" aria-controls="rappelContent" aria-selected="true">Rappel de la Quête</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="aide-tab" data-bs-toggle="tab" data-bs-target="#aideContent" type="button" role="tab" aria-controls="aideContent" aria-selected="false">Aide</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="output-tab" data-bs-toggle="tab" data-bs-target="#exempleContent" type="button" role="tab" aria-controls="outputContent" aria-selected="false">Output Attendu</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="indice-tab" data-bs-toggle="tab" data-bs-target="#indiceContent" type="button" role="tab" aria-controls="indiceContent" aria-selected="false">Indice</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="ongletContent">
+              <div class="tab-pane fade" id="aideContent" role="tabpanel" aria-labelledby="aide-tab">
+<p></p>
+                <!-- Contenu de l'aide -->
+                
+              </div>
+              <div class="tab-pane fade" id="exempleContent" role="tabpanel" aria-labelledby="exemple-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Entrée</h4>
+                        <div id="inputText">Mot 1</div>
+                        <button type="button" class="btn btn-secondary mt-2" id="prevBtn">Précédent</button>
+                        <button type="button" class="btn btn-primary mt-2" id="nextBtn">Suivant</button>
+                      
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Sortie</h4>
+                        <div id="outputText">Mot 1</div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+              
+              
+              <div class="tab-pane fade show active" id="rappelContent" role="tabpanel" aria-labelledby="rappel-tab">
+<p>Ecrivez la boucle ‘for’ qui permette l’affichage de :</p>
+<p>a) 0 1 2 3 4 ...</p>
+<p>b) 1 4 9 16 25 ...</p>
+<p>c) 2 4 6 8 ... </p>
+<p>d) 10 9 8 7 6 ...</p>
+<p>Le format des inputs est defini comme ceci</p>
+<p>la 1ere ligne est une lettre correspondant au type de suite</p>
+<p>la 2eme ligne consiste au nombre d'element qui sont dans la suite </p>
+              </div>
+              <div class="tab-pane fade" id="indiceContent" role="tabpanel" aria-labelledby="indice-tab">
+                <!-- Indice supplémentaire -->
+                <p id="indiceText"></p>
+                <button type="button" id="btnIndice" class="btn btn-primary">Obtenir un indice</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="index_c3e922b4-2d04-4d40-86ce-08187fd73dc6.js"> </script>
+
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script>
+    $(document).ready(function() {
+      const btnReset = $('#btn-reset');
+      const texte = $('.texte');
+
+      const contenuInitial = `
+<p>a</p><p>6</p>      `
+      ;
+
+      btnReset.on('click', function() {
+        texte.html(contenuInitial);
+      });
+
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+      editor.session.setMode("ace/mode/python");
+
+      $('#btn-executer').click(function() {
+        var code = editor.getValue();
+        var contenu = texte.html();
+
+        $.ajax({
+          url: 'Execution.php',
+          type: 'POST',
+          data: { code: code, contenu: contenu },
+          success: function(response) {
+            var elements = response.split("\n");
+            $('#resultat').text("")
+            elements.forEach(function(element) {
+            $('#resultat').append(element + "<br/>");
+         });
+          },
+          error: function(xhr, status, error) {
+            console.error('Erreur AJAX : ', status, error);
+          }
+        });
+      });
+
+      $('#btn-verifier').click(function() {
+        var code = editor.getValue();
+        var gold_total = 1.0*100;
+        var gold = gold_total - Math.floor((gold_total/3))*indiceCount;
+        var id = 'c3e922b4-2d04-4d40-86ce-08187fd73dc6'
+        $.ajax({
+          url: 'Verification.php',
+          type: 'POST',
+          data: { code: code,Gold: gold,Id: id },
+          success: function(response) {
+            var elements = response.split("\n");
+            $('#resultat').text("")
+            elements.forEach(function(element) {
+            $('#resultat').append(element + "<br/>");
+         });
+        },
+          error: function(xhr, status, error) {
+            console.error('Erreur AJAX : ', status, error);
+          }
+        });
+      });
+    });
+  </script>
+
+   
+
+  
+</body>
+</html>
+

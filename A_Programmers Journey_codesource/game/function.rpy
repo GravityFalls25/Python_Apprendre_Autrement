@@ -117,6 +117,7 @@ init python:
                     persistent.argent = persistent.argent + int(gold_gagne)
                 elif chap == 4:
                     persistent.point_intelligence = persistent.point_intelligence + int(gold_gagne)
+                #...    A rajouter  si on rajoute de nouveau chapitre
                 persistent.score = persistent.score + int(gold_gagne)
             #renpy.say(j, "Waouw merci, tu as gagné [gold]")
             if not reussi:

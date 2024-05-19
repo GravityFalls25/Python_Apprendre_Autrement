@@ -63,6 +63,11 @@ screen ecran_victoire(nom_quete,or_gagne,chap=0):
                     style "details_or"
                 text "Point de valeur total: [persistent.point_de_valeur]":
                     style "details_or"
+            elif chap == 3: 
+                text "Argent gagné: [or_gagne]":
+                    style "details_or"
+                text "Argent total: [persistent.argent]":
+                    style "details_or"
             
             text "Score Total: [persistent.score]":
                 style "details_score"

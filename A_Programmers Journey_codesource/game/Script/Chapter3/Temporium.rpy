@@ -439,6 +439,7 @@ label quete_aubergiste_temporium(quest_id,nom_quete, url):
             python:
                 remove_html(id)
                 persistent.Quete_faite.append((quest_id, nom_quete))
+                quete_auberge_global = True
             call screen ecran_victoire(nom_quete,gold_gagne,3)
 
             jump auberge

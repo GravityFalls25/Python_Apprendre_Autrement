@@ -450,7 +450,7 @@ label quete_aubergiste_temporium(quest_id,nom_quete, url):
 
 label forgeron:
     scene forge with fade
-    show forgeron 
+    show forgeron at middleright
     forgeron "Tu veux quoi gamin ?"
     
     m "Je viens pour forger une nouvelle lance"

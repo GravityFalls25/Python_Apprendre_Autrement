@@ -6,9 +6,14 @@ $contenu = trim($contenu);
 
 
 // Diviser la chaîne en fonction des balises <p>
-preg_match_all('/<p[^>]*>(.*?)<\/p>/i', $contenu, $matches);
-$contenu = $matches[1];
+$contenu = preg_replace('/<br\s*\/?>/i', "\n", $contenu);
 
+// Diviser la chaîne en fonction des balises <p> en incluant la division par \n
+preg_match_all('/<p[^>]*>(.*?)<\/p>/is', $contenu, $matches);
+$contenu = implode("\n", $matches[1]); // Fusionner tout le contenu de <p> en une seule chaîne
+
+// Diviser par les retours à la ligne
+$contenu = explode("\n", $contenu);
 
 // Nettoyer chaque élément
 foreach ($contenu as &$element) {
@@ -19,7 +24,6 @@ $contenu = implode(',', $contenu);
 // Crée un fichier temporaire pour stocker le code Python
 $filename = 'execution.py';
 $filename2 = 'user.py';
-// si fichier temporaire :  $tempFile = tempnam(sys_get_temp_dir(), 'python_script_');
 file_put_contents($filename2, $code);
 
 // Exécute le code Python en utilisant la commande shell

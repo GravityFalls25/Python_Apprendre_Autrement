@@ -54,9 +54,9 @@ init python:
             return (len(quests) + cols - 1) // cols
     
     # Envoie les données de la quête
-    def handle_quest_and_redirect(quest, url,who,message,tavern,label):
+    def handle_quest_and_redirect(quest,url,tavern,label):
 
-        create_html(quest[0],id,who,message,tavern = tavern)
+        create_html(quest[0],id,None,"",tavern = tavern)
         renpy.call(label, quest[0],quest[1], url)
     
     #Recevoir quete tavern
@@ -77,9 +77,6 @@ init python:
     #Crée un id aleatoire pour le joueur
     def getid():
         return str(uuid.uuid4())
-    id = getid()
-    #Url de redirection de la page html
-    site = "http://localhost/Python_Apprendre_Autrement/index_" + id + ".html"
 
     #Créer la page html
     def create_html(id_quest,id,who,message,tavern = 0):

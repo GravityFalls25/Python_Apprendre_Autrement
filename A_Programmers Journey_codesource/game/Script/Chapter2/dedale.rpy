@@ -63,7 +63,7 @@ label test2:
     j "Parfait on peut continuer d'avancer maintenant"
 
     scene interieur_labyrinthe with fade
-    m "Tiens il y a encore des ecritures sur le mur mais on dirait que ce n'est pas la meme personne qui l'a ecrit"
+    m "Tiens il y a encore des écritures sur le mur mais on dirait que ce n'est pas la meme personne qui les a ecrit"
 
     "Mon nom est Elsa et je suis l'elue responsable de la fonction if-else ou du moins je l'étais avant que Ouroboros renie l'humanité"
     

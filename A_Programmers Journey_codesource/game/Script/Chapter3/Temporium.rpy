@@ -194,7 +194,8 @@ label Temporium:
     scene bibli_soir with fade
     m "Ca nous aura prit tout le reste de la journée mais on a enfin reussi à copier les effets des boucles"
 
-    call screen debloquer(3)
+    call screen debloquer(5)
+    call screen debloquer(6)
 
     j "Malheuresement quand bien meme on sait creer des boucles, on ne sait toujours pas comment en sortir d'une"
 

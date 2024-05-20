@@ -110,23 +110,6 @@ Une etrange jeune fille te demande si tu vas bien, Tu devrais surement lui repon
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
   <script>
-   document.querySelector('.texte').addEventListener('keydown', function(e) {
-    if (e.key === 'Backspace' || e.key === 'Delete') {
-        // Définir un petit délai pour laisser le navigateur mettre à jour le DOM si la touche est pressée
-        setTimeout(() => {
-            let pTags = this.querySelectorAll('p');
-            // Vérifier s'il reste des balises <p>
-            if (pTags.length === 0) {
-                // Empêcher la suppression si c'est la dernière balise <p>
-                // Et restaurer une balise <p> vide
-                document.execCommand('formatBlock', false, 'p');
-                e.preventDefault();
-            }
-        }, 0);
-    }
-});
-  </script>
-  <script>
     $(document).ready(function() {
       const btnReset = $('#btn-reset');
       const texte = $('.texte');

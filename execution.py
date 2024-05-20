@@ -51,6 +51,7 @@ def perform_test(inputs, id, timeout):
 def main():
     if len(sys.argv) == 2:
         inputs = ""
+        id=sys.argv[1]
     else:
         inputs = sys.argv[1]
         id=sys.argv[2]

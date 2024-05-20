@@ -249,13 +249,11 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Retour") action Rollback()
             textbutton _("Historique") action ShowMenu('history')
             textbutton _("Avance rapide") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Sauvegarde") action ShowMenu('save')
-            textbutton _("Sauvegarde R.") action QuickSave()
-            textbutton _("Chargement R.") action QuickLoad()
+            textbutton _("Chargement") action ShowMenu('load')
             textbutton _("Préf.") action ShowMenu('preferences')
 
 

@@ -24,3 +24,7 @@ init python:
         #Recuperation de l'ip dans le fichier config.txt
         import function
         ipS=function.get_ip()
+
+        id = getid()
+        #Url de redirection de la page html
+        site = "http://"+ipS+"/Python_Apprendre_Autrement/index_" + id + ".html"

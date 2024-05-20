@@ -350,34 +350,34 @@ label chemin:
                 show vendeuse at right
                 menu:
                     "J'ai [argent_actuel] piece d'argent"
-                    "Acheter un filet - x piece d'argent":
-                        if argent_actuel >=0:
-                            $ argent_actuel -= 0
+                    "Acheter un filet - 200 piece d'argent":
+                        if argent_actuel >=200:
+                            $ argent_actuel -= 200
                             $ filet = True
                             vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Voila qui pourrait m'etre utile"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
                         jump magasin
-                    "Acheter un parfums - x piece d'argent":
-                        if argent_actuel >=x:
-                            $ argent_actuel -= x
+                    "Acheter un parfum - 250 piece d'argent":
+                        if argent_actuel >=250:
+                            $ argent_actuel -= 250
                             vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
                         jump magasin
-                    "Acheter de l'huile - x piece d'argent":
-                        if argent_actuel >=x:
-                            $ argent_actuel -= x
+                    "Acheter de l'huile - 100 piece d'argent":
+                        if argent_actuel >=100:
+                            $ argent_actuel -= 100
                             vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:
                             "Je n'ai pas assez d'argent, je devrai passer à l'auberge pour me faire plus d'argent"
                         jump magasin
-                    "Acheter du savon - x piece d'argent":
-                        if argent_actuel >=x:
-                            $ argent_actuel -= x
+                    "Acheter du savon - 150 piece d'argent":
+                        if argent_actuel >=150:
+                            $ argent_actuel -= 150
                             vendeuse "Merci pour votre achat, j'espere vous revoir bientot"
                             "Je ne sais pas ce que j'en ferai mais on sait jamais"
                         else:

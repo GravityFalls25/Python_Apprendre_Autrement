@@ -33,7 +33,7 @@ screen quest_menu(id_tavern,quests,label,label_retour):
                                 vbox:
                                         text quest[0]
                                         text "Difficulté: {}".format(quest[2])
-                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, site,None,"",id_tavern,label)
+                                        textbutton quest[1] action Function(handle_quest_and_redirect, quest, site,id_tavern,label)
 
 screen ecran_victoire(nom_quete,or_gagne,chap=0):
     frame:

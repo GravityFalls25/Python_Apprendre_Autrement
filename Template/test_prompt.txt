@@ -152,7 +152,7 @@ def main():
             ok = False
             break
         elif result == "Timeout":
-            print("Ton code est anormalement long, verifie-le")
+            print("Ton code est anormalement lent, verifie-le")
             ok = False
             break
         elif result == "Plus d'inputs demandes que fourni":

@@ -165,11 +165,11 @@ Navi te demande de l'aide pour calculer la quantité totale de champignons qu'el
       $('#btn-executer').click(function() {
         var code = editor.getValue();
         var contenu = texte.html();
-
+        //id var
         $.ajax({
           url: 'Execution.php',
           type: 'POST',
-          data: { code: code, contenu: contenu },
+          data: { code: code, contenu: contenu,Id: id },
           success: function(response) {
             var elements = response.split("\n");
             $('#resultat').text("")

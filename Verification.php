@@ -10,7 +10,7 @@ if(isset($_POST['code']) && isset($_POST['Gold']) && isset($_POST['Id'])) {
 // Crée un fichier temporaire pour stocker le code Python
 
 
-$filename = 'user.py';
+$filename = 'user_'. $id.'.py';
 
 // Écrit le code Python dans le fichier test.py
 file_put_contents($filename, $code);

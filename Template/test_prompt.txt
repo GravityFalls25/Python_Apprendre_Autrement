@@ -69,7 +69,7 @@ def run_test(inputs, expected_output):
 
     with mock.patch('builtins.input', side_effect=side_effect):
         try:
-            importlib.reload(user)  # Recharger le module utilisateur pour chaque test
+            importlib.reload("user_"+id)  # Recharger le module utilisateur pour chaque test
         except InputExceededError as e:
             return str(e)
         except Exception as e:
@@ -94,7 +94,7 @@ def run_test_1(inputs, expected_output):
 
     with mock.patch('builtins.input', side_effect=side_effect):
         try:
-            import user  # Recharger le module utilisateur pour chaque test
+            #Import  # Recharger le module utilisateur pour chaque test
         except InputExceededError as e:
             return str(e)
         except Exception as e:
@@ -135,7 +135,7 @@ def main():
 
     ]
 
-    with open("user.py", "r") as file:
+    with open("user_"+id+".py", "r") as file:
         user_code = file.read()
 
     # Vérifier les restrictions

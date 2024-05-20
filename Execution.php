@@ -2,6 +2,7 @@
 // Récupère le code Python envoyé par la requête AJAX
 $code = $_POST['code'];
 $contenu = $_POST['contenu'];
+$id = $_POST['Id'];
 $contenu = trim($contenu);
 
 
@@ -23,12 +24,12 @@ foreach ($contenu as &$element) {
 $contenu = implode(',', $contenu);
 // Crée un fichier temporaire pour stocker le code Python
 $filename = 'execution.py';
-$filename2 = 'user.py';
+$filename2 = 'user_'.$id.'.py';
 file_put_contents($filename2, $code);
 
 // Exécute le code Python en utilisant la commande shell
 $filepath='C:\\Users\\"johan ruiz"\\AppData\\Local\\Programs\\Python\\Python310\\python.exe';
-$output = shell_exec("$filepath $filename $contenu 2>&1");
+$output = shell_exec("$filepath $filename $contenu $id 2>&1");
 // $output = shell_exec("C:\\Users\\thiba\\AppData\\Local\\Programs\\Python\\Python38\\python.exe $filename $contenu 2>&1");
 
 

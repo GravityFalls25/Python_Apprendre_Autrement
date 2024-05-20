@@ -128,7 +128,9 @@ def html(Quest = 0,Id = 0, Tavern = 0):
                     fout.write(f"    url = 'http://"+get_ip()+":5000/update_mission_state'\n")
                     continue
                 fout.write(f"{ligne}\n")
-
+                if "#Import" in ligne:
+                    fout.write(f'           importlib.import_module("user_{id}")\n')
+                    continue
     #Ecriture HTML
     if tavern == "0":
         if quete == 1:
@@ -383,12 +385,15 @@ def clear_quete():
     ref_html = "index_" + Id_joueur + ".html"
     ref_js = "index_" + Id_joueur + ".js"
     ref_py = "test_new_" + Id_joueur + ".py"
+    ref_user = "user_" + Id_joueur + ".py"
     if os.path.exists(ref_html):
         os.remove(ref_html)
     if os.path.exists(ref_js):
         os.remove(ref_js)
     if os.path.exists(ref_py):
         os.remove(ref_py)
+    if os.path.exists(ref_user):
+        os.remove(ref_user)
     return jsonify({'success': 1}), 200
 
 def get_ip():

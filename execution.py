@@ -2,12 +2,13 @@ import mock
 from io import StringIO
 import sys
 import multiprocessing
+import importlib
 
 # Exception personnalisée pour gérer les inputs excédentaires
 class InputExceededError(Exception):
     pass
 
-def run_test(inputs):
+def run_test(inputs, id):
     output = StringIO()
     sys.stdout = output
     def side_effect(*args, **kwargs):
@@ -21,7 +22,7 @@ def run_test(inputs):
     #Systeme de buffer pour les inputs
     with mock.patch('builtins.input', side_effect=side_effect):
         try:
-            import user  # Recharger le module utilisateur pour chaque test
+            importlib.import_module(f"user_{id}")  # Recharger le module utilisateur pour chaque test
         except InputExceededError as e:
             return str(e)
         except Exception as e:
@@ -31,13 +32,13 @@ def run_test(inputs):
     actual_output = output.getvalue().strip()
     return actual_output
 
-def run_in_process(queue, inputs):
-    result = run_test(inputs)
+def run_in_process(queue, inputs, id):
+    result = run_test(inputs, id)
     queue.put(result)
 
-def perform_test(inputs, timeout):
+def perform_test(inputs, id, timeout):
     queue = multiprocessing.Queue()
-    process = multiprocessing.Process(target=run_in_process, args=(queue, inputs))
+    process = multiprocessing.Process(target=run_in_process, args=(queue, inputs, id))
     process.start()
     #Pour stopper si le programme dure trop longtemps, (risque de boucle infinie)
     process.join(timeout)
@@ -48,14 +49,15 @@ def perform_test(inputs, timeout):
         return queue.get()
 
 def main():
-    if len(sys.argv) == 1:
+    if len(sys.argv) == 2:
         inputs = ""
     else:
         inputs = sys.argv[1]
+        id=sys.argv[2]
         if inputs:
             inputs = inputs.split(',')
     timeout = 2  # Temps limite en secondes pour chaque test
-    result = perform_test(inputs, timeout)
+    result = perform_test(inputs, id, timeout)
     print(result)
     
 if __name__ == '__main__':
